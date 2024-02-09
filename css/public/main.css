@@ -1,0 +1,75 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 25px;
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0 0 3px hsl(219, 9%, 45%);
+}
+header .hamburger-logo-nav {
+  /*javascript styling*/
+}
+header .hamburger-logo-nav .hamburger-logo {
+  display: flex;
+  align-items: center;
+}
+header .hamburger-logo-nav .hamburger-logo svg {
+  color: hsl(219, 9%, 45%);
+  cursor: pointer;
+}
+header .hamburger-logo-nav .hamburger-logo .logo {
+  margin-left: 15px;
+}
+header .hamburger-logo-nav nav {
+  position: fixed;
+  top: 0;
+  background-color: white;
+  height: 100vh;
+  left: 0;
+  z-index: 4;
+  width: 65%;
+  padding: 30px 25px;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 0 15px rgb(151, 150, 150);
+  transform: translate(-100%);
+  display: none;
+}
+header .hamburger-logo-nav .nav-active {
+  transform: translate(0%);
+}
+header .cart-avatar {
+  display: flex;
+  align-items: center;
+}
+header .cart-avatar .cart-container {
+  margin-right: 40px;
+  position: relative;
+}
+header .cart-avatar .cart-container svg {
+  color: hsl(220, 13%, 13%);
+}
+header .cart-avatar .cart-container .cart-number-of-items {
+  position: absolute;
+  right: -10px;
+  top: -12px;
+  background-color: hsl(26, 100%, 55%);
+  color: hsl(0, 0%, 100%);
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+header .cart-avatar .avatar {
+  cursor: pointer;
+  color: hsl(219, 9%, 45%);
+  border: 2px solid hsl(26, 100%, 55%);
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=main.css.map */

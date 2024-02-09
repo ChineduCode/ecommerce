@@ -1,0 +1,90 @@
+//Primary colors
+$orange : hsl(26, 100%, 55%);
+$pale-orange: hsl(25, 100%, 94%);
+
+//Neutral colors
+$very-dark-blue: hsl(220, 13%, 13%);
+$dark-grayish-blue: hsl(219, 9%, 45%);
+$grayish-blue: hsl(220, 14%, 75%);
+$light-grayish-blue: hsl(223, 64%, 98%);
+$white: hsl(0, 0%, 100%);
+$black : hsl(0, 0%, 0%);
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 25px;
+    background-color: $white;
+    box-shadow: 0 0 3px $dark-grayish-blue;
+
+    .hamburger-logo-nav{
+        .hamburger-logo{
+            display: flex;
+            align-items: center;
+            svg{
+                color: $dark-grayish-blue;
+                cursor: pointer;
+            }
+            .logo{ margin-left: 15px; }
+        }
+
+        nav{
+            position: fixed;
+            top: 0;
+            background-color: white;
+            height: 100vh;
+            left: 0;
+            z-index: 4;
+            width: 65%;
+            padding: 30px 25px;
+            transition: all .4s ease-in-out;
+            box-shadow: 0 0 15px rgb(151, 150, 150);
+            transform: translate(-100%);
+            display: none;
+        }
+        /*javascript styling*/
+        .nav-active{
+            transform: translate(0%);
+        }
+    }
+
+    .cart-avatar{
+        display: flex;
+        align-items: center;
+        .cart-container{
+            margin-right: 40px;
+            position: relative;
+            svg{
+                color: $very-dark-blue;
+            }
+            .cart-number-of-items{
+                position: absolute;
+                right: -10px;
+                top: -12px;
+                background-color: $orange;
+                color: $white;
+                padding: 1px 7px;
+                border-radius: 10px;
+            }
+        }
+
+        .avatar{
+            cursor: pointer;
+            color: $dark-grayish-blue;
+            border: 2px solid $orange;
+            padding: 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+}
