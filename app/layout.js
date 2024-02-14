@@ -1,6 +1,6 @@
-import { Inter, Ubuntu } from 'next/font/google'
+import { Inter, Ubuntu, Kumbh_Sans } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const kumbh_sans = Kumbh_Sans({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Ecommerce Website',
@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={kumbh_sans.className}>{children}</body>
     </html>
   )
 }

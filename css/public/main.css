@@ -2,6 +2,8 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
 }
 
 header {
@@ -30,15 +32,29 @@ header .hamburger-logo-nav nav {
   position: fixed;
   top: 0;
   background-color: white;
-  height: 100vh;
+  min-height: 100vh;
   left: 0;
   z-index: 4;
   width: 65%;
   padding: 30px 25px;
   transition: all 0.4s ease-in-out;
-  box-shadow: 0 0 15px rgb(151, 150, 150);
+  box-shadow: 0 0 15px hsl(219, 9%, 45%);
   transform: translate(-100%);
-  display: none;
+}
+header .hamburger-logo-nav nav .close-nav {
+  color: hsl(219, 9%, 45%);
+  cursor: pointer;
+}
+header .hamburger-logo-nav nav .nav-links {
+  margin-top: 3rem;
+}
+header .hamburger-logo-nav nav .nav-links .nav-link {
+  margin: 18px 0;
+  padding: 2px 0;
+}
+header .hamburger-logo-nav nav .nav-links .nav-link a {
+  color: hsl(220, 13%, 13%);
+  font-weight: bold;
 }
 header .hamburger-logo-nav .nav-active {
   transform: translate(0%);
