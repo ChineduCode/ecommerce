@@ -39,7 +39,7 @@ header .hamburger-logo-nav nav {
   padding: 30px 25px;
   transition: all 0.4s ease-in-out;
   box-shadow: 0 0 15px hsl(219, 9%, 45%);
-  transform: translate(-100%);
+  transform: translate(-120%);
 }
 header .hamburger-logo-nav nav .close-nav {
   color: hsl(219, 9%, 45%);
@@ -63,14 +63,15 @@ header .cart-avatar {
   display: flex;
   align-items: center;
 }
-header .cart-avatar .cart-container {
+header .cart-avatar .cart-icon-container {
   margin-right: 40px;
   position: relative;
+  cursor: pointer;
 }
-header .cart-avatar .cart-container svg {
+header .cart-avatar .cart-icon-container svg {
   color: hsl(220, 13%, 13%);
 }
-header .cart-avatar .cart-container .cart-number-of-items {
+header .cart-avatar .cart-icon-container .cart-number-of-items {
   position: absolute;
   right: -10px;
   top: -12px;
@@ -88,4 +89,141 @@ header .cart-avatar .avatar {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.cart {
+  position: absolute;
+  top: 5rem;
+  left: 0px;
+  width: 100%;
+  transform: translateY(-150%) scale(0);
+  transition: all 0.4s ease-in-out;
+}
+.cart .container {
+  background-color: hsl(0, 0%, 100%);
+  margin: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px hsl(219, 9%, 45%);
+}
+.cart .container .heading {
+  padding: 20px;
+  font-weight: 600;
+  color: hsl(220, 13%, 13%);
+  border-bottom: 1px solid hsl(220, 14%, 75%);
+}
+.cart .container .content .empty-cart {
+  color: hsl(219, 9%, 45%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  font-weight: 600;
+}
+
+.cart-active {
+  transform: translateY(0%) scale(1);
+}
+
+.add-minus-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px;
+  background-color: hsl(223, 64%, 98%);
+  border-radius: 12px;
+  margin: 20px 0;
+}
+.add-minus-btn svg {
+  cursor: pointer;
+  color: hsl(26, 100%, 55%);
+}
+.add-minus-btn svg:active {
+  color: hsl(25, 100%, 94%);
+}
+.add-minus-btn .count {
+  color: hsl(220, 13%, 13%);
+  font-weight: 600;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  padding: 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 12px;
+  background-color: hsl(26, 100%, 55%);
+  color: hsl(0, 0%, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.add-to-cart-btn span {
+  margin-left: 10px;
+}
+.add-to-cart-btn:active {
+  background-color: hsl(25, 100%, 94%);
+}
+
+.rating span {
+  margin: 0 0.1rem;
+}
+
+.product-screen .container .hero-img img {
+  width: 100%;
+}
+.product-screen .container .text-container {
+  padding: 20px 25px;
+}
+.product-screen .container .text-container .name {
+  color: hsl(220, 13%, 13%);
+}
+.product-screen .container .text-container .description {
+  color: hsl(219, 9%, 45%);
+  line-height: 23px;
+  margin: 20px 0 15px;
+}
+.product-screen .container .text-container .price-container {
+  color: hsl(220, 13%, 13%);
+  margin: 15px 0;
+}
+.product-screen .container .text-container .count-in-stock {
+  padding: 8px;
+  background-color: hsl(223, 64%, 98%);
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.home-page {
+  padding: 25px;
+  min-height: 100vh;
+}
+.home-page .latest-products {
+  color: hsl(220, 13%, 13%);
+}
+.home-page .latest-products .heading {
+  margin-bottom: 1.5rem;
+}
+.home-page .latest-products .products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5% 10%;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.home-page .latest-products .products .product a {
+  color: hsl(220, 13%, 13%);
+}
+.home-page .latest-products .products .product a img {
+  width: 100%;
+}
+.home-page .latest-products .products .product a .name {
+  margin-top: 10px;
+}
+.home-page .latest-products .products .product .rating {
+  margin: 10px 0;
+}
+.home-page .latest-products .products .product .rating span {
+  margin: 0.1rem;
 }/*# sourceMappingURL=main.css.map */

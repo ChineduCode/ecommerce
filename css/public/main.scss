@@ -48,7 +48,7 @@ header{
             padding: 30px 25px;
             transition: all .4s ease-in-out;
             box-shadow: 0 0 15px $dark-grayish-blue;
-            transform: translate(-100%);
+            transform: translate(-120%);
 
             .close-nav{
                 color: $dark-grayish-blue;
@@ -76,9 +76,10 @@ header{
     .cart-avatar{
         display: flex;
         align-items: center;
-        .cart-container{
+        .cart-icon-container{
             margin-right: 40px;
             position: relative;
+            cursor: pointer;
             svg{
                 color: $very-dark-blue;
             }
@@ -92,7 +93,7 @@ header{
                 border-radius: 10px;
             }
         }
-
+        
         .avatar{
             cursor: pointer;
             color: $dark-grayish-blue;
@@ -104,7 +105,145 @@ header{
             justify-content: center;
         }
     }
-
 }
 
-.home{}
+//cart component
+.cart{
+    position: absolute;
+    top: 5rem;
+    left: 0px;
+    width: 100%;
+    transform: translateY(-150%) scale(0);
+    transition: all .4s ease-in-out;
+    .container{
+        background-color: $white;
+        margin: 10px 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px $dark-grayish-blue;
+        .heading{
+            padding: 20px;
+            font-weight: 600;
+            color: $very-dark-blue;
+            border-bottom: 1px solid $grayish-blue;
+        }
+        .content{
+            .empty-cart{
+                color: $dark-grayish-blue;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 200px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+.cart-active{
+    transform: translateY(0%) scale(1);
+}
+
+//Add-minus-btn component
+.add-minus-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    background-color: $light-grayish-blue;
+    border-radius: 12px;
+    margin: 20px 0;
+    svg{
+        cursor: pointer;
+        color: $orange;
+        &:active{color: $pale-orange;}
+    }
+    .count{
+        color: $very-dark-blue;
+        font-weight: 600;
+    }
+}
+
+//add-to-cart-btn component
+.add-to-cart-btn{
+    width: 100%;
+    padding: 20px;
+    border: none;
+    font-size: 16px;
+    border-radius: 12px;
+    background-color: $orange;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    span{margin-left: 10px;}
+
+    &:active{
+        background-color: $pale-orange;
+    }
+}
+
+//rating component
+.rating{
+    span{margin: 0 0.1rem;}
+}
+
+
+.product-screen{
+    .container{
+        .hero-img{
+            img{width: 100%;}
+        }
+        .text-container{
+            padding: 20px 25px;
+            .name{ color: $very-dark-blue; }
+            .description{
+                color: $dark-grayish-blue;
+                line-height: 23px;
+                margin: 20px 0 15px;
+            }
+            .price-container{
+                color: $very-dark-blue;
+                margin: 15px 0;
+            }
+            .count-in-stock{
+                padding: 8px;
+                background-color: $light-grayish-blue;
+                display: inline-block;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
+.home-page{
+    padding: 25px;
+    min-height: 100vh;
+    .latest-products{
+        color: $very-dark-blue;
+        .heading{
+            margin-bottom: 1.5rem;
+        }
+
+        .products{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 5% 10%;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .product{
+                a{
+                    color: $very-dark-blue;
+                    img{ width: 100%; }
+                    .name{
+                        margin-top: 10px;
+                    }
+                }
+                .rating{
+                    margin: 10px 0;
+                    span{margin: 0.1rem;}
+                }
+            }
+        }
+    }
+}

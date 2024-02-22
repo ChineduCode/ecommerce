@@ -1,4 +1,4 @@
-import { Inter, Ubuntu, Kumbh_Sans } from 'next/font/google'
+import { Ubuntu, Kumbh_Sans } from 'next/font/google'
 
 const kumbh_sans = Kumbh_Sans({ subsets: ['latin'] })
 
