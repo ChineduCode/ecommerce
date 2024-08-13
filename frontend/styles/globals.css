@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: hsl(0, 0%, 100%);
+}
+
+.login, .signup {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  color: hsl(220, 13%, 13%);
+  background-color: hsl(0, 0%, 100%);
+}
+.login .container, .signup .container {
+  width: 400px;
+  max-width: 100%;
+}
+.login .container .headers, .signup .container .headers {
+  margin-bottom: 2rem;
+}
+.login .container .headers .sub-heading, .signup .container .headers .sub-heading {
+  color: hsl(220, 14%, 75%);
+  margin: 0.7rem 0;
+}
+.login .container .form-control, .signup .container .form-control {
+  margin: 12px 0;
+  position: relative;
+}
+.login .container .form-control label, .signup .container .form-control label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.login .container .form-control input, .signup .container .form-control input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid hsl(220, 13%, 13%);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  color: hsl(220, 13%, 13%);
+  outline: none;
+}
+.login .container .form-control svg, .signup .container .form-control svg {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  right: 5px;
+  cursor: pointer;
+}
+.login .container .checkbox-container, .signup .container .checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.login .container .checkbox-container input, .signup .container .checkbox-container input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 0px;
+  height: 0px;
+  width: unset;
+  border: 1px solid hsl(220, 13%, 13%);
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+}
+.login .container .checkbox-container input:checked, .signup .container .checkbox-container input:checked {
+  background-color: hsl(220, 13%, 13%);
+}
+.login .container .checkbox-container input:checked::after, .signup .container .checkbox-container input:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 10px;
+  border: solid hsl(0, 0%, 100%);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -60%) rotate(45deg);
+}
+.login .container .checkbox-container a, .signup .container .checkbox-container a {
+  color: hsl(220, 13%, 13%);
+}
+.login .container button, .signup .container button {
+  width: 100%;
+  display: inline-block;
+  background-color: hsl(220, 13%, 13%);
+  color: hsl(0, 0%, 100%);
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid hsl(220, 13%, 13%);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+}/*# sourceMappingURL=globals.css.map */
