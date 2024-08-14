@@ -14,16 +14,34 @@ body{
     background-color: hsl(0, 0, 100%);
 }
 
-.login, .signup{
+.login, .signup, .forgot-password{
     padding: 4rem 2rem;
     display: flex;
     justify-content: center;
     color: hsl(220, 13%, 13%);
     background-color: hsl(0, 0, 100%);
 
+    .error{
+       background-color: orangered;
+       color: hsl(0, 0, 100%);
+       border-radius: 7px;
+       padding: 10px;
+       display: block;
+    }
+
     .container{
         width: 400px;
         max-width: 100%;
+        .back-container{
+            margin-bottom: 2rem;
+            display: inline-block;
+            a{
+                color: hsl(220, 13%, 13%);
+                display: flex;
+                align-items: center;
+                span{ margin-left: 10px; }
+            }
+        }
         .headers{
             margin-bottom: 2rem;
             .sub-heading{
@@ -38,7 +56,7 @@ body{
                 display: inline-block;
                 margin-bottom: 5px;
             }
-            input{
+            input, .phone{
                 width: 100%;
                 padding: 12px;
                 border: 1px solid hsl(220, 13%, 13%);
@@ -48,6 +66,7 @@ body{
                 color: hsl(220, 13%, 13%);
                 outline: none;
             }
+            .phone{padding-left: 47px;}
             svg{
                 position: absolute;
                 top: 50%;
@@ -56,10 +75,7 @@ body{
                 cursor: pointer;
             }
         }
-        .checkbox-container{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .remember-container, .terms-conditions-container{
             input{
                 appearance: none;
                 -webkit-appearance: none;
@@ -88,6 +104,32 @@ body{
                 }
             }
             a{color: hsl(220, 13%, 13%);}
+        }
+        .remember-container{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            .checkbox-container{
+                display: flex;
+                align-items: center;
+                label{
+                    margin-left: 10px;
+                    margin-bottom: unset;
+                }
+            }
+            span{
+                padding: 0px;
+                margin: 0px;
+            }
+        }
+        .terms-conditions-container{
+            display: flex;
+            align-items: center;
+            span{
+                position: relative;
+                left: 10px;
+            }
         }
 
         button{

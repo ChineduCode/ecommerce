@@ -109,8 +109,29 @@ const getAllUsers = async (req, res)=> {
     }
 }
 
+const getUser = async (req, res)=> {
+    try{
+        const id = req.params.id
+        
+        if (!require('mongoose').Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: 'Invalid user ID' });
+        }
+
+        const user = await Users.findById(id)
+        if(!user){
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        return res.status(200).json(user)
+
+    }catch (error){
+        return res.status(200).json({ message: 'Internal server error' })
+    }
+}
+
 module.exports = {
     registerUser,
     loginUser,
-    getAllUsers
+    getAllUsers,
+    getUser
 }
