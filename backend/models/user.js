@@ -32,6 +32,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    verificationCode: {
+        type: String
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
+    otp: {
+        type: String,
+        default: null
+    },
+    otpExpiry: { type: Date },
     orders: [
         { 
             type: mongoose.Schema.Types.ObjectId, 

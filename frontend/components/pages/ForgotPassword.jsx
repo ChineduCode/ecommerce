@@ -3,10 +3,12 @@
 import Link from "next/link"
 import { FaLessThan } from "react-icons/fa6";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ForgotPassword(){
     const [email, setEmail] = useState('')
     const [error, setError] = useState(null)
+    const router = useRouter()
 
     const sendOTP = async (e)=> {
         e.preventDefault()
@@ -21,7 +23,7 @@ export default function ForgotPassword(){
                 throw new Error('Invalid email address')
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/reset-password`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/forgot-password/send-otp`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -33,6 +35,7 @@ export default function ForgotPassword(){
             if(response.ok){
                 setError('')
                 setEmail('')
+                router.push('/otp-verification')
             }else{
                 throw new Error(data.message)
             }

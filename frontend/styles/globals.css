@@ -14,52 +14,52 @@ body {
   background-color: hsl(0, 0%, 100%);
 }
 
-.login, .signup, .forgot-password {
+.login, .signup, .forgot-password, .otp, .new-password {
   padding: 4rem 2rem;
   display: flex;
   justify-content: center;
   color: hsl(220, 13%, 13%);
   background-color: hsl(0, 0%, 100%);
 }
-.login .error, .signup .error, .forgot-password .error {
+.login .error, .signup .error, .forgot-password .error, .otp .error, .new-password .error {
   background-color: orangered;
   color: hsl(0, 0%, 100%);
   border-radius: 7px;
   padding: 10px;
   display: block;
 }
-.login .container, .signup .container, .forgot-password .container {
+.login .container, .signup .container, .forgot-password .container, .otp .container, .new-password .container {
   width: 400px;
   max-width: 100%;
 }
-.login .container .back-container, .signup .container .back-container, .forgot-password .container .back-container {
+.login .container .back-container, .signup .container .back-container, .forgot-password .container .back-container, .otp .container .back-container, .new-password .container .back-container {
   margin-bottom: 2rem;
   display: inline-block;
 }
-.login .container .back-container a, .signup .container .back-container a, .forgot-password .container .back-container a {
+.login .container .back-container a, .signup .container .back-container a, .forgot-password .container .back-container a, .otp .container .back-container a, .new-password .container .back-container a {
   color: hsl(220, 13%, 13%);
   display: flex;
   align-items: center;
 }
-.login .container .back-container a span, .signup .container .back-container a span, .forgot-password .container .back-container a span {
+.login .container .back-container a span, .signup .container .back-container a span, .forgot-password .container .back-container a span, .otp .container .back-container a span, .new-password .container .back-container a span {
   margin-left: 10px;
 }
-.login .container .headers, .signup .container .headers, .forgot-password .container .headers {
+.login .container .headers, .signup .container .headers, .forgot-password .container .headers, .otp .container .headers, .new-password .container .headers {
   margin-bottom: 2rem;
 }
-.login .container .headers .sub-heading, .signup .container .headers .sub-heading, .forgot-password .container .headers .sub-heading {
-  color: hsl(220, 14%, 75%);
+.login .container .headers .sub-heading, .signup .container .headers .sub-heading, .forgot-password .container .headers .sub-heading, .otp .container .headers .sub-heading, .new-password .container .headers .sub-heading {
+  color: hsl(219, 9%, 45%);
   margin: 0.7rem 0;
 }
-.login .container .form-control, .signup .container .form-control, .forgot-password .container .form-control {
+.login .container .form-control, .signup .container .form-control, .forgot-password .container .form-control, .otp .container .form-control, .new-password .container .form-control {
   margin: 12px 0;
   position: relative;
 }
-.login .container .form-control label, .signup .container .form-control label, .forgot-password .container .form-control label {
+.login .container .form-control label, .signup .container .form-control label, .forgot-password .container .form-control label, .otp .container .form-control label, .new-password .container .form-control label {
   display: inline-block;
   margin-bottom: 5px;
 }
-.login .container .form-control input, .login .container .form-control .phone, .signup .container .form-control input, .signup .container .form-control .phone, .forgot-password .container .form-control input, .forgot-password .container .form-control .phone {
+.login .container .form-control input, .login .container .form-control .phone, .signup .container .form-control input, .signup .container .form-control .phone, .forgot-password .container .form-control input, .forgot-password .container .form-control .phone, .otp .container .form-control input, .otp .container .form-control .phone, .new-password .container .form-control input, .new-password .container .form-control .phone {
   width: 100%;
   padding: 12px;
   border: 1px solid hsl(220, 13%, 13%);
@@ -69,17 +69,17 @@ body {
   color: hsl(220, 13%, 13%);
   outline: none;
 }
-.login .container .form-control .phone, .signup .container .form-control .phone, .forgot-password .container .form-control .phone {
+.login .container .form-control .phone, .signup .container .form-control .phone, .forgot-password .container .form-control .phone, .otp .container .form-control .phone, .new-password .container .form-control .phone {
   padding-left: 47px;
 }
-.login .container .form-control svg, .signup .container .form-control svg, .forgot-password .container .form-control svg {
+.login .container .form-control svg, .signup .container .form-control svg, .forgot-password .container .form-control svg, .otp .container .form-control svg, .new-password .container .form-control svg {
   position: absolute;
   top: 50%;
   bottom: 50%;
   right: 5px;
   cursor: pointer;
 }
-.login .container .remember-container input, .login .container .terms-conditions-container input, .signup .container .remember-container input, .signup .container .terms-conditions-container input, .forgot-password .container .remember-container input, .forgot-password .container .terms-conditions-container input {
+.login .container .remember-container input, .login .container .terms-conditions-container input, .signup .container .remember-container input, .signup .container .terms-conditions-container input, .forgot-password .container .remember-container input, .forgot-password .container .terms-conditions-container input, .otp .container .remember-container input, .otp .container .terms-conditions-container input, .new-password .container .remember-container input, .new-password .container .terms-conditions-container input {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -92,10 +92,10 @@ body {
   cursor: pointer;
   position: relative;
 }
-.login .container .remember-container input:checked, .login .container .terms-conditions-container input:checked, .signup .container .remember-container input:checked, .signup .container .terms-conditions-container input:checked, .forgot-password .container .remember-container input:checked, .forgot-password .container .terms-conditions-container input:checked {
+.login .container .remember-container input:checked, .login .container .terms-conditions-container input:checked, .signup .container .remember-container input:checked, .signup .container .terms-conditions-container input:checked, .forgot-password .container .remember-container input:checked, .forgot-password .container .terms-conditions-container input:checked, .otp .container .remember-container input:checked, .otp .container .terms-conditions-container input:checked, .new-password .container .remember-container input:checked, .new-password .container .terms-conditions-container input:checked {
   background-color: hsl(220, 13%, 13%);
 }
-.login .container .remember-container input:checked::after, .login .container .terms-conditions-container input:checked::after, .signup .container .remember-container input:checked::after, .signup .container .terms-conditions-container input:checked::after, .forgot-password .container .remember-container input:checked::after, .forgot-password .container .terms-conditions-container input:checked::after {
+.login .container .remember-container input:checked::after, .login .container .terms-conditions-container input:checked::after, .signup .container .remember-container input:checked::after, .signup .container .terms-conditions-container input:checked::after, .forgot-password .container .remember-container input:checked::after, .forgot-password .container .terms-conditions-container input:checked::after, .otp .container .remember-container input:checked::after, .otp .container .terms-conditions-container input:checked::after, .new-password .container .remember-container input:checked::after, .new-password .container .terms-conditions-container input:checked::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -106,36 +106,36 @@ body {
   border-width: 0 2px 2px 0;
   transform: translate(-50%, -60%) rotate(45deg);
 }
-.login .container .remember-container a, .login .container .terms-conditions-container a, .signup .container .remember-container a, .signup .container .terms-conditions-container a, .forgot-password .container .remember-container a, .forgot-password .container .terms-conditions-container a {
+.login .container .remember-container a, .login .container .terms-conditions-container a, .signup .container .remember-container a, .signup .container .terms-conditions-container a, .forgot-password .container .remember-container a, .forgot-password .container .terms-conditions-container a, .otp .container .remember-container a, .otp .container .terms-conditions-container a, .new-password .container .remember-container a, .new-password .container .terms-conditions-container a {
   color: hsl(220, 13%, 13%);
 }
-.login .container .remember-container, .signup .container .remember-container, .forgot-password .container .remember-container {
+.login .container .remember-container, .signup .container .remember-container, .forgot-password .container .remember-container, .otp .container .remember-container, .new-password .container .remember-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
-.login .container .remember-container .checkbox-container, .signup .container .remember-container .checkbox-container, .forgot-password .container .remember-container .checkbox-container {
+.login .container .remember-container .checkbox-container, .signup .container .remember-container .checkbox-container, .forgot-password .container .remember-container .checkbox-container, .otp .container .remember-container .checkbox-container, .new-password .container .remember-container .checkbox-container {
   display: flex;
   align-items: center;
 }
-.login .container .remember-container .checkbox-container label, .signup .container .remember-container .checkbox-container label, .forgot-password .container .remember-container .checkbox-container label {
+.login .container .remember-container .checkbox-container label, .signup .container .remember-container .checkbox-container label, .forgot-password .container .remember-container .checkbox-container label, .otp .container .remember-container .checkbox-container label, .new-password .container .remember-container .checkbox-container label {
   margin-left: 10px;
   margin-bottom: unset;
 }
-.login .container .remember-container span, .signup .container .remember-container span, .forgot-password .container .remember-container span {
+.login .container .remember-container span, .signup .container .remember-container span, .forgot-password .container .remember-container span, .otp .container .remember-container span, .new-password .container .remember-container span {
   padding: 0px;
   margin: 0px;
 }
-.login .container .terms-conditions-container, .signup .container .terms-conditions-container, .forgot-password .container .terms-conditions-container {
+.login .container .terms-conditions-container, .signup .container .terms-conditions-container, .forgot-password .container .terms-conditions-container, .otp .container .terms-conditions-container, .new-password .container .terms-conditions-container {
   display: flex;
   align-items: center;
 }
-.login .container .terms-conditions-container span, .signup .container .terms-conditions-container span, .forgot-password .container .terms-conditions-container span {
+.login .container .terms-conditions-container span, .signup .container .terms-conditions-container span, .forgot-password .container .terms-conditions-container span, .otp .container .terms-conditions-container span, .new-password .container .terms-conditions-container span {
   position: relative;
   left: 10px;
 }
-.login .container button, .signup .container button, .forgot-password .container button {
+.login .container button, .signup .container button, .forgot-password .container button, .otp .container button, .new-password .container button {
   width: 100%;
   display: inline-block;
   background-color: hsl(220, 13%, 13%);
@@ -146,4 +146,95 @@ body {
   border-radius: 8px;
   cursor: pointer;
   margin-top: 1rem;
+}
+
+.otp .form-control {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.otp .form-control input {
+  text-align: center;
+  width: 40px;
+  transition: border-color 0.3s ease;
+  border: 1px solid hsl(219, 9%, 45%);
+}
+.otp .form-control input:focus {
+  border: 1px solid hsl(220, 13%, 13%);
+}
+.otp .form-control input::-webkit-outer-spin-button, .otp .form-control input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.password-updated {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(110, 107, 107, 0.4);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.password-updated .modal-content {
+  background-color: hsl(0, 0%, 100%);
+  margin: 15% auto;
+  padding: 20px;
+  width: 350px;
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+.password-updated .modal-content .check-container {
+  margin: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+.password-updated .modal-content .check-container div {
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.password-updated .modal-content .check-container .light-grey-container {
+  background-color: hsl(223, 64%, 98%);
+}
+.password-updated .modal-content .check-container .grey-container {
+  background-color: hsl(220, 14%, 75%);
+}
+.password-updated .modal-content .check-container .black-container {
+  background-color: hsl(220, 13%, 13%);
+  padding: 15px;
+}
+.password-updated .modal-content .check-container .white-container {
+  background-color: hsl(0, 0%, 100%);
+}
+.password-updated .modal-content .check-container .white-container svg {
+  color: hsl(220, 13%, 13%);
+}
+.password-updated .modal-content .text {
+  font-size: 15px;
+  padding: 10px 0;
+}
+.password-updated .modal-content button {
+  width: 100%;
+  display: inline-block;
+  background-color: hsl(220, 13%, 13%);
+  color: hsl(0, 0%, 100%);
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid hsl(220, 13%, 13%);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.password-updated .modal-content button a {
+  color: hsl(0, 0%, 100%);
+  font-size: 15px;
 }/*# sourceMappingURL=globals.css.map */

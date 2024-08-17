@@ -50,7 +50,7 @@ export default function Signup(){
                 throw new Error('Agree to the Terms & Conditions')
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URI}/api/users/register`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
