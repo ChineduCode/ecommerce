@@ -295,6 +295,9 @@ header nav .nav-list .shop-link-mobile {
   height: 0px;
   overflow: hidden;
 }
+header nav .nav-list .shop-mobile-active {
+  height: initial;
+}
 header .nav-active {
   transform: translate(0%);
 }
