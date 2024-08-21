@@ -245,3 +245,104 @@ body{
         }
     }
 }
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 1rem;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    color: hsl(220, 13%, 13%);
+    background-color: hsl(0, 0, 100%);
+    box-shadow: 0 0 3px hsl(220, 14%, 75%);
+    .logo{
+        font-size: 22px;
+        font-weight: 700;
+    }
+    
+    nav{
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        width: 65%;
+        padding: 20px 1rem;
+        min-height: 100vh;
+        background-color: hsl(0, 0, 100%);
+        box-shadow: 0 0 10px hsl(220, 14%, 75%);
+        z-index: 11;
+        pointer-events: all;
+        transition: all .4s ease-in-out;
+        transform: translateX(120%);
+        .close-nav{
+            text-align: right;
+            cursor: pointer;
+        }
+        .nav-list{
+            margin-top: 1.5rem;
+            .link{
+                margin: 10px 0;
+                padding: 5px;
+                a{ cursor: pointer; }
+            }
+            .shop-link{
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                cursor: pointer;
+            }
+            .shop-link-mobile{
+                margin-left: 25px;
+                height: 0px;
+                overflow: hidden;
+            }
+        }
+    }
+    .nav-active{
+        transform: translate(0%);
+    }
+    .secondary-nav-menu{
+        display: flex;
+        align-items: center;
+        .icons{
+            margin-right: 30px;
+            svg{
+                margin: 0 5px;
+                cursor: pointer;
+            }
+        }
+        svg{
+            cursor: pointer;
+        }
+        button{display: none;}
+    }
+    a{
+        color: hsl(220, 13%, 13%);
+    }
+
+    .overlay{
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        width: 100%;
+        min-height: 100vh;
+        background: hsla(0, 0%, 0%, 0.75);
+        backdrop-filter: blur(.5px);
+        -webkit-backdrop-filter: blur(0.5px);
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 10;
+        display: none;
+        transition: all .4s ease-in-out;
+    }
+    .overlay-active{
+        display: block;
+    }
+}
+
+footer{
+    position: absolute;
+    bottom: 0px;
+}

@@ -237,4 +237,107 @@ body {
 .password-updated .modal-content button a {
   color: hsl(0, 0%, 100%);
   font-size: 15px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 1rem;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  color: hsl(220, 13%, 13%);
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0 0 3px hsl(220, 14%, 75%);
+}
+header .logo {
+  font-size: 22px;
+  font-weight: 700;
+}
+header nav {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 65%;
+  padding: 20px 1rem;
+  min-height: 100vh;
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0 0 10px hsl(220, 14%, 75%);
+  z-index: 11;
+  pointer-events: all;
+  transition: all 0.4s ease-in-out;
+  transform: translateX(120%);
+}
+header nav .close-nav {
+  text-align: right;
+  cursor: pointer;
+}
+header nav .nav-list {
+  margin-top: 1.5rem;
+}
+header nav .nav-list .link {
+  margin: 10px 0;
+  padding: 5px;
+}
+header nav .nav-list .link a {
+  cursor: pointer;
+}
+header nav .nav-list .shop-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+header nav .nav-list .shop-link-mobile {
+  margin-left: 25px;
+  height: 0px;
+  overflow: hidden;
+}
+header .nav-active {
+  transform: translate(0%);
+}
+header .secondary-nav-menu {
+  display: flex;
+  align-items: center;
+}
+header .secondary-nav-menu .icons {
+  margin-right: 30px;
+}
+header .secondary-nav-menu .icons svg {
+  margin: 0 5px;
+  cursor: pointer;
+}
+header .secondary-nav-menu svg {
+  cursor: pointer;
+}
+header .secondary-nav-menu button {
+  display: none;
+}
+header a {
+  color: hsl(220, 13%, 13%);
+}
+header .overlay {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 100%;
+  min-height: 100vh;
+  background: hsla(0, 0%, 0%, 0.75);
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  display: none;
+  transition: all 0.4s ease-in-out;
+}
+header .overlay-active {
+  display: block;
+}
+
+footer {
+  position: absolute;
+  bottom: 0px;
 }/*# sourceMappingURL=globals.css.map */
