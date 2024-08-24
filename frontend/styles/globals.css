@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background-color: hsl(0, 0%, 100%);
+  height: 100vh;
 }
 
 .login, .signup, .forgot-password, .otp, .new-password {
@@ -244,6 +244,12 @@ body {
   font-weight: 700;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -343,7 +349,7 @@ header .overlay-active {
 }
 @media (min-width: 1024px) {
   header {
-    padding: 2rem 3rem;
+    padding: 1.5rem 3rem;
   }
   header nav {
     position: unset;
@@ -406,6 +412,7 @@ header .overlay-active {
 main {
   padding: 6rem;
   text-align: center;
+  flex: 1;
 }
 
 .blogpage {
@@ -415,8 +422,6 @@ main {
 footer {
   background-color: hsl(220, 13%, 13%);
   color: hsl(0, 0%, 100%);
-  position: relative;
-  bottom: 0%;
   width: 100%;
 }
 footer a {
@@ -512,7 +517,7 @@ footer .bottom-footer .copyright-container {
 }
 @media (min-width: 1024px) {
   footer {
-    padding: 2rem 4rem;
+    padding: 2rem 4rem 0.5rem;
   }
   footer .top-footer {
     display: grid;
