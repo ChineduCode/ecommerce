@@ -239,6 +239,11 @@ body {
   font-size: 15px;
 }
 
+.logo {
+  font-size: 30px;
+  font-weight: 700;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -251,10 +256,7 @@ header {
   color: hsl(220, 13%, 13%);
   background-color: hsl(0, 0%, 100%);
   box-shadow: 0 0 3px hsl(220, 14%, 75%);
-}
-header .logo {
-  font-size: 22px;
-  font-weight: 700;
+  z-index: 9;
 }
 header nav {
   position: fixed;
@@ -339,8 +341,190 @@ header .overlay {
 header .overlay-active {
   display: block;
 }
+@media (min-width: 1024px) {
+  header {
+    padding: 2rem 3rem;
+  }
+  header nav {
+    position: unset;
+    min-height: unset;
+    height: auto;
+    width: unset;
+    padding: 0px;
+    background-color: unset;
+    box-shadow: unset;
+    z-index: unset;
+    transition: unset;
+    transform: unset;
+  }
+  header nav .close-nav {
+    display: none;
+  }
+  header nav .nav-list {
+    margin-top: unset;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  header nav .nav-list .link {
+    margin: 0px;
+    padding: 0px;
+  }
+  header nav .nav-list .shop-link-mobile {
+    margin-left: 0px;
+    height: 0px;
+    overflow: hidden;
+    display: none;
+  }
+  header nav .nav-list .shop-mobile-active {
+    height: initial;
+  }
+  header .secondary-nav-menu {
+    display: unset;
+  }
+  header .secondary-nav-menu .menu-bar {
+    display: none;
+  }
+  header .secondary-nav-menu .icons-btn-login {
+    display: flex;
+    align-items: center;
+  }
+  header .secondary-nav-menu .icons-btn-login button {
+    display: block;
+    background-color: hsl(220, 13%, 13%);
+    padding: 10px 20px;
+    border: none;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  header .secondary-nav-menu .icons-btn-login button a {
+    color: hsl(0, 0%, 100%);
+  }
+}
+
+main {
+  padding: 6rem;
+  text-align: center;
+}
+
+.blogpage {
+  padding: 6rem;
+}
 
 footer {
+  background-color: hsl(220, 13%, 13%);
+  color: hsl(0, 0%, 100%);
+  position: relative;
+  bottom: 0%;
+  width: 100%;
+}
+footer a {
+  color: hsl(0, 0%, 100%);
+}
+footer .top-footer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 2rem;
+}
+footer .top-footer .container .header {
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+footer .top-footer .container li, footer .top-footer .container .description {
+  margin: 8px 0;
+}
+footer .top-footer .contact li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+footer .top-footer .form-control {
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+footer .top-footer .form-control input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 7px;
+  border: 1px solid hsl(0, 0%, 100%);
+  background-color: transparent;
+  color: hsl(0, 0%, 100%);
+  font-size: 16px;
+  font-family: inherit;
+  display: inline-block;
+}
+footer .top-footer .form-control .email-icon, footer .top-footer .form-control button {
   position: absolute;
-  bottom: 0px;
+  z-index: 2;
+  top: 50%;
+  bottom: 50%;
+  display: flex;
+  align-items: center;
+}
+footer .top-footer .form-control .email-icon {
+  left: 15px;
+  gap: 5px;
+}
+footer .top-footer .form-control button {
+  right: 15px;
+  color: hsl(0, 0%, 100%);
+  border: none;
+  cursor: pointer;
+}
+footer .bottom-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 20px;
+  border-top: 1px solid;
+}
+footer .bottom-footer .payment-icons-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+footer .bottom-footer .payment-icons-container img {
+  width: 50px;
+  display: block;
+  background-color: hsl(0, 0%, 100%);
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+footer .bottom-footer .socialmedia-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+footer .bottom-footer .socialmedia-container svg {
+  cursor: pointer;
+}
+footer .bottom-footer .copyright-container {
+  order: 3;
+}
+@media (min-width: 1024px) {
+  footer {
+    padding: 2rem 4rem;
+  }
+  footer .top-footer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4%;
+    padding: 0 0 2rem;
+  }
+  footer .bottom-footer {
+    flex-direction: row;
+    padding: 1.5rem 0;
+  }
+  footer .bottom-footer .copyright-container {
+    order: unset;
+  }
 }/*# sourceMappingURL=globals.css.map */

@@ -19,6 +19,7 @@ app.use('/api/users', require('./routes/user'))
 app.get('/', (req, res)=> res.send('Hello from e-commerce server !!!'))
 
 app.use(errorHandler);
+app.use('*', (req, res)=> res.status(404).json({message: 'Route not found'}))
 
 const PORT = process.env.PORT || 8000
 app.listen(PORT, ()=> console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}`))

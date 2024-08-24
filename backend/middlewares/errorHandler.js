@@ -9,6 +9,10 @@ module.exports = (err, req, res, next) => {
         return res.status(500).json({ message: 'Database error. Please try again later.' });
     }
 
+    if (err.name === 'MongoServerSelectionError') {
+        return res.status(503).json({ message: 'Unable to connect to the database. Please check your MongoDB URI or network connection.' });
+    }
+
     if (err.name === 'ValidationError') {
         return res.status(400).json({ message: 'Validation error.', details: err.errors });
     }
