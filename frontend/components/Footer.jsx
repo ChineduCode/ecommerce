@@ -9,12 +9,13 @@ import axios from "axios";
 
 export default function Footer(){
     const [email, setEmail] = useState('')
-    const [error, setError] = useState('')
+    const [error, setError] = useState(null)
     const [placeholder, setPlaceholder] = useState(true)
+    const [status, setStatus] = useState('')
 
     const handleSubscription = async (e)=> {
         e.preventDefault()
-
+        setStatus('submitting')
         try {
             if(!email){
                 throw new Error('Email field is empty')
@@ -26,18 +27,20 @@ export default function Footer(){
             }
 
             const response = await axios.post(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/v1/subscribe`,
+                `${process.env.NEXT_PUBLIC_API_URL}/api/v1/news/subscribe`,
                 { email },
                 { headers: {'Content-Type': 'application/json'} }
             )
             
             console.log('Subscription successful', response.data)
             setEmail('')
-            setError('')
+            setError(null)
+            setStatus('success')
             setPlaceholder(true)
 
         } catch (error) {
             setError(error.message)
+            setStatus('failed')
             return
         }
     }
@@ -89,8 +92,13 @@ export default function Footer(){
                             onFocus={()=> setPlaceholder(false)}
                         />
                         <div className="placeholder">
-                            { placeholder && <div className="email-icon"> <IoMailOutline size={22}/> <span>Your Email</span> </div> }
-                            <button type='submit'> <FaArrowRight size={22}/> </button>
+                            { placeholder && <div className="email-icon" onClick={()=> setPlaceholder(false)}> <IoMailOutline size={22}/> <span>Your Email</span> </div> }
+                            <button 
+                                type='submit'
+                                disabled={status == 'submitting'}
+                            > 
+                                <FaArrowRight size={22}/> 
+                            </button>
                         </div>
                     </div>
                 </form>

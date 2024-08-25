@@ -11,11 +11,13 @@ export default function NewPassword(){
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [error, setError] = useState('')
     const [passUpdated, setPassUpdated] = useState(false)
+    const [status, setStatus] = useState('')
     const searchParams = useSearchParams()
     const uniquecode = searchParams.get('uniquecode')
 
     const handleNewPassword = async (e)=> {
         e.preventDefault()
+        setStatus('submitting')
 
         try {
             if(!password || !confirmPassword){
@@ -51,11 +53,13 @@ export default function NewPassword(){
                 setConfirmPassword('')
                 setError('')
                 setPassUpdated(true)
+                setStatus('success')
             }else{
                 throw new Error(data.message)
             }
             
         } catch (error) {
+            setStatus('failed')
             setError(error.message)
             return 
         }
@@ -96,7 +100,13 @@ export default function NewPassword(){
                         { !passwordVisible && <IoEyeOffOutline size={22} onClick={()=> setPasswordVisible(true)} /> }
                     </div>
 
-                    <button onClick={handleNewPassword} className="btn">Create New Password</button>
+                    <button 
+                        onClick={handleNewPassword} 
+                        className="btn"
+                        disabled={status === 'submitting'}
+                    >
+                        Create New Password
+                    </button>
                 </form>
             </div>
             { passUpdated && <PasswordUpdated /> }

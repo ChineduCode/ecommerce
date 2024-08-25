@@ -286,13 +286,17 @@ header{
         .close-nav{
             text-align: right;
             cursor: pointer;
+            &:active{color: hsl(219, 9%, 45%);}
         }
         .nav-list{
             margin-top: 1.5rem;
             .link{
                 margin: 10px 0;
                 padding: 5px;
-                a{ cursor: pointer; }
+                a{ 
+                    cursor: pointer; 
+                    &:active{color: hsl(219, 9%, 45%);}
+                }
             }
             .shop-link{
                 display: inline-flex;
@@ -325,6 +329,7 @@ header{
         }
         svg{
             cursor: pointer;
+            &:active{color: hsl(219, 9%, 45%);}
         }
         button{display: none;}
     }
@@ -518,6 +523,14 @@ footer{
             grid-template-columns: repeat(4, 1fr);
             gap: 4%;
             padding: 0 0 2rem;
+            .contact{
+                li{
+                    display: grid;
+                    grid-template-columns: repeat(2, auto);
+                    justify-content: left;
+                    gap: 5px;
+                }
+            }
         }
         .bottom-footer{
             flex-direction: row;

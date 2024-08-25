@@ -282,6 +282,9 @@ header nav .close-nav {
   text-align: right;
   cursor: pointer;
 }
+header nav .close-nav:active {
+  color: hsl(219, 9%, 45%);
+}
 header nav .nav-list {
   margin-top: 1.5rem;
 }
@@ -291,6 +294,9 @@ header nav .nav-list .link {
 }
 header nav .nav-list .link a {
   cursor: pointer;
+}
+header nav .nav-list .link a:active {
+  color: hsl(219, 9%, 45%);
 }
 header nav .nav-list .shop-link {
   display: inline-flex;
@@ -322,6 +328,9 @@ header .secondary-nav-menu .icons svg {
 }
 header .secondary-nav-menu svg {
   cursor: pointer;
+}
+header .secondary-nav-menu svg:active {
+  color: hsl(219, 9%, 45%);
 }
 header .secondary-nav-menu button {
   display: none;
@@ -524,6 +533,12 @@ footer .bottom-footer .copyright-container {
     grid-template-columns: repeat(4, 1fr);
     gap: 4%;
     padding: 0 0 2rem;
+  }
+  footer .top-footer .contact li {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: left;
+    gap: 5px;
   }
   footer .bottom-footer {
     flex-direction: row;

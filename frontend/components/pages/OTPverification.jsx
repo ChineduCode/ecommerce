@@ -7,6 +7,7 @@ import { useState, useRef } from "react";
 export default function OTP(){
     const [otp, setOTP] = useState('')
     const [error, setError] = useState(null)
+    const [status, setStatus] = useState('')
     const inputRefs = useRef([]);
 
     const handleInputChange = (e, index) => {
@@ -24,6 +25,7 @@ export default function OTP(){
 
     const handleOTP = async (e)=> {
         e.preventDefault()
+        setStatus('submitting')
 
         try {
             if(!otp || otp.length < 6){
@@ -42,11 +44,13 @@ export default function OTP(){
             if(response.ok){
                 setError('')
                 setOTP('')
+                setStatus('success')
             }else{
                 throw new Error(data.message)
             }
 
         } catch (error) {
+            setStatus('failed')
             setError(error.message)
             return
         }
@@ -76,7 +80,13 @@ export default function OTP(){
                             />
                         ))}
                     </div>
-                    <button className="btn" onSubmit={handleOTP}>Verify</button>
+                    <button 
+                        className="btn" 
+                        onSubmit={handleOTP}
+                        disabled={status === 'submitting'}
+                    >
+                        Verify
+                    </button>
                 </form>
             </div>
         </div>

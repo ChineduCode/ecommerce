@@ -17,9 +17,12 @@ export default function Signup(){
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [agreed_terms_conditions, setAgreed_term_conditions] = useState(false)
     const [error, setError] = useState('')
+    const [status, setStatus] = useState('')
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
+        setStatus('submitting')
+
         try {
             if(
                 !firstname || 
@@ -50,7 +53,7 @@ export default function Signup(){
                 throw new Error('Agree to the Terms & Conditions')
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/register`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -77,11 +80,13 @@ export default function Signup(){
                 setPassword('')
                 setConfirmPassword('')
                 setError('')
+                setStatus('success')
             }else{
                 throw new Error(data.message)
             }
             
         } catch (error) {
+            setStatus('failed')
             setError(error.message)
             return 
         }
@@ -196,7 +201,13 @@ export default function Signup(){
                         </span>
                     </div>
 
-                    <button onClick={handleSubmit} className="btn">Sign Up</button>
+                    <button 
+                        onClick={handleSubmit} 
+                        className="btn"
+                        disabled={status === 'submitting'}
+                    >
+                        Sign Up
+                    </button>
                 </form>
             </div>
         </div>

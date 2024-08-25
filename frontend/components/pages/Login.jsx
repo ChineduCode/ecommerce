@@ -10,9 +10,13 @@ export default function Login(){
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [rememberMe, setRememberMe] = useState(false)
     const [error, setError] = useState('')
+    const [status, setStatus] = useState('')
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
+        setStatus('submitting')
+        console.log(status)
+
         try {
             if(!email || !password){
                 throw new Error('Please fill all fields')
@@ -23,7 +27,9 @@ export default function Login(){
                 throw new Error('Invalid email address')
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/login`, {
+            await new Promise(resolve => setTimeout(resolve, 5000))
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,12 +46,14 @@ export default function Login(){
                 setError('')
                 setEmail('')
                 setPassword('')
+                setStatus('success')
             }else{
                 throw new Error(data.message)
             }
 
         } catch (error) {
             setError(error.message)
+            setStatus('failed')
             return
         }
     }
@@ -99,7 +107,13 @@ export default function Login(){
                         </span>
                     </div>
 
-                    <button onClick={handleSubmit} className="btn">Login</button>
+                    <button 
+                        onClick={handleSubmit} 
+                        className="btn"
+                        disabled={status === 'submitting'}
+                    >
+                        Login
+                    </button>
                 </form>
             </div>
         </div>

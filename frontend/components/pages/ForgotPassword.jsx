@@ -8,10 +8,12 @@ import { useRouter } from "next/navigation";
 export default function ForgotPassword(){
     const [email, setEmail] = useState('')
     const [error, setError] = useState(null)
+    const [status, setStatus] = useState('')
     const router = useRouter()
 
     const sendOTP = async (e)=> {
         e.preventDefault()
+        setStatus('submitting')
 
         try {
             if(!email){
@@ -35,12 +37,14 @@ export default function ForgotPassword(){
             if(response.ok){
                 setError('')
                 setEmail('')
+                setStatus('success')
                 router.push('/otp-verification')
             }else{
                 throw new Error(data.message)
             }
 
         } catch (error) {
+            setStatus('failed')
             setError(error.message)
             return
         }
