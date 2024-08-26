@@ -1,31 +1,34 @@
-const Product = require('../models/productModel')
+const Product = require('../models/product')
+const asyncHandler = require('express-async-handler')
 
-const getProducts = async (req, res) => {
+const getAllProduct = asyncHandler( async (req, res) => {
     try {
         const products = await Product.find({})
-        res.status(200).json(products)
+        return res.status(200).json(products)
         
     } catch (error) {
         console.log(`Error fetching products ${error.message}`)
+        return res.status(500).json({ message: 'Internal server error' })
     }
-}
+})
 
-const getProduct = async (req, res) => {
+const getProduct = asyncHandler( async (req, res) => {
     try {
         const id = req.params.id
         const product = await Product.findById(id)
         if(!product){
-            res.status(404).json({error: 'Product not found'})
+            return res.status(404).json({message: 'Product not found'})
         }
 
-        res.json(product)
+        return res.status(200).json(product)
 
     } catch (error) {
         console.log(error.message)
+        return res.status(200).json({ message: 'Internal server error' })
     }
-}
+})
 
 module.exports = {
-    getProducts,
+    getAllProduct,
     getProduct
 }

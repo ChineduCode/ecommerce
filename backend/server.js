@@ -12,15 +12,16 @@ connectDB()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-//routes
+//routes middleware
 app.use('/api/v1/users', require('./routes/user'))
 app.use('/api/v1/news', require('./routes/newsLetterSubscriber'))
+app.use('/api/v1/products', require('./routes/product'))
 
 //Routes
 app.get('/', (req, res)=> res.send('Hello from e-commerce server !!!'))
 
 app.use(errorHandler);
-app.use('*', (req, res)=> res.status(404).json({message: 'Route not found'}))
+app.use('*', (req, res)=> res.status(404).json({message: `Route not found ${req.originalUrl}`}))
 
 const PORT = process.env.PORT || 8000
 app.listen(PORT, ()=> console.log(`Server running in ${process.env.NODE_ENV} on port ${PORT}`))

@@ -1,11 +1,12 @@
 const Users = require('../models/user')
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
+const asyncHandler = require('express-async-handler')
 const generateJWT = require('../utils/generateToken')
 const generateCode = require('../utils/generateCode')
 const { sendEmailVerification, successEmailVerification, sendOTP, passwordReset, successPasswordReset } = require('../utils/sendEmail')
 
-const registerUser = async (req, res)=> {
+const registerUser = asyncHandler(async (req, res)=> {
     try {
         const { firstname, lastname, email, phone, address, password, confirmPassword } = req.body;
         
@@ -47,7 +48,8 @@ const registerUser = async (req, res)=> {
             phone,
             address,
             password: hashedPassword,
-            verificationCode
+            verificationCode,
+            isAdmin: email === 'chineducode@gmail.com' ? true : false
         })
         await user.save().then(()=> console.log('User registered'))
         
@@ -68,9 +70,9 @@ const registerUser = async (req, res)=> {
     } catch (error) {
         return res.status(500).json({ message: 'Internal server error'})
     }
-}
+})
 
-const loginUser = async (req, res)=> {
+const loginUser = asyncHandler(async (req, res)=> {
     try{
         const { email, password } = req.body
         
@@ -107,9 +109,9 @@ const loginUser = async (req, res)=> {
     }catch (error){
         return res.status(500).json({ message: 'Internal server error' })
     }
-}
+})
 
-const getAllUsers = async (req, res)=> {
+const getAllUsers = asyncHandler(async (req, res)=> {
     try{
         const users = await Users.find({}, {__v: 0, password: 0})
         return res.status(200).json(users)
@@ -117,9 +119,9 @@ const getAllUsers = async (req, res)=> {
     }catch (error){
         return res.status(500).json({ message: 'Internal server error' })
     }
-}
+})
 
-const getUser = async (req, res)=> {
+const getUser = asyncHandler(async (req, res)=> {
     try{
         const id = req.params.id
         
@@ -137,9 +139,9 @@ const getUser = async (req, res)=> {
     }catch (error){
         return res.status(200).json({ message: 'Internal server error' })
     }
-}
+})
 
-const verifyUserEmail = async (req, res) => {
+const verifyUserEmail = asyncHandler(async (req, res) => {
     try {
         const code = req.query.code
         
@@ -160,9 +162,9 @@ const verifyUserEmail = async (req, res) => {
     } catch (error) {
         return res.status(500).json({ message: 'Internal server error' })
     }
-}
+})
 
-const sendUserOTP = async (req, res) => {
+const sendUserOTP = asyncHandler(async (req, res) => {
     try {
         const { email } = req.body
         if(!email){
@@ -194,9 +196,9 @@ const sendUserOTP = async (req, res) => {
         console.error(error)
         return res.status(500).json({ message: 'Internal server error' })
     }
-}
+})
 
-const verifyUserOTP = async (req, res)=> {
+const verifyUserOTP = asyncHandler(async (req, res)=> {
     try {
         const { otp } = req.body
         if(!otp){
@@ -221,9 +223,9 @@ const verifyUserOTP = async (req, res)=> {
     } catch (error) {
         return res.status(500).json({ message: 'Error validating OTP' })
     }
-}
+})
 
-const updateUserPassword = async (req, res)=> {
+const updateUserPassword = asyncHandler(async (req, res)=> {
     try {
         const uniquecode = req.query.uniquecode
         const { newPassword, confirmNewPassword } = req.body
@@ -263,7 +265,7 @@ const updateUserPassword = async (req, res)=> {
         console.log(error.message)
         return res.status(500).json({ message: 'Internal server error' })
     }
-}
+})
 
 module.exports = {
     registerUser,
