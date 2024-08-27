@@ -412,9 +412,9 @@ header{
 }
 
 main{
-    padding: 6rem;
-    text-align: center;
+    padding-top: 2.5rem;
     flex: 1;
+    background-color: hsl(0, 0, 100%);
 }
 .blogpage{
     padding: 6rem;
@@ -536,6 +536,67 @@ footer{
             flex-direction: row;
             padding: 1.5rem 0;
             .copyright-container{order: unset;}
+        }
+    }
+}
+
+.homepage{
+    .hero-section{
+        background-color: hsl(223, 64%, 98%);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: hsl(220, 13%, 13%);
+        padding: 1rem 1.5rem 2rem;
+
+        .img-container{
+            img{
+                display: block;
+                width: 100%;
+                filter: brightness(70%);
+            }
+        }
+        .text-container{
+            .collection{
+                padding: .4rem 0;
+            }
+
+            button{
+                display: inline-block;
+                background-color: hsl(220, 13%, 13%);
+                color: hsl(0, 0, 100%);
+                padding: 12px;
+                font-size: 16px;
+                border: 1px solid hsl(220, 13%, 13%);
+                border-radius: 8px;
+                cursor: pointer;
+                margin-top: 1rem;
+                a{
+                    color: hsl(0, 0, 100%);
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                }
+            }
+        }
+
+        @media (min-width: 1024px){
+            padding: 4%;
+            flex-direction: row;
+            justify-content:space-around;
+            .text-container{ 
+                order: 1;
+                width: 50%;
+                font-size: 22px;
+                h2{
+                    font-size: 45px;
+                }
+            }
+            .img-container{ 
+                width: 50%;
+                order: 2
+            }
         }
     }
 }
