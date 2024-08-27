@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowRightLong, FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 
 export default function Home(){
     return(
@@ -17,6 +17,19 @@ export default function Home(){
                         <Link href='/shop'><span>Shop Now</span> <FaArrowRightLong /></Link>
                     </button>
                 </div>
+            </section>
+
+            <section className="shop-by-categories">
+                <div className="header">
+                    <h2 className="heading">Shop by Categories</h2>
+                    <div className="prev-next-btn">
+                        <button className='prev'> <FaAngleLeft /> </button>
+                        <button className='next'> <FaAngleRight /> </button>
+                    </div>
+                </div>
+                {/* <div className="content">
+                    <div className="img-container"> img </div>
+                </div> */}
             </section>
         </main>
     )

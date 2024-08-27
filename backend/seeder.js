@@ -9,8 +9,10 @@ connectDB()
 
 const importData = async ()=> {
     try {
-        const admin = await User.findOne({isAdmin: true})
+        await Product.deleteMany();
+        console.log('All products deleted!!!')
 
+        const admin = await User.findOne({isAdmin: true})
         const sampleProducts = products.map(product => {
             return {...product, user: admin}
         })
