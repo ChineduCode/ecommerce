@@ -1,29 +1,39 @@
 'use client'
 
 import Link from "next/link"
-import { FaArrowRightLong, FaAngleLeft, FaAngleRight } from "react-icons/fa6";
+import { FaArrowRightLong, FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 
 export default function Home(){
-    //const [category, setCategory] = useState()
     const categoryRef = useRef(null)
+    const [ isStart, setIsStart ] = useState(true)
+    const [ isEnd, setIsEnd ] = useState(false)
 
-    const handlePrevClick = ()=> {
-        if(categoryRef.current){
-            categoryRef.current.scrollBy({
-                left: -200,
-                behavior: 'smooth'
-            })
+    //Handle scroll
+    const handleScroll = () => {
+        const { scrollLeft, scrollWidth, clientWidth } = categoryRef.current
+        setIsStart(scrollLeft === 0)
+        setIsEnd(scrollLeft + clientWidth >= scrollWidth)
+    }
+    //Scroll to left or right
+    const scroll = (direction) => {
+        const { current } = categoryRef
+        const scrollAmount = 300
+        if(direction === 'left'){
+            current.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+        }else{
+            current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
         }
     }
-    const handleNextClick = ()=> {
-        if(categoryRef.current){
-            categoryRef.current.scrollBy({
-                left: 200,
-                behavior: 'smooth'
-            })
-        }
-    }
+    //Add scroll event listener
+    useEffect(() => {
+        const { current } = categoryRef;
+        current.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial check
+
+        return () => current.removeEventListener('scroll', handleScroll);
+    }, []);
+
 
     return(
         <main className="homepage">
@@ -70,8 +80,23 @@ export default function Home(){
                     </Link>
                 </div>
                 <div className="prev-next-btn">
-                    <button className='prev' onClick={handlePrevClick}> <FaAngleLeft size={22}/> </button>
-                    <button className='next' onClick={handleNextClick}> <FaAngleRight size={22}/> </button>
+                    <button 
+                        className='prev' 
+                        onClick={() => scroll('left')}
+                        disabled={isStart}
+                        style={{ backgroundColor: isStart ? '#ccc' : 'hsl(220, 13%, 13%)' }}
+                    > 
+                        <FaArrowLeft size={22}/> 
+                    </button>
+
+                    <button 
+                        className='next' 
+                        onClick={() => scroll('right')}
+                        disabled={isEnd}
+                        style={{ backgroundColor: isEnd ? '#ccc' : 'hsl(220, 13%, 13%)' }}
+                    > 
+                        <FaArrowRight size={22}/> 
+                    </button>
                 </div>
             </section>
         </main>

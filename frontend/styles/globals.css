@@ -588,6 +588,7 @@ footer .bottom-footer .copyright-container {
     padding: 4%;
     flex-direction: row;
     justify-content: space-around;
+    height: 100vh;
   }
   .homepage .hero-section .text-container {
     order: 1;
@@ -669,10 +670,23 @@ footer .bottom-footer .copyright-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 7px;
   color: hsl(0, 0%, 100%);
   background-color: hsl(220, 13%, 13%);
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+@media (min-width: 1024px) {
+  .homepage .shop-by-categories {
+    padding: 2rem 3rem;
+  }
+  .homepage .shop-by-categories .heading {
+    font-size: 32px;
+  }
+  .homepage .shop-by-categories .prev-next-btn {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+  }
 }/*# sourceMappingURL=globals.css.map */
