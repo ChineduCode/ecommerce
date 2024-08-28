@@ -14,7 +14,7 @@ const {
 router.post('/register', registerUser)
 router.post('/login', loginUser)
 router.get('/', getAllUsers)
-router.get('/:id', getUser)
+router.get('/id/:id', getUser)
 router.post('/verify-email', verifyUserEmail)
 router.post('/forgot-password/send-otp', sendUserOTP)
 router.post('/forgot-password/verify-otp', verifyUserOTP)

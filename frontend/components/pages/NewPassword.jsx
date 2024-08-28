@@ -36,7 +36,7 @@ export default function NewPassword(){
                 throw new Error('Passwords do not match')
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/update-password/?uniquecode=${uniquecode}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/update-password/?uniquecode=${uniquecode}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

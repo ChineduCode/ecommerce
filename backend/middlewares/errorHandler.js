@@ -20,8 +20,8 @@ module.exports = (err, req, res, next) => {
     // Authentication & Authorization Errors
     if (err.name === 'UnauthorizedError') {
         return res.status(401).json({ message: 'Invalid token. Please log in again.' });
-    }
-
+    } 
+    
     if (err.name === 'ForbiddenError') {
         return res.status(403).json({ message: 'You do not have permission to access this resource.' });
     }
