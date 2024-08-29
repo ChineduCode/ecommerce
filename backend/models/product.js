@@ -41,6 +41,10 @@ const productSchema = new mongoose.Schema({
         type: String,
         lowercase: true
     },
+    brand: {
+        type: String,
+        lowercase: true
+    },
     description: {
         type: String,
         required: true

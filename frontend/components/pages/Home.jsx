@@ -99,6 +99,8 @@ export default function Home(){
                     </button>
                 </div>
             </section>
+
+            <section className="best-sellers"></section>
         </main>
     )
 }

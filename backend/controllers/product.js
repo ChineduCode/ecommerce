@@ -30,22 +30,54 @@ const getProduct = asyncHandler( async (req, res) => {
 
 const getProductCategory = asyncHandler( async (req, res)=> {
     try {
-        const { category, subCategory } = req.query
+        const { category, subCategory, brand } = req.query
 
         let query = {}
 
-        if(category && subCategory){
-            query = { category, subCategory }
-        }else if(category){
-            query = {
-                $or: [{ category }, { subCategory: category }]
-            }
-        }else if(subCategory){
-            query = {
-                $or: [{ category: subCategory }, { subCategory }]
-            }
-        }
+        switch (true) {
+            case Boolean(category && subCategory && brand):
+                query = { category, subCategory, brand }
+                break;
         
+            case Boolean(category && subCategory):
+                query = { category, subCategory }
+                break;
+        
+            case Boolean(category && brand):
+                query = {
+                    $or: [{ category }, { subCategory: category }],
+                    brand
+                }
+                break;
+        
+            case Boolean(subCategory && brand):
+                query = {
+                    $or: [{ category: subCategory }, { subCategory }],
+                    brand
+                }
+                break;
+        
+            case Boolean(category):
+                query = {
+                    $or: [{ category }, { subCategory: category }]
+                }
+                break;
+        
+            case Boolean(subCategory):
+                query = {
+                    $or: [{ category: subCategory }, { subCategory }]
+                }
+                break;
+        
+            case Boolean(brand):
+                query = { brand }
+                break;
+        
+            default:
+                query = {};
+                break;
+        }
+
         const productCategory = await Product.find(query)
 
         if(productCategory.length === 0){
