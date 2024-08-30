@@ -686,4 +686,42 @@ footer{
             }
         }
     }
+
+    .best-sellers{
+        padding: 2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .containers{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 5%;
+            .best-seller{
+                flex: 1;
+                border: solid 1px grey;
+                // display: inline-block;
+                min-width: 200px;
+                .img-container{
+                    //width: 60%;
+                    .img{
+                        flex: 1;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img{
+                            width: auto;
+                            display: block;
+                            height: 100%;
+                            max-width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

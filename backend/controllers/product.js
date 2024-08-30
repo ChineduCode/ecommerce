@@ -33,7 +33,6 @@ const getProductCategory = asyncHandler( async (req, res)=> {
         const { category, subCategory, brand } = req.query
 
         let query = {}
-
         switch (true) {
             case Boolean(category && subCategory && brand):
                 query = { category, subCategory, brand }
@@ -79,7 +78,6 @@ const getProductCategory = asyncHandler( async (req, res)=> {
         }
 
         const productCategory = await Product.find(query)
-
         if(productCategory.length === 0){
             return res.status(404).json({ message: 'Products not found' })
         }
@@ -92,8 +90,48 @@ const getProductCategory = asyncHandler( async (req, res)=> {
     }
 })
 
+const getBestSellers = asyncHandler(async (req, res)=> {
+    try{
+        // const bestSellers = await Product.aggregate([
+        //     {
+        //         $sort: { createdAt: 1 }
+        //     },
+        //     {
+        //         $group: {
+        //             _id: "$brand",
+        //             count: {$sum: 1},
+        //             image: { $first: "$image" } 
+        //         }
+        //     },
+        //     {
+        //         $match: {
+        //             count: {$gt: 2}
+        //         }
+        //     },
+        //     {
+        //         $project: {
+        //             count: 1,
+        //             image: 4
+        //         }
+        //     }
+        // ])
+        const products = require('../data/bestsellers')
+        
+        if (products.length === 0) {
+            return res.status(404).json({ message: 'No brands found with more than two occurrences' });
+        }
+      
+        return res.status(200).json(products);
+
+    }catch(error){
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
 module.exports = {
     getAllProduct,
     getProduct,
-    getProductCategory
+    getProductCategory,
+    getBestSellers
 }

@@ -3,11 +3,15 @@
 import Link from "next/link"
 import { FaArrowRightLong, FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import Bestsellers from "../BestSeller";
 
 export default function Home(){
     const categoryRef = useRef(null)
     const [ isStart, setIsStart ] = useState(true)
     const [ isEnd, setIsEnd ] = useState(false)
+    const [ bestsellers, setBestSellers ] = useState([])
+    const [ loading, setLoading ] = useState(true)
 
     //Handle scroll
     const handleScroll = () => {
@@ -33,6 +37,23 @@ export default function Home(){
 
         return () => current.removeEventListener('scroll', handleScroll);
     }, []);
+
+    useEffect(()=> {
+        const fetchBestSellers = async () =>{
+            try {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/bestsellers`)
+                console.log(response.data)
+                setBestSellers(response.data)
+                
+            } catch (error) {
+                console.error('Error fetching products')
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchBestSellers()
+    }, [])
 
 
     return(
@@ -100,7 +121,17 @@ export default function Home(){
                 </div>
             </section>
 
-            <section className="best-sellers"></section>
+            <section className="best-sellers">
+                <div className="heading">Our Bestseller</div>
+                <div className="containers">
+                    {bestsellers.map(bestseller => 
+                        <Bestsellers 
+                            key={bestseller.brand} 
+                            bestseller={bestseller} 
+                        />)
+                    }
+                </div>
+            </section>
         </main>
     )
 }

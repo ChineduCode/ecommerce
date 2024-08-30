@@ -689,4 +689,38 @@ footer .bottom-footer .copyright-container {
     top: 2rem;
     right: 3rem;
   }
+}
+.homepage .best-sellers {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.homepage .best-sellers .containers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5%;
+}
+.homepage .best-sellers .containers .best-seller {
+  flex: 1;
+  border: solid 1px grey;
+  min-width: 200px;
+}
+.homepage .best-sellers .containers .best-seller .img-container .img {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.homepage .best-sellers .containers .best-seller .img-container .img img {
+  width: auto;
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=globals.css.map */
