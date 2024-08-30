@@ -17,7 +17,7 @@ export default function Bestsellers({ bestseller }){
                 </div>
             </div>
 
-            <div className="text-container">
+            <div className="product-info">
                 <h3 className="brand">{bestseller.brand}</h3>
                 <div className="name">{bestseller.name}</div>
                 <div className="selling-cost-prices">

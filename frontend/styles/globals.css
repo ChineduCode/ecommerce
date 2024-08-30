@@ -699,28 +699,31 @@ footer .bottom-footer .copyright-container {
 }
 .homepage .best-sellers .containers {
   display: flex;
-  align-items: center;
+  justify-content: center;
+}
+.homepage .best-sellers .containers .best-seller-container {
+  display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 5%;
+  gap: 16px;
+  padding: 20px;
+  background-color: #f5f5f5;
 }
 .homepage .best-sellers .containers .best-seller {
-  flex: 1;
-  border: solid 1px grey;
-  min-width: 200px;
-}
-.homepage .best-sellers .containers .best-seller .img-container .img {
-  flex: 1;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  max-width: 200px;
+  padding: 10px;
+  text-align: center;
+  transition: box-shadow 0.3s;
+  cursor: pointer;
 }
-.homepage .best-sellers .containers .best-seller .img-container .img img {
-  width: auto;
-  display: block;
-  height: 100%;
-  max-width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+.homepage .best-sellers .containers .best-seller img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }/*# sourceMappingURL=globals.css.map */

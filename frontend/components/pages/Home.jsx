@@ -124,12 +124,14 @@ export default function Home(){
             <section className="best-sellers">
                 <div className="heading">Our Bestseller</div>
                 <div className="containers">
-                    {bestsellers.map(bestseller => 
-                        <Bestsellers 
-                            key={bestseller.brand} 
-                            bestseller={bestseller} 
-                        />)
-                    }
+                    <div className="best-seller-container">
+                        {bestsellers.map(bestseller => 
+                            <Bestsellers 
+                                key={bestseller.brand} 
+                                bestseller={bestseller} 
+                            />)
+                        }
+                    </div>
                 </div>
             </section>
         </main>
