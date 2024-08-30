@@ -797,7 +797,13 @@ footer{
                     .selling-cost-prices{
                         display: flex;
                         align-items: center;
-                        gap: 10px
+                        gap: 10px;
+                        font-size: 22px;
+                        font-weight: 600;
+                        .cost-price{
+                            text-decoration: line-through;
+                            color: hsl(220, 14%, 75%);
+                        }
                     }
                 }
             }

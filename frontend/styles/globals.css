@@ -796,6 +796,12 @@ footer .bottom-footer .copyright-container {
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 22px;
+  font-weight: 600;
+}
+.homepage .best-sellers .containers .best-seller .product-info .selling-cost-prices .cost-price {
+  text-decoration: line-through;
+  color: hsl(220, 14%, 75%);
 }
 @media (min-width: 1024px) {
   .homepage .best-sellers .heading {
