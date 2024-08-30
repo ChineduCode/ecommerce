@@ -122,7 +122,7 @@ export default function Home(){
             </section>
 
             <section className="best-sellers">
-                <div className="heading">Our Bestseller</div>
+                <h2 className="heading">Our Bestseller</h2>
                 <div className="containers">
                     {bestsellers.map(bestseller => 
                         <Bestsellers 

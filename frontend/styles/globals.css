@@ -696,42 +696,52 @@ footer .bottom-footer .copyright-container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: hsl(223, 64%, 98%);
+}
+.homepage .best-sellers .heading {
+  margin: 1rem 0;
 }
 .homepage .best-sellers .containers {
   display: grid;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
-  background-color: #f5f5f5;
   width: 100%;
   max-width: 100%;
+  padding: 20px;
 }
 .homepage .best-sellers .containers .best-seller {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 100%;
-  max-width: 200px;
-  padding: 10px;
-  text-align: center;
-  transition: box-shadow 0.3s;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+  transition: box-shadow 0.3s;
+  position: relative;
+  background-color: hsl(0, 0%, 100%);
+}
+.homepage .best-sellers .containers .best-seller:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle hover effect */
 }
 .homepage .best-sellers .containers .best-seller .img-container {
   position: relative;
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  overflow: hidden; /* Ensures no overflow from images */
 }
 .homepage .best-sellers .containers .best-seller .img-container .img {
-  flex: 1;
   width: 100%;
-  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .homepage .best-sellers .containers .best-seller .img-container .img img {
-  width: 100%;
-  display: block;
+  width: auto;
   height: 100%;
   max-width: 100%;
   -o-object-fit: cover;
@@ -747,7 +757,7 @@ footer .bottom-footer .copyright-container {
   justify-content: space-between;
   align-items: flex-end;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  background: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -757,4 +767,38 @@ footer .bottom-footer .copyright-container {
 .homepage .best-sellers .containers .best-seller .img-container .img-cover .right-bar {
   display: flex;
   gap: 8px;
+}
+.homepage .best-sellers .containers .best-seller .img-container .img-cover .right-bar svg {
+  background-color: hsl(0, 0%, 100%);
+  color: hsl(220, 13%, 13%);
+  border-radius: 50%;
+  padding: 4px;
+}
+.homepage .best-sellers .containers .best-seller .img-container .img-cover .btn-add-to-cart button {
+  padding: 7px;
+  border-radius: 5px;
+  color: hsl(220, 13%, 13%);
+  background-color: hsl(0, 0%, 100%);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.homepage .best-sellers .containers .best-seller .product-info {
+  padding: 1rem;
+  text-align: justify;
+  align-self: self-start;
+}
+.homepage .best-sellers .containers .best-seller .product-info .name {
+  padding: 5px 0;
+}
+.homepage .best-sellers .containers .best-seller .product-info .selling-cost-prices {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+@media (min-width: 1024px) {
+  .homepage .best-sellers .heading {
+    font-size: 32px;
+  }
 }/*# sourceMappingURL=globals.css.map */

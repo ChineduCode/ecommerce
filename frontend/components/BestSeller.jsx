@@ -10,8 +10,8 @@ export default function Bestsellers({ bestseller }){
                 </div>
                 <div className="img-cover">
                     <div className="right-bar">
-                        <MdOutlineFavoriteBorder size={22}/>
-                        <LuEye size={22}/>
+                        <MdOutlineFavoriteBorder size={25}/>
+                        <LuEye size={25}/>
                     </div>
                     <div className="btn-add-to-cart"> <button className='btn'>Add to Cart</button> </div>
                 </div>
@@ -21,8 +21,8 @@ export default function Bestsellers({ bestseller }){
                 <h3 className="brand">{bestseller.brand}</h3>
                 <div className="name">{bestseller.name}</div>
                 <div className="selling-cost-prices">
-                    <span className='selling-price'>{(10/100) * (bestseller.price)}</span>
-                    <span className='cost-price'>{bestseller.price}</span>
+                    <span className='selling-price'>${bestseller.price - ((10/100) * bestseller.price)}</span>
+                    <span className='cost-price'>${bestseller.price}</span>
                 </div>
             </div>
         </div>
