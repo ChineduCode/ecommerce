@@ -820,8 +820,24 @@ footer{
             padding: 2rem 1rem;
             .containers{
                 grid-template-columns: repeat(2, 1fr);
+                .best-seller{
+                    .img-container{
+                        .img-cover{
+                            flex-direction: column;
+                            justify-content: space-between;
+                            .right-bar{
+                                flex-direction: column;
+                            }
+                            .btn-add-to-cart{
+                                align-self: center;
+                                button{
+                                    padding: 8px 10px;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
-
     }
 }

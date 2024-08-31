@@ -815,4 +815,17 @@ footer .bottom-footer .copyright-container {
   .homepage .best-sellers .containers {
     grid-template-columns: repeat(2, 1fr);
   }
+  .homepage .best-sellers .containers .best-seller .img-container .img-cover {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .homepage .best-sellers .containers .best-seller .img-container .img-cover .right-bar {
+    flex-direction: column;
+  }
+  .homepage .best-sellers .containers .best-seller .img-container .img-cover .btn-add-to-cart {
+    align-self: center;
+  }
+  .homepage .best-sellers .containers .best-seller .img-container .img-cover .btn-add-to-cart button {
+    padding: 8px 10px;
+  }
 }/*# sourceMappingURL=globals.css.map */
