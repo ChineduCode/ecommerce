@@ -703,7 +703,7 @@ footer .bottom-footer .copyright-container {
 }
 .homepage .best-sellers .containers {
   display: grid;
-  justify-content: center;
+  justify-content: space-between;
   align-items: start;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
@@ -808,12 +808,13 @@ footer .bottom-footer .copyright-container {
     font-size: 32px;
   }
 }
-@media (max-width: 600px) {
+@media (min-width: 330px) and (max-width: 600px) {
   .homepage .best-sellers {
     padding: 2rem 1rem;
   }
   .homepage .best-sellers .containers {
     grid-template-columns: repeat(2, 1fr);
+    padding: 0px;
   }
   .homepage .best-sellers .containers .best-seller .img-container .img-cover {
     flex-direction: column;

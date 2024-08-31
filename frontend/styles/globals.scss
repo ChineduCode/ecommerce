@@ -700,7 +700,7 @@ footer{
     
         .containers {
             display: grid;
-            justify-content: center;
+            justify-content: space-between;
             align-items: start;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 10px;
@@ -808,6 +808,9 @@ footer{
                 }
             }
 
+            // @media (max-width: 330px){
+            //     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            // }
         }
         
         @media (min-width: 1024px){
@@ -816,10 +819,11 @@ footer{
             }
         }
 
-        @media (max-width: 600px){
+        @media (min-width: 330px) and (max-width: 600px){
             padding: 2rem 1rem;
             .containers{
                 grid-template-columns: repeat(2, 1fr);
+                padding: 0px;
                 .best-seller{
                     .img-container{
                         .img-cover{
