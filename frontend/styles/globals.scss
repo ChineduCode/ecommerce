@@ -807,6 +807,7 @@ footer{
                     }
                 }
             }
+
         }
         
         @media (min-width: 1024px){
@@ -814,5 +815,13 @@ footer{
                 font-size: 32px;
             }
         }
+
+        @media (max-width: 600px){
+            padding: 2rem 1rem;
+            .containers{
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
     }
 }

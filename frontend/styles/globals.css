@@ -807,4 +807,12 @@ footer .bottom-footer .copyright-container {
   .homepage .best-sellers .heading {
     font-size: 32px;
   }
+}
+@media (max-width: 600px) {
+  .homepage .best-sellers {
+    padding: 2rem 1rem;
+  }
+  .homepage .best-sellers .containers {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }/*# sourceMappingURL=globals.css.map */

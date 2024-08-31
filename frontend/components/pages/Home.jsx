@@ -132,6 +132,11 @@ export default function Home(){
                     }
                 </div>
             </section>
+
+            <div className="all-products">
+                <div className="description-container"></div>
+                <div className="img-container"></div>
+            </div>
         </main>
     )
 }
