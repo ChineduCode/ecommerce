@@ -895,14 +895,13 @@ footer{
             display: flex;
             justify-content: center;
             align-items: center;
-            max-height: 350px;
             margin: 2rem 0;
             padding-top: .5rem;
             img{
                 width: auto;
                 display: block;
                 height: 100%;
-                max-width: 100%;
+                max-width: 70%;
                 object-fit: cover;
             }
         }
@@ -920,7 +919,6 @@ footer{
                 .count-down{
                     justify-content: flex-start;
                     .time{
-                        //text-align: justify;
                         .num{
                             font-size: 30px;
                         }

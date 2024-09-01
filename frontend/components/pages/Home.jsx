@@ -5,6 +5,8 @@ import { FaArrowRightLong, FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Bestsellers from "../BestSeller";
+import customerReviews from "@/data/customer-reviews";
+import CustomerReview from "../CustomerReview";
 
 export default function Home(){
     const categoryRef = useRef(null)
@@ -54,7 +56,6 @@ export default function Home(){
 
         fetchBestSellers()
     }, [])
-
 
     return(
         <main className="homepage">
@@ -168,6 +169,34 @@ export default function Home(){
                 </div>
                 <div className="img-container">
                     <img src="/static-images/allproduct.png" alt="all-products-img" />
+                </div>
+            </section>
+
+            <section className="customers-review">
+                <h2 className="heading">What's our Customer say's</h2>
+                <div className="customers-review-container">
+                    { customerReviews.map((review)=> 
+                        <CustomerReview reviews={review} key={review.review}/>
+                    )}
+                </div>
+                <div className="prev-next-btn">
+                    <button 
+                        className='prev' 
+                        onClick={() => scroll('left')}
+                        disabled={isStart}
+                        style={{ backgroundColor: isStart ? '#ccc' : 'hsl(220, 13%, 13%)' }}
+                    > 
+                        <FaArrowLeft size={22}/> 
+                    </button>
+
+                    <button 
+                        className='next' 
+                        onClick={() => scroll('right')}
+                        disabled={isEnd}
+                        style={{ backgroundColor: isEnd ? '#ccc' : 'hsl(220, 13%, 13%)' }}
+                    > 
+                        <FaArrowRight size={22}/> 
+                    </button>
                 </div>
             </section>
         </main>
