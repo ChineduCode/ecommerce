@@ -133,10 +133,43 @@ export default function Home(){
                 </div>
             </section>
 
-            <div className="all-products">
-                <div className="description-container"></div>
-                <div className="img-container"></div>
-            </div>
+            <section className="all-products">
+                <div className="description-container">
+                    <h2 className='heading'>Deals of the Month</h2>
+                    <div className="description">
+                        Discover exceptional value and quality, 
+                        and enjoy the thrill of shopping with amazing savings. 
+                        Don't miss out — these deals are available only for a 
+                        limited time and while stocks last. Make sure to check back regularly, 
+                        as new deals and surprises await you every month!
+                    </div>
+                    <div className="count-down">
+                        <div className="days time">
+                            <div className="num">120</div>
+                            <div className="text">Days</div>
+                        </div>
+                        <div className="hours time">
+                            <div className="num">18</div>
+                            <div className="text">Hours</div>
+                        </div>
+                        <div className="mins time">
+                            <div className="num">15</div>
+                            <div className="text">Mins</div>
+                        </div>
+                        <div className="secs time">
+                            <div className="num">10</div>
+                            <div className="text">Secs</div>
+                        </div>
+                    </div>
+
+                    <button className='all-products-btn'>
+                        <Link href='/products'> <span>View All Products</span> <FaArrowRightLong /> </Link>
+                    </button>
+                </div>
+                <div className="img-container">
+                    <img src="/static-images/allproduct.png" alt="all-products-img" />
+                </div>
+            </section>
         </main>
     )
 }

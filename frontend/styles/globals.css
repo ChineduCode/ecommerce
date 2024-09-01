@@ -569,7 +569,6 @@ footer .bottom-footer .copyright-container {
 .homepage .hero-section .text-container button {
   display: inline-block;
   background-color: hsl(220, 13%, 13%);
-  color: hsl(0, 0%, 100%);
   padding: 12px;
   font-size: 16px;
   border: 1px solid hsl(220, 13%, 13%);
@@ -828,5 +827,91 @@ footer .bottom-footer .copyright-container {
   }
   .homepage .best-sellers .containers .best-seller .img-container .img-cover .btn-add-to-cart button {
     padding: 8px 10px;
+  }
+}
+.homepage .all-products {
+  padding: 2rem 1.5rem;
+  color: hsl(220, 13%, 13%);
+  display: grid;
+  align-items: center;
+  gap: 4%;
+}
+.homepage .all-products .description-container {
+  text-align: center;
+}
+.homepage .all-products .description-container .description {
+  margin: 1rem 0;
+}
+.homepage .all-products .description-container .count-down {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4%;
+}
+.homepage .all-products .description-container .count-down .time {
+  text-align: center;
+}
+.homepage .all-products .description-container .count-down .time .num {
+  font-size: 25px;
+  font-weight: 600;
+}
+.homepage .all-products .description-container button {
+  display: inline-block;
+  background-color: hsl(220, 13%, 13%);
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid hsl(220, 13%, 13%);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+}
+.homepage .all-products .description-container button a {
+  color: hsl(0, 0%, 100%);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.homepage .all-products .img-container {
+  flex: 1;
+  background-color: hsl(223, 64%, 98%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 350px;
+  margin: 2rem 0;
+  padding-top: 0.5rem;
+}
+.homepage .all-products .img-container img {
+  width: auto;
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 768px) {
+  .homepage .all-products {
+    padding: 4%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10%;
+    justify-content: center;
+  }
+  .homepage .all-products .description-container {
+    order: 2;
+    text-align: justify;
+  }
+  .homepage .all-products .description-container .heading {
+    font-size: 32px;
+  }
+  .homepage .all-products .description-container .count-down {
+    justify-content: flex-start;
+  }
+  .homepage .all-products .description-container .count-down .time .num {
+    font-size: 30px;
+  }
+  .homepage .all-products .img-container {
+    order: 1;
+    max-height: unset;
   }
 }/*# sourceMappingURL=globals.css.map */

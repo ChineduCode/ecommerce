@@ -565,7 +565,6 @@ footer{
             button{
                 display: inline-block;
                 background-color: hsl(220, 13%, 13%);
-                color: hsl(0, 0, 100%);
                 padding: 12px;
                 font-size: 16px;
                 border: 1px solid hsl(220, 13%, 13%);
@@ -841,6 +840,96 @@ footer{
                         }
                     }
                 }
+            }
+        }
+    }
+
+    .all-products{
+        padding: 2rem 1.5rem;
+        color: hsl(220, 13%, 13%);
+        display: grid;
+        align-items: center;
+        gap: 4%;
+
+        .description-container{
+            text-align: center;
+            .description{ margin: 1rem 0; }
+            .count-down{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 4%;
+                .time{
+                    text-align: center;
+                    .num{
+                        font: {
+                            size: 25px;
+                            weight: 600
+                        };
+                    }
+                }
+            }
+
+            button{
+                display: inline-block;
+                background-color: hsl(220, 13%, 13%);
+                padding: 12px;
+                font-size: 16px;
+                border: 1px solid hsl(220, 13%, 13%);
+                border-radius: 8px;
+                cursor: pointer;
+                margin-top: 1.5rem;
+                a{
+                    color: hsl(0, 0, 100%);
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                }
+            }
+        }
+        
+        .img-container{
+            flex: 1;
+            background-color: hsl(223, 64%, 98%);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-height: 350px;
+            margin: 2rem 0;
+            padding-top: .5rem;
+            img{
+                width: auto;
+                display: block;
+                height: 100%;
+                max-width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        @media (min-width: 768px){
+            padding: 4%;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10%;
+            justify-content: center;
+
+            .description-container{
+                order: 2;
+                text-align: justify;
+                .heading{ font-size: 32px }
+                .count-down{
+                    justify-content: flex-start;
+                    .time{
+                        //text-align: justify;
+                        .num{
+                            font-size: 30px;
+                        }
+                    }
+                }
+            }
+            .img-container{
+                order: 1;
+                max-height: unset;
             }
         }
     }
