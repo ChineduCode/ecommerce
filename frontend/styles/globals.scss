@@ -541,6 +541,23 @@ footer{
 }
 
 .homepage{
+    .prev-next-btn{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7px;
+            color: hsl(0, 0, 100%);
+            background-color: hsl(220, 13%, 13%);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+    
     .hero-section{
         background-color: hsl(223, 64%, 98%);
         text-align: center;
@@ -611,7 +628,7 @@ footer{
             gap: 4%;
             display: flex;
             overflow-x: auto;
-            scroll-behavior: smooth; // Enable smooth scrolling
+            scroll-behavior: smooth;
             -ms-overflow-style: none;  // Hide scrollbar in IE and Edge
             scrollbar-width: none;  // Hide scrollbar in Firefox
             
@@ -656,22 +673,6 @@ footer{
                     border-radius: 5px;
                     box-shadow: 0 0 3px hsl(220, 13%, 13%);
                 }
-            }
-        }
-        .prev-next-btn{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            button{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 7px;
-                color: hsl(0, 0, 100%);
-                background-color: hsl(220, 13%, 13%);
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
             }
         }
 
@@ -895,7 +896,7 @@ footer{
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             padding-top: .5rem;
             img{
                 width: auto;
@@ -928,6 +929,44 @@ footer{
             .img-container{
                 order: 1;
                 max-height: unset;
+            }
+        }
+    }
+
+    .customers-review{
+        padding: 2rem 1rem;
+        background-color: hsl(223, 64%, 98%);
+        color: hsl(220, 13%, 13%);
+        .heading{
+            text-align: center;
+        }
+        .customers-review-container{
+            margin: 1.5rem 0;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 4%;
+            overflow: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            scroll-behavior: smooth;
+            &::-webkit-scrollbar{display: none;}
+
+            .review-content{
+                min-width: 300px;
+                height: 200px;
+                background-color: hsl(0, 0, 100%);
+                border-radius: 5px;
+                box-shadow: 0 0 3px hsl(220, 14%, 75%);
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                .rating{ color: hsl(26, 100%, 55%);}
+                .name{
+                    font-size: 18px;
+                    font-weight: 600;
+                }
             }
         }
     }

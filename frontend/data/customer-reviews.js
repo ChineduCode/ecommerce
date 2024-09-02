@@ -6,7 +6,7 @@ const customerReviews = [
     },
     {
       name: "Michael B.",
-      rating: 5,
+      rating: 4.5,
       review: "I found exactly what I needed, and the prices were unbeatable. The whole shopping experience was seamless. Highly recommend!",
     },
     {

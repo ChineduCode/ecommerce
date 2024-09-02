@@ -10,19 +10,22 @@ import CustomerReview from "../CustomerReview";
 
 export default function Home(){
     const categoryRef = useRef(null)
+    const customerReviewsRef = useRef(null)
+
     const [ isStart, setIsStart ] = useState(true)
     const [ isEnd, setIsEnd ] = useState(false)
     const [ bestsellers, setBestSellers ] = useState([])
     const [ loading, setLoading ] = useState(true)
 
-    //Handle scroll
-    const handleScroll = () => {
+
+    // //Handle scroll for category container
+    const handleCategoryScroll = () => {
         const { scrollLeft, scrollWidth, clientWidth } = categoryRef.current
         setIsStart(scrollLeft === 0)
         setIsEnd(scrollLeft + clientWidth >= scrollWidth)
     }
-    //Scroll to left or right
-    const scroll = (direction) => {
+    //Scroll to left or right for category container
+    const scrollCategory = (direction) => {
         const { current } = categoryRef
         const scrollAmount = 300
         if(direction === 'left'){
@@ -31,15 +34,46 @@ export default function Home(){
             current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
         }
     }
-    //Add scroll event listener
+
+
+    // //Handle scroll for customer review
+    const handleReviewScroll = () => {
+        const { scrollLeft, scrollWidth, clientWidth } = customerReviewsRef.current
+        setIsStart(scrollLeft === 0)
+        setIsEnd(scrollLeft + clientWidth >= scrollWidth)
+    }
+    //Scroll to left or right for customer review
+    const scrollReview = (direction) => {
+        const { current } = customerReviewsRef
+        console.log('clicked')
+        const scrollAmount = 300
+        if(direction === 'left'){
+            current.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+        }else{
+            current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+        }
+    }
+
+
+    //Add scroll event listener for category container
     useEffect(() => {
         const { current } = categoryRef;
-        current.addEventListener('scroll', handleScroll);
-        handleScroll(); // Initial check
+        current.addEventListener('scroll', handleCategoryScroll);
+        handleCategoryScroll(); // Initial check
 
-        return () => current.removeEventListener('scroll', handleScroll);
+        return () => current.removeEventListener('scroll', handleCategoryScroll);
     }, []);
 
+    //Add scroll event listener for customers review
+    useEffect(() => {
+        const { current } = customerReviewsRef;
+        current.addEventListener('scroll', handleReviewScroll);
+        handleReviewScroll(); // Initial check
+
+        return () => current.removeEventListener('scroll', handleReviewScroll);
+    }, []);
+
+    //Fetching bestsellers data
     useEffect(()=> {
         const fetchBestSellers = async () =>{
             try {
@@ -56,6 +90,7 @@ export default function Home(){
 
         fetchBestSellers()
     }, [])
+
 
     return(
         <main className="homepage">
@@ -104,7 +139,7 @@ export default function Home(){
                 <div className="prev-next-btn">
                     <button 
                         className='prev' 
-                        onClick={() => scroll('left')}
+                        onClick={() => scrollCategory('left')}
                         disabled={isStart}
                         style={{ backgroundColor: isStart ? '#ccc' : 'hsl(220, 13%, 13%)' }}
                     > 
@@ -113,7 +148,7 @@ export default function Home(){
 
                     <button 
                         className='next' 
-                        onClick={() => scroll('right')}
+                        onClick={() => scrollCategory('right')}
                         disabled={isEnd}
                         style={{ backgroundColor: isEnd ? '#ccc' : 'hsl(220, 13%, 13%)' }}
                     > 
@@ -174,7 +209,7 @@ export default function Home(){
 
             <section className="customers-review">
                 <h2 className="heading">What's our Customer say's</h2>
-                <div className="customers-review-container">
+                <div className="customers-review-container" ref={customerReviewsRef}>
                     { customerReviews.map((review)=> 
                         <CustomerReview reviews={review} key={review.review}/>
                     )}
@@ -182,7 +217,7 @@ export default function Home(){
                 <div className="prev-next-btn">
                     <button 
                         className='prev' 
-                        onClick={() => scroll('left')}
+                        onClick={() => scrollReview('left')}
                         disabled={isStart}
                         style={{ backgroundColor: isStart ? '#ccc' : 'hsl(220, 13%, 13%)' }}
                     > 
@@ -191,7 +226,7 @@ export default function Home(){
 
                     <button 
                         className='next' 
-                        onClick={() => scroll('right')}
+                        onClick={() => scrollReview('right')}
                         disabled={isEnd}
                         style={{ backgroundColor: isEnd ? '#ccc' : 'hsl(220, 13%, 13%)' }}
                     > 

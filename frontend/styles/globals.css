@@ -549,6 +549,22 @@ footer .bottom-footer .copyright-container {
   }
 }
 
+.homepage .prev-next-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.homepage .prev-next-btn button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(220, 13%, 13%);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 .homepage .hero-section {
   background-color: hsl(223, 64%, 98%);
   text-align: center;
@@ -659,22 +675,6 @@ footer .bottom-footer .copyright-container {
   width: 150px;
   border-radius: 5px;
   box-shadow: 0 0 3px hsl(220, 13%, 13%);
-}
-.homepage .shop-by-categories .prev-next-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.homepage .shop-by-categories .prev-next-btn button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 7px;
-  color: hsl(0, 0%, 100%);
-  background-color: hsl(220, 13%, 13%);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 @media (min-width: 1024px) {
   .homepage .shop-by-categories {
@@ -878,7 +878,7 @@ footer .bottom-footer .copyright-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
   padding-top: 0.5rem;
 }
 .homepage .all-products .img-container img {
@@ -913,4 +913,44 @@ footer .bottom-footer .copyright-container {
     order: 1;
     max-height: unset;
   }
+}
+.homepage .customers-review {
+  padding: 2rem 1rem;
+  background-color: hsl(223, 64%, 98%);
+  color: hsl(220, 13%, 13%);
+}
+.homepage .customers-review .heading {
+  text-align: center;
+}
+.homepage .customers-review .customers-review-container {
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 4%;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+.homepage .customers-review .customers-review-container::-webkit-scrollbar {
+  display: none;
+}
+.homepage .customers-review .customers-review-container .review-content {
+  min-width: 300px;
+  height: 200px;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 5px;
+  box-shadow: 0 0 3px hsl(220, 14%, 75%);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.homepage .customers-review .customers-review-container .review-content .rating {
+  color: hsl(26, 100%, 55%);
+}
+.homepage .customers-review .customers-review-container .review-content .name {
+  font-size: 18px;
+  font-weight: 600;
 }/*# sourceMappingURL=globals.css.map */
