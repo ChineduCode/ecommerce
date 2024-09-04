@@ -418,6 +418,29 @@ header .overlay-active {
   }
 }
 
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.loading .loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-top: 5px solid hsl(220, 13%, 13%);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 main {
   padding-top: 2.5rem;
   flex: 1;
@@ -678,7 +701,7 @@ footer .bottom-footer .copyright-container {
 }
 @media (min-width: 1024px) {
   .homepage .shop-by-categories {
-    padding: 2rem 3rem;
+    padding: 2rem 4%;
   }
   .homepage .shop-by-categories .heading {
     font-size: 32px;
@@ -690,7 +713,7 @@ footer .bottom-footer .copyright-container {
   }
 }
 .homepage .best-sellers {
-  padding: 2rem 1.5rem;
+  padding: 2rem 4%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -705,10 +728,9 @@ footer .bottom-footer .copyright-container {
   justify-content: space-between;
   align-items: start;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+  gap: 20px;
   width: 100%;
   max-width: 100%;
-  padding: 20px;
 }
 .homepage .best-sellers .containers .best-seller {
   cursor: pointer;
@@ -813,7 +835,7 @@ footer .bottom-footer .copyright-container {
   }
   .homepage .best-sellers .containers {
     grid-template-columns: repeat(2, 1fr);
-    padding: 0px;
+    gap: 10px;
   }
   .homepage .best-sellers .containers .best-seller .img-container .img-cover {
     flex-direction: column;
@@ -918,6 +940,7 @@ footer .bottom-footer .copyright-container {
   padding: 2rem 1rem;
   background-color: hsl(223, 64%, 98%);
   color: hsl(220, 13%, 13%);
+  position: relative;
 }
 .homepage .customers-review .heading {
   text-align: center;
@@ -932,6 +955,7 @@ footer .bottom-footer .copyright-container {
   -ms-overflow-style: none;
   scrollbar-width: none;
   scroll-behavior: smooth;
+  padding: 0.5rem;
 }
 .homepage .customers-review .customers-review-container::-webkit-scrollbar {
   display: none;
@@ -953,4 +977,21 @@ footer .bottom-footer .copyright-container {
 .homepage .customers-review .customers-review-container .review-content .name {
   font-size: 18px;
   font-weight: 600;
+}
+@media (min-width: 1024px) {
+  .homepage .customers-review {
+    padding: 2rem 4%;
+  }
+  .homepage .customers-review .heading {
+    font-size: 32px;
+    text-align: justify;
+  }
+  .homepage .customers-review .customers-review-container {
+    padding: 1rem;
+  }
+  .homepage .customers-review .prev-next-btn {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+  }
 }/*# sourceMappingURL=globals.css.map */

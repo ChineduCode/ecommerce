@@ -7,6 +7,7 @@ import axios from "axios";
 import Bestsellers from "../BestSeller";
 import customerReviews from "@/data/customer-reviews";
 import CustomerReview from "../CustomerReview";
+import Loading from "../Loading";
 
 export default function Home(){
     const categoryRef = useRef(null)
@@ -159,14 +160,16 @@ export default function Home(){
 
             <section className="best-sellers">
                 <h2 className="heading">Our Bestseller</h2>
-                <div className="containers">
-                    {bestsellers.map(bestseller => 
-                        <Bestsellers 
-                            key={bestseller.brand} 
-                            bestseller={bestseller} 
-                        />)
-                    }
-                </div>
+                { loading ? <Loading /> :
+                    <div className="containers">
+                        { bestsellers.map(bestseller => 
+                            <Bestsellers 
+                                key={bestseller.brand} 
+                                bestseller={bestseller} 
+                            />)
+                        }
+                    </div>
+                }
             </section>
 
             <section className="all-products">
@@ -234,6 +237,10 @@ export default function Home(){
                     </button>
                 </div>
             </section>
+
+            {/* <section className="instagram-stories">
+                <h2 className="heading">Our Instagram Stories</h2>
+            </section> */}
         </main>
     )
 }
