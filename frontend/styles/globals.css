@@ -1128,4 +1128,105 @@ footer .bottom-footer .copyright-container {
   .product-listing-page .containers .product .img-container .img-cover .btn-add-to-cart button {
     padding: 8px 10px;
   }
+}
+
+.product-detail-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.product-detail-page .container .img-container {
+  width: 100%;
+  padding: 4rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-detail-page .container .img-container img {
+  width: 70%;
+  display: block;
+  height: auto;
+}
+.product-detail-page .container .product-detail {
+  padding: 0.5rem 1.5rem;
+}
+.product-detail-page .container .product-detail .heading .brand {
+  font-size: 28px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.product-detail-page .container .product-detail .heading .stock span {
+  border-radius: 3px;
+  font-size: 15px;
+  padding: 5px 7px;
+  display: inline-block;
+}
+.product-detail-page .container .product-detail .name {
+  font-size: 18px;
+  margin: 5px 0;
+}
+.product-detail-page .container .product-detail .rating {
+  color: hsl(26, 100%, 55%);
+}
+.product-detail-page .container .product-detail .price {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 25px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+.product-detail-page .container .product-detail .price .cost-price {
+  text-decoration: line-through;
+  color: hsl(220, 14%, 75%);
+}
+.product-detail-page .container .product-detail .description {
+  line-height: 22px;
+  margin: 10px 0;
+}
+.product-detail-page .container .product-detail .add-to-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+.product-detail-page .container .product-detail .add-to-cart .count {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid hsl(220, 13%, 13%);
+  padding: 8px 1rem;
+  border-radius: 8px;
+}
+.product-detail-page .container .product-detail .add-to-cart .count button {
+  padding: 5px;
+  background-color: hsl(0, 0%, 100%);
+}
+.product-detail-page .container .product-detail .add-to-cart .count span {
+  font-size: 18px;
+  font-weight: bold;
+}
+.product-detail-page .container .product-detail .add-to-cart button {
+  border: none;
+  cursor: pointer;
+}
+.product-detail-page .container .product-detail .add-to-cart .btn {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  width: 100%;
+  gap: 10px;
+}
+.product-detail-page .container .product-detail .add-to-cart .btn .add-to-cart-btn {
+  width: 90%;
+}
+.product-detail-page .container .product-detail .add-to-cart .btn button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: hsl(220, 13%, 13%);
+  color: hsl(0, 0%, 100%);
+  border-radius: 8px;
 }/*# sourceMappingURL=globals.css.map */

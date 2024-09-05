@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import { useSearchParams, useParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import Loading from '../Loading';
 import Link from 'next/link'
@@ -47,7 +47,7 @@ export default function ProductListing() {
                 {products.length > 0 ? (
                     products.map((product, index) => (
                         <div key={index} className="product">
-                            <Link href={`/shop/${product._id}`} className="img-container">
+                            <Link href={`/products/${product._id}`} className="img-container">
                                 <div className="img">
                                     <img src={product.image} alt={product.brand} />
                                 </div>
@@ -60,12 +60,12 @@ export default function ProductListing() {
                                 </div>
                             </Link>
 
-                            <Link href={`/shop/${product._id}`} className="product-info">
+                            <Link href={`/products/${product._id}`} className="product-info">
                                 <h3 className="brand">{product.brand}</h3>
                                 <div className="name">{product.name}</div>
                                 <div className="selling-cost-prices">
-                                    <span className='selling-price'>${product.price - ((10/100) * product.price)}</span>
-                                    <span className='cost-price'>${product.price}</span>
+                                    <span className='selling-price'>${product.price}</span>
+                                    <span className='cost-price'>${product.price + ((10/100) * product.price)}</span>
                                 </div>
                             </Link>
                         </div>

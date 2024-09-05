@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler')
 const getAllProduct = asyncHandler( async (req, res) => {
     try {
         const products = await Product.find({})
-        return res.status(200).json(products)
+        return res.json(products)
         
     } catch (error) {
         console.log(`Error fetching products ${error.message}`)
@@ -20,7 +20,7 @@ const getProduct = asyncHandler( async (req, res) => {
             return res.status(404).json({message: 'Product not found'})
         }
 
-        return res.status(200).json(product)
+        return res.json(product)
 
     } catch (error) {
         console.log(error.message)
@@ -82,7 +82,7 @@ const getProductCategory = asyncHandler( async (req, res)=> {
             return res.status(404).json({ message: 'Products not found' })
         }
 
-        return res.status(200).json(productCategory)
+        return res.json(productCategory)
 
     } catch (error) {
         console.error(error)
@@ -121,7 +121,7 @@ const getBestSellers = asyncHandler(async (req, res)=> {
             return res.status(404).json({ message: 'No brands found with more than two occurrences' });
         }
       
-        return res.status(200).json(products);
+        return res.json(products);
 
     }catch(error){
         console.error(error);
