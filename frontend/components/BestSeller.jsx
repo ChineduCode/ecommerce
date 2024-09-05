@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Bestsellers({ product }){
     return(
-        <div className="best-seller">
+        <div className="best-seller product">
             <Link href={`/shop/${product._id}`} className="img-container">
                 <div className="img">
                     <img src={product.image} alt={product.brand} />

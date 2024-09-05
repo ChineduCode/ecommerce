@@ -4,7 +4,7 @@ const { getProduct, getAllProduct, getProductCategory, getBestSellers } = requir
 
 router.get('/', getAllProduct)
 router.get('/id/:id', getProduct)
-router.get('/filter', getProductCategory)
+router.get('/categories', getProductCategory)
 router.get('/bestsellers', getBestSellers)
 
 module.exports = router;
