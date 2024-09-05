@@ -92,7 +92,7 @@ const getProductCategory = asyncHandler( async (req, res)=> {
 
 const getBestSellers = asyncHandler(async (req, res)=> {
     try{
-        // const bestSellers = await Product.aggregate([
+        // const products = await Product.aggregate([
         //     {
         //         $sort: { createdAt: 1 }
         //     },

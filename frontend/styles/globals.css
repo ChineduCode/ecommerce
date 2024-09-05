@@ -742,6 +742,9 @@ footer .bottom-footer .copyright-container {
   position: relative;
   background-color: hsl(0, 0%, 100%);
 }
+.homepage .best-sellers .containers .best-seller a {
+  color: hsl(220, 13%, 13%);
+}
 .homepage .best-sellers .containers .best-seller:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle hover effect */
 }

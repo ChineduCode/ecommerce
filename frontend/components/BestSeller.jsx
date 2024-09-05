@@ -1,12 +1,13 @@
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { LuEye } from "react-icons/lu";
+import Link from "next/link";
 
-export default function Bestsellers({ bestseller }){
+export default function Bestsellers({ product }){
     return(
         <div className="best-seller">
-            <div className="img-container">
+            <Link href={`/shop/${product._id}`} className="img-container">
                 <div className="img">
-                    <img src={bestseller.image} alt={bestseller.brand} />
+                    <img src={product.image} alt={product.brand} />
                 </div>
                 <div className="img-cover">
                     <div className="right-bar">
@@ -15,16 +16,16 @@ export default function Bestsellers({ bestseller }){
                     </div>
                     <div className="btn-add-to-cart"> <button className='btn'>Add to Cart</button> </div>
                 </div>
-            </div>
+            </Link>
 
-            <div className="product-info">
-                <h3 className="brand">{bestseller.brand}</h3>
-                <div className="name">{bestseller.name}</div>
+            <Link href={`/shop/${product._id}`} className="product-info">
+                <h3 className="brand">{product.brand}</h3>
+                <div className="name">{product.name}</div>
                 <div className="selling-cost-prices">
-                    <span className='selling-price'>${bestseller.price - ((10/100) * bestseller.price)}</span>
-                    <span className='cost-price'>${bestseller.price}</span>
+                    <span className='selling-price'>${product.price - ((10/100) * product.price)}</span>
+                    <span className='cost-price'>${product.price}</span>
                 </div>
-            </div>
+            </Link>
         </div>
     )
 }
