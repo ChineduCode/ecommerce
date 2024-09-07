@@ -4,6 +4,7 @@
     box-sizing: border-box;
     list-style-type: none;
     text-decoration: none;
+    font-family: inherit;
 }
 
 html{
@@ -60,7 +61,6 @@ body{
                 padding: 12px;
                 border: 1px solid hsl(220, 13%, 13%);
                 border-radius: 8px;
-                font-family: inherit;
                 font-size: 16px;
                 color: hsl(220, 13%, 13%);
                 outline: none;
@@ -650,7 +650,7 @@ footer{
         .categories-container{
             margin: 1.5rem 0;
             display: flex;
-            align-items: end;
+            align-items: flex-end;
             gap: 4%;
             display: flex;
             overflow-x: auto;
@@ -695,7 +695,7 @@ footer{
                     background-color: hsl(0, 0, 100%);
                     color: hsl(220, 13%, 13%);
                     padding: 5px 30px;
-                    width: 150px;
+                    min-width: 150px;
                     border-radius: 5px;
                     box-shadow: 0 0 3px hsl(220, 13%, 13%);
                 }
@@ -799,7 +799,7 @@ footer{
                                 padding: 4px;
                             }
                         }
-                        .btn-add-to-cart{
+                        .add-to-cart-btn{
                             button{
                                 padding: 7px;
                                 border-radius: 5px;
@@ -967,7 +967,7 @@ footer{
         .customers-review-container{
             margin: 1.5rem 0;
             display: flex;
-            align-items: end;
+            align-items: flex-end;
             justify-content: space-between;
             gap: 4%;
             overflow: auto;
@@ -1112,6 +1112,7 @@ footer{
                 padding: 1rem;
                 text-align: justify;
                 align-self: self-start;
+                .brand{ text-transform: capitalize; }
                 .name{padding: 5px 0}
                 .selling-cost-prices{
                     display: flex;
@@ -1243,7 +1244,7 @@ footer{
                     cursor: pointer;
                 }
 
-                .btn{
+                .btn-container{
                     display: flex;
                     justify-content: space-between;
                     margin: 15px 0;
@@ -1251,6 +1252,10 @@ footer{
                     gap: 10px;
                     .add-to-cart-btn{
                         width: 90%;
+                        display: flex;
+                        .btn{
+                            width: 100%;
+                        }
                     }
                     button{
                         padding: 15px;
@@ -1263,6 +1268,34 @@ footer{
             }
         }
     }
-}
 
-.cart{}
+    @media (min-width: 1024px){
+        padding: 6rem 4%;
+        .container{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            gap: 3%;
+            .product-detail{
+                .heading{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .brand{ font-size: 35px; }
+                }
+                .name{
+                    font-size: 22px;
+                    margin: 1rem 0;
+                }
+                .add-to-cart{
+                    flex-direction: row;
+                    gap: 10px;
+                    .count{
+                        width: unset;
+                        gap: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

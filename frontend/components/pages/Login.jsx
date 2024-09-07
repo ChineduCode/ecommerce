@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import Link from "next/link";
+import { signIn } from 'next-auth/react'
+import { useRouter } from "next/navigation";
 
 export default function Login(){
     const [email, setEmail] = useState('')
@@ -12,10 +14,11 @@ export default function Login(){
     const [error, setError] = useState('')
     const [status, setStatus] = useState('')
 
+    const router = useRouter()
+
     const handleSubmit = async (e)=> {
         e.preventDefault()
         setStatus('submitting')
-        console.log(status)
 
         try {
             if(!email || !password){
@@ -27,34 +30,26 @@ export default function Login(){
                 throw new Error('Invalid email address')
             }
 
-            await new Promise(resolve => setTimeout(resolve, 5000))
-
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    //'Authorization': 'Bearer your-token-here', // Example of setting an Authorization header
-                },
-                body: JSON.stringify({
-                    email,
-                    password
-                })
+            const response = await signIn('credentials', {
+                email,
+                password,
+                redirect: false,
             })
 
-            const data = await response.json()
             if(response.ok){
                 setError('')
                 setEmail('')
                 setPassword('')
                 setStatus('success')
+
+                router.push('/')
             }else{
-                throw new Error(data.message)
+                throw new Error('Invalid credentials')
             }
 
         } catch (error) {
             setError(error.message)
             setStatus('failed')
-            return
         }
     }
 

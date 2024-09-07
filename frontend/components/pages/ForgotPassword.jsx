@@ -4,6 +4,7 @@ import Link from "next/link"
 import { FaLessThan } from "react-icons/fa6";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function ForgotPassword(){
     const [email, setEmail] = useState('')
@@ -25,23 +26,13 @@ export default function ForgotPassword(){
                 throw new Error('Invalid email address')
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/forgot-password/send-otp`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({email})
-            })
-
-            const data = await response.json()
-            if(response.ok){
-                setError('')
-                setEmail('')
-                setStatus('success')
-                router.push('/otp-verification')
-            }else{
-                throw new Error(data.message)
-            }
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/forgot-password/send-otp`, { email })
+            const data = response.data
+            console.log(data)
+            setError('')
+            setEmail('')
+            setStatus('success')
+            router.push('/otp-verification')
 
         } catch (error) {
             setStatus('failed')

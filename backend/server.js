@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/v1/users', require('./routes/user'))
 app.use('/api/v1/news', require('./routes/newsLetterSubscriber'))
 app.use('/api/v1/products', require('./routes/product'))
+app.use('/api/v1/carts', require('./routes/cart'))
 
 //Routes
 app.get('/', (req, res)=> res.send('Hello from e-commerce server !!!'))

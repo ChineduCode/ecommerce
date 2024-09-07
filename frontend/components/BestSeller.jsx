@@ -1,6 +1,7 @@
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { LuEye } from "react-icons/lu";
 import Link from "next/link";
+import AddToCartBtn from "./AddToCartBtn";
 
 export default function Bestsellers({ product }){
     return(
@@ -14,7 +15,7 @@ export default function Bestsellers({ product }){
                         <MdOutlineFavoriteBorder size={25}/>
                         <LuEye size={25}/>
                     </div>
-                    <div className="btn-add-to-cart"> <button className='btn'>Add to Cart</button> </div>
+                    <AddToCartBtn />
                 </div>
             </Link>
 

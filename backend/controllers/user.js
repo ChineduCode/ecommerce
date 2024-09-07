@@ -4,7 +4,14 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const generateJWT = require('../utils/generateToken')
 const generateCode = require('../utils/generateCode')
-const { sendEmailVerification, successEmailVerification, sendOTP, passwordReset, successPasswordReset } = require('../utils/sendEmail')
+const protect = require('../middlewares/protectRoute')
+const { 
+    sendEmailVerification, 
+    successEmailVerification, 
+    sendOTP, 
+    passwordReset, 
+    successPasswordReset 
+} = require('../utils/sendEmail')
 
 const registerUser = asyncHandler(async (req, res)=> {
     try {
@@ -97,13 +104,11 @@ const loginUser = asyncHandler(async (req, res)=> {
         }
 
         return res.status(200).json({
-            message: 'User logged In',
-            user: {
-                _id: user._id,
-                firstname: user.firstname,
-                email: user.email,
-                token: generateJWT(user._id)
-            }
+            _id: user._id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            email: user.email,
+            token: generateJWT(user._id)
         })
 
     }catch (error){
@@ -121,20 +126,25 @@ const getAllUsers = asyncHandler(async (req, res)=> {
     }
 })
 
-const getUser = asyncHandler(async (req, res)=> {
+const getUserProfile = asyncHandler(async (req, res)=> {
     try{
-        const id = req.params.id
+        // const id = req.user._id
         
-        if (!require('mongoose').Types.ObjectId.isValid(id)) {
-            return res.status(400).json({ message: 'Invalid user ID' });
-        }
+        // if (!require('mongoose').Types.ObjectId.isValid(id)) {
+        //     return res.status(400).json({ message: 'Invalid user ID' });
+        // }
 
-        const user = await Users.findById(id)
+        const user = await Users.findById(req.user._id)
         if(!user){
             return res.status(404).json({ message: 'User not found' })
         }
 
-        return res.status(200).json(user)
+        return res.json({
+            _id: user._id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            email: user.email,
+        })
 
     }catch (error){
         return res.status(200).json({ message: 'Internal server error' })
@@ -271,7 +281,7 @@ module.exports = {
     registerUser,
     loginUser,
     getAllUsers,
-    getUser,
+    getUserProfile,
     verifyUserEmail,
     sendUserOTP,
     verifyUserOTP,

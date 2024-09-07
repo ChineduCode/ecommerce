@@ -7,6 +7,7 @@ import Loading from '../Loading'
 import Rating from '../Rating'
 import Count from '../Count'
 import { MdOutlineFavoriteBorder } from "react-icons/md";
+import AddToCartBtn from '../AddToCartBtn'
 
 export default function ProductDetails(){
     const params = useParams()
@@ -14,13 +15,13 @@ export default function ProductDetails(){
 
     const [product, setProduct] = useState({})
     const [loading, setLoading] = useState(true)
+    const [item, setItem] = useState({})
 
     useEffect(()=> {
         const fetchProduct = async () => {
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/id/${id}`)
                 setProduct(response.data)
-                console.log(product)
             } catch (error) {
                 console.error(error)
             } finally {
@@ -33,6 +34,23 @@ export default function ProductDetails(){
         }
         
     },[id])
+
+    const addToCart = async () => {
+        try {
+            setItem({produtID: product._id})
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/product/cart`, {
+                body: item,
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+            const data = response.data
+            console.log(data)
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     if(loading) return <main style={{padding: '6rem'}}> <Loading /> </main>
 
@@ -63,9 +81,18 @@ export default function ProductDetails(){
                     <div className="description">{product.description}</div>
                     <div className="add-to-cart">
                         <Count />
-                        <div className="btn">
-                            <button className='add-to-cart-btn'>Add to Cart</button>
-                            <button className='add-to-favourite'> <MdOutlineFavoriteBorder size={22}/> </button>
+                        <div className="btn-container">
+                            <AddToCartBtn />
+                            {/* <button 
+                                className='add-to-cart-btn'
+                                type='submit'
+                                onClick={addToCart}
+                            >
+                                Add to Cart
+                            </button> */}
+                            <div className="favorite-btn">
+                                <button className='add-to-favourite'> <MdOutlineFavoriteBorder size={22}/> </button>
+                            </div>
                         </div>
                     </div>
                 </div>

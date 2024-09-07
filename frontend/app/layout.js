@@ -1,7 +1,8 @@
-import { Roboto } from "next/font/google";
+import { Kumbh_Sans } from "next/font/google";
 import '@/styles/globals.css'
+import Providers from "@/components/Provider";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ['100', '300', '400', '500', '700', '900'] });
+const kumbh_sans = Kumbh_Sans({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Ecommerce",
@@ -12,7 +13,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={kumbh_sans.className}>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

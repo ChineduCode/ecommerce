@@ -1,10 +1,12 @@
 const express = require('express')
 const router = express.Router()
+const protect = require('../middlewares/protectRoute')
+
 const { 
     registerUser, 
     loginUser, 
     getAllUsers, 
-    getUser, 
+    getUserProfile, 
     verifyUserEmail, 
     sendUserOTP, 
     verifyUserOTP,
@@ -14,7 +16,7 @@ const {
 router.post('/register', registerUser)
 router.post('/login', loginUser)
 router.get('/', getAllUsers)
-router.get('/id/:id', getUser)
+router.get('/profile', protect, getUserProfile)
 router.post('/verify-email', verifyUserEmail)
 router.post('/forgot-password/send-otp', sendUserOTP)
 router.post('/forgot-password/verify-otp', verifyUserOTP)
