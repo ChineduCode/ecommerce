@@ -1,30 +1,34 @@
 'use client'
 
 import { TbTrash } from "react-icons/tb";
-import { useState } from "react/cjs/react.production.min";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 
 export default function Cart(){
-    const [noOfItems, setNoOfItems] = useState(0)
-    const [items, setItems] = useState([
-        {
-            productName: 'Girls Pink Moana Printed Dress',
-            productQty: 1,
-            productPrice: 80.00,
-            productImg: '/images/'
-        },
-        {
-            productName: 'Women Textured Handheld Bag',
-            productQty: 1,
-            productPrice: 90.00,
-            productImg: '/images/'
-        },
-        {
-            productName: 'Tailored Cotton Casual Shirt',
-            productQty: 2,
-            productPrice: 40.00,
-            productImg: '/images/'
-        },
-    ])
+    const [cart, setCart] = useState([])
+    const { data: session } = useSession()
+
+    useEffect(()=> {
+        const fetchCart = async ()=> {
+            try {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/carts`, {
+                    headers: { 'Authorization' : `Bearer ${session.accessToken}` }
+                })
+    
+                if(response.data){
+                    setCart(response.data)
+                }
+                
+            } catch (error) {
+                console.error('Error fetching user cart', error)
+            }
+        }
+
+        if(session){
+            fetchCart
+        }
+    }, [session, setCart])
 
     return(
         <section className="cart">
