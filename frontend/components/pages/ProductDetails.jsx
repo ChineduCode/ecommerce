@@ -12,10 +12,10 @@ import AddToCartBtn from '../AddToCartBtn'
 export default function ProductDetails(){
     const params = useParams()
     const {id} = params
-
     const [product, setProduct] = useState({})
+    const [qty, setQty] = useState(0)
+    const [qtyisZero, setQtyIsZero] = useState(false)
     const [loading, setLoading] = useState(true)
-    const [item, setItem] = useState({})
 
     useEffect(()=> {
         const fetchProduct = async () => {
@@ -34,23 +34,6 @@ export default function ProductDetails(){
         }
         
     },[id])
-
-    const addToCart = async () => {
-        try {
-            setItem({produtID: product._id})
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/product/cart`, {
-                body: item,
-                headers: {
-                    'Content-type': 'application/json'
-                }
-            })
-            const data = response.data
-            console.log(data)
-
-        } catch (error) {
-            console.error(error)
-        }
-    }
 
     if(loading) return <main style={{padding: '6rem'}}> <Loading /> </main>
 
@@ -80,16 +63,10 @@ export default function ProductDetails(){
                     </div>
                     <div className="description">{product.description}</div>
                     <div className="add-to-cart">
-                        <Count />
+                        <Count count={qty} setCount={setQty} qtyisZero={qtyisZero} />
                         <div className="btn-container">
-                            <AddToCartBtn />
-                            {/* <button 
-                                className='add-to-cart-btn'
-                                type='submit'
-                                onClick={addToCart}
-                            >
-                                Add to Cart
-                            </button> */}
+                            <AddToCartBtn productID={product._id} qty={qty} />
+
                             <div className="favorite-btn">
                                 <button className='add-to-favourite'> <MdOutlineFavoriteBorder size={22}/> </button>
                             </div>

@@ -10,8 +10,8 @@ const addToCart = asyncHandler(async (req, res)=> {
             return res.status(401).json({ message: 'User not authnticated' })
         }
 
-        const { productID, quantity } = req.body
-        if(!productID || !quantity){
+        const { productID, qty } = req.body
+        if(!productID || !qty){
             return res.status(400).json({ message: 'All fields are required' })
         }
         
@@ -25,26 +25,27 @@ const addToCart = asyncHandler(async (req, res)=> {
             return res.status(404).json({ message: 'Product not found' })
         }
 
-        const userCart = await Cart.findOne({user: user._id})
+        let userCart = await Cart.findOne({user: user._id})
         if(userCart){
             const itemExist = userCart.cartItems.find(item => item.product.toString() === productID)
             if(itemExist){
                 return res.status(400).json({ message: 'Item already exist in cart'})
             }
 
-            userCart.product.push({ product: productID, quantity })
+            userCart.cartItems.unshift({ product: productID, quantity: qty })
             await userCart.save()
+
             return res.json(userCart)
 
         }else {
             //if no cart exist for the user
             const newCart = new Cart({
                 user: user._id,
-                cartItems: [{ product: product._id, quantity }]
+                cartItems: [{ product: product._id, qty }]
             })
 
             await newCart.save()
-            return res.status(201).json(newCart);
+            return res.status(201).json({message: 'Item successfully added to cart'});
         }
         
     } catch (error){

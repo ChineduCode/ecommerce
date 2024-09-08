@@ -48,7 +48,7 @@ export default function ProductListing() {
                     products.map((product, index) => (
                         <div key={index} className="product">
                             <Link href={`/products/${product._id}`} className="img-container">
-                                <div className="img">
+                                <div href={`/products/${product._id}`} className="img">
                                     <img src={product.image} alt={product.brand} />
                                 </div>
                                 <div className="img-cover">

@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
-export default function Count(){
-    const [ count, setCount ] = useState(0)
+export default function Count({count, setCount, qtyIsZero}){
 
     return(
         <div className="count">

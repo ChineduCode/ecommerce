@@ -6,7 +6,7 @@ import AddToCartBtn from "./AddToCartBtn";
 export default function Bestsellers({ product }){
     return(
         <div className="best-seller product">
-            <Link href={`/shop/${product._id}`} className="img-container">
+            <Link href={`/product/${product._id}`} className="img-container">
                 <div className="img">
                     <img src={product.image} alt={product.brand} />
                 </div>
@@ -19,7 +19,7 @@ export default function Bestsellers({ product }){
                 </div>
             </Link>
 
-            <Link href={`/shop/${product._id}`} className="product-info">
+            <Link href={`/product/${product._id}`} className="product-info">
                 <h3 className="brand">{product.brand}</h3>
                 <div className="name">{product.name}</div>
                 <div className="selling-cost-prices">
