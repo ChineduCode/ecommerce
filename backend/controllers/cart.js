@@ -35,7 +35,7 @@ const addToCart = asyncHandler(async (req, res)=> {
             userCart.cartItems.unshift({ product: productID, quantity: qty })
             await userCart.save()
 
-            return res.json(userCart)
+            return res.status(201).json({message: 'Item successfully added to cart', cart: userCart})
 
         }else {
             //if no cart exist for the user
@@ -67,7 +67,7 @@ const getUserCart = asyncHandler(async (req, res)=> {
         })
         
         if(cart){
-            return res.json(cart)
+            return res.status(200).json(cart)
         }else{
             return res.status(404).json({ message: 'Cart is empty'})
         }
@@ -77,17 +77,34 @@ const getUserCart = asyncHandler(async (req, res)=> {
     }
 })
 
-const deleteItem = asyncHandler(async (req, res)=> {
+const deleteItem = asyncHandler(async (req, res) => {
     try {
-        const userID = req.user?._id
-        const productID = req.body
-        
+        const { itemID } = req.body;
+        const userID = req.user._id;
+
+        let updatedCart = await Cart.findOneAndUpdate(
+            { user: userID },
+            { $pull: { cartItems: { _id: itemID } } }, // Use $pull to remove the item from the array
+            { new: true } // Return the modified document
+        )
+        .populate({
+            path: 'cartItems.product',
+            select: 'name image price'
+        })
+
+        if (!updatedCart) {
+            return res.status(404).json({ message: 'User cart not found' });
+        }
+ 
+        return res.status(200).json({ message: 'Item removed successfully', cart: updatedCart });
+
     } catch (error) {
-        
+        return res.status(500).json({ message: 'Internal server error' });
     }
-})
+});
 
 module.exports = {
     addToCart,
-    getUserCart
+    getUserCart,
+    deleteItem
 }

@@ -20,7 +20,7 @@ export default function Cart(){
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/carts`, {
                     headers: { 'Authorization' : `Bearer ${session.accessToken}` }
                 })
-                console.log(response.data)
+                //console.log(response.data)
                 if(response.data){
                     setCart(response.data.cartItems)
                     setTotalPrice(response.data.cartItems.reduce((sum, cartItem)=> sum + (cartItem.product.price * cartItem.quantity), 0));
@@ -41,9 +41,17 @@ export default function Cart(){
 
     }, [session, setCart])
 
-    const handleDelete = async ()=> {
+    const handleDelete = async (id)=> {
         try {
-            const response = await axios.post()
+            const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/carts/delete`,
+                {itemID: id},
+                {headers: {'Authorization': `Bearer ${session.accessToken}`}}
+            )
+
+            if(response.data){
+                console.log(response.data)
+                setCart(response.data.cart.cartItems)
+            }
         } catch (error) {
             console.error(error)
         }
@@ -71,7 +79,7 @@ export default function Cart(){
                                         </div>
                                     </div>
                                 </div>
-                                <div className="delete-container"> <TbTrash size={22} onClick={(e)=> handleDelete}/> </div>
+                                <div className="delete-container"> <TbTrash size={22} onClick={(e)=> handleDelete(cartItem._id)}/> </div>
                             </div>
                         ))}
                     </div>

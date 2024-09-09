@@ -527,9 +527,8 @@ header .overlay-active {
   height: 100px;
 }
 .cart .container {
-  min-height: 50px;
   margin: 1rem 0;
-  height: 50vh;
+  min-height: 100px;
   overflow: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -606,7 +605,7 @@ header .overlay-active {
   font-size: 16px;
   cursor: pointer;
 }
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .cart {
     left: 50%;
   }

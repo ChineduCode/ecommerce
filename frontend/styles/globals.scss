@@ -522,9 +522,8 @@ header{
         height: 100px;
     }
     .container{
-        min-height: 50px;
         margin: 1rem 0;
-        height: 50vh;
+        min-height: 100px;
         overflow: auto;
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -606,7 +605,7 @@ header{
         }
     }
 
-    @media (min-width: 1024px){
+    @media (min-width: 768px){
         left: 50%;
     }
 }

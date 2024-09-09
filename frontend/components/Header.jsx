@@ -8,7 +8,7 @@ import Cart from './Cart';
 
 export default function Header(){
     const [ navActive, setNavActive ] = useState(false)
-    const [ cartActive, setCartActive ] = useState(true)
+    const [ cartActive, setCartActive ] = useState(false)
 
     return(
         <header className='header'>
