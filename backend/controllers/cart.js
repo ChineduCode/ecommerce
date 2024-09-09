@@ -67,7 +67,6 @@ const getUserCart = asyncHandler(async (req, res)=> {
         })
         
         if(cart){
-            console.log(cart)
             return res.json(cart)
         }else{
             return res.status(404).json({ message: 'Cart is empty'})
@@ -75,6 +74,16 @@ const getUserCart = asyncHandler(async (req, res)=> {
 
     } catch(error){
         return res.status(500).json({ message: 'Internal server error' })
+    }
+})
+
+const deleteItem = asyncHandler(async (req, res)=> {
+    try {
+        const userID = req.user?._id
+        const productID = req.body
+        
+    } catch (error) {
+        
     }
 })
 

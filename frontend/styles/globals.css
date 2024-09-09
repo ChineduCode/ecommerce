@@ -503,6 +503,115 @@ header .overlay-active {
   }
 }
 
+.cart {
+  position: fixed;
+  top: 5rem;
+  left: 0px;
+  right: 0px;
+  margin: 10px auto;
+  width: 90%;
+  max-width: 350PX;
+  background-color: hsl(0, 0%, 100%);
+  z-index: 5;
+  box-shadow: 0 0 3px hsl(220, 14%, 75%);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 1rem;
+}
+.cart .heading {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+.cart .loader {
+  height: 100px;
+}
+.cart .container {
+  min-height: 50px;
+  margin: 1rem 0;
+  height: 50vh;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  padding: 5px;
+}
+.cart .container .item-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid hsl(220, 14%, 75%);
+}
+.cart .container .item-content .product-details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cart .container .item-content .product-details .img-container {
+  flex: 1;
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart .container .item-content .product-details .img-container img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  max-width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.cart .container .item-content .product-details .detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+.cart .container .item-content .product-details .detail .price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+.cart .container .item-content .delete-container svg {
+  color: orangered;
+}
+.cart .empty-cart {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart .footer .total-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 600;
+}
+.cart .footer button {
+  display: inline-block;
+  width: 100%;
+  padding: 10px;
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(220, 13%, 13%);
+  margin: 15px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+@media (min-width: 1024px) {
+  .cart {
+    left: 50%;
+  }
+}
+
 main {
   padding-top: 2.5rem;
   flex: 1;

@@ -4,9 +4,11 @@ import { useState } from 'react'
 import Link from "next/link"
 import { IoMenu, IoSearch, IoHeartOutline, IoCartOutline } from "react-icons/io5";
 import Nav from "./Nav";
+import Cart from './Cart';
 
 export default function Header(){
     const [ navActive, setNavActive ] = useState(false)
+    const [ cartActive, setCartActive ] = useState(true)
 
     return(
         <header className='header'>
@@ -17,8 +19,11 @@ export default function Header(){
                     <div className="icons">
                         <IoSearch size={22}/>
                         <IoHeartOutline size={22}/>
-                        <IoCartOutline size={22}/>
+                        <IoCartOutline size={22} onClick={()=> setCartActive(!cartActive)}/>
                     </div>
+
+                    {cartActive && <Cart />}
+
                     <button className="btn-login"> <Link href='/login'>Login</Link> </button>
                 </div>
                 <div className="menu-bar" onClick={()=> setNavActive(true)}> <IoMenu size={25}/> </div>
