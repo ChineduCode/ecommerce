@@ -28,10 +28,12 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: false
     },
-    address: {
-        type: String,
-        required: true
-    },
+    address: [ 
+        {
+            type: String,
+            required: true
+        }
+    ],
     verificationCode: {
         type: String
     },

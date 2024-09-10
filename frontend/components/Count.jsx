@@ -1,13 +1,11 @@
-import { useState } from "react"
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
-export default function Count({count, setCount, qtyIsZero}){
-
+export default function Count({qty, setQty}){
     return(
         <div className="count">
-            <button onClick={()=> setCount(count - 1)} disabled={count === 0}> <FaMinus size={22} /> </button>
-            <span>{ count }</span>
-            <button onClick={()=> setCount(count + 1)}> <FaPlus size={22} /> </button>
+            <button onClick={()=> setQty(qty - 1)} disabled={qty === 0}> <FaMinus size={22} /> </button>
+            <span>{ qty }</span>
+            <button onClick={()=> setQty(qty + 1)}> <FaPlus size={22} /> </button>
         </div>
     )
 }

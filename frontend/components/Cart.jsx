@@ -6,6 +6,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import Loader from "./Loader";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Cart(){
     const [cart, setCart] = useState([])
@@ -20,7 +21,7 @@ export default function Cart(){
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/carts`, {
                     headers: { 'Authorization' : `Bearer ${session.accessToken}` }
                 })
-                //console.log(response.data)
+                
                 if(response.data){
                     setCart(response.data.cartItems)
                     setTotalPrice(response.data.cartItems.reduce((sum, cartItem)=> sum + (cartItem.product.price * cartItem.quantity), 0));
@@ -49,7 +50,6 @@ export default function Cart(){
             )
 
             if(response.data){
-                console.log(response.data)
                 setCart(response.data.cart.cartItems)
             }
         } catch (error) {
@@ -89,7 +89,9 @@ export default function Cart(){
                             <span>${totalPrice}</span>
                         </div>
 
-                        <button className="checkout-btn">Checkout</button>
+                        <Link href='/checkout'>
+                            <button className="checkout-btn">Checkout</button>
+                        </Link>
                     </div>
                 </> :
 

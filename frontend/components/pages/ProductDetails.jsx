@@ -63,7 +63,7 @@ export default function ProductDetails(){
                     </div>
                     <div className="description">{product.description}</div>
                     <div className="add-to-cart">
-                        <Count count={qty} setCount={setQty} qtyisZero={qtyisZero} />
+                        <Count qty={qty} setQty={setQty} qtyisZero={qtyisZero} />
                         <div className="btn-container">
                             <AddToCartBtn productID={product._id} qty={qty} />
 
