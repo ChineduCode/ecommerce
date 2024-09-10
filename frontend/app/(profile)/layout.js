@@ -6,7 +6,7 @@ export default function ProfileLayout({ children }){
     return(
         <div className='wrapper'>
             <Header />
-            <main>
+            <main className='profile-page'>
                 <h1>My Profile</h1>
                 <div className='profile-container'>
                     <ProfileSideBar />

@@ -34,15 +34,13 @@ export default function ProfileSideBar(){
                     </Link>
                 </li>
                 <li>
-                    <Link>
-                        <span></span>
-                        <svg></svg>
+                    <Link href='/profile/notifications'>
+                        <span>Notifications</span> <PiBellLight />
                     </Link>
                 </li>
                 <li>
-                    <Link>
-                        <span></span>
-                        <svg></svg>
+                    <Link href='/profile/settings'>
+                        <span>Settings</span> <BsGear />
                     </Link>
                 </li>
             </ul>
