@@ -1466,14 +1466,7 @@ footer .bottom-footer .copyright-container {
   padding: 3px;
   margin-bottom: 1rem;
 }
-.profile-page-layout .profile-container .profile-info-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  padding: 0.5rem 0;
-}
-.profile-page-layout .profile-container .profile-info-container .img-container {
+.profile-page-layout .profile-container .img-container {
   height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -1483,9 +1476,16 @@ footer .bottom-footer .copyright-container {
   align-items: flex-end;
   justify-content: center;
 }
-.profile-page-layout .profile-container .profile-info-container .img-container svg {
+.profile-page-layout .profile-container .img-container svg {
   padding: 5px;
   color: hsl(0, 0%, 100%);
+}
+.profile-page-layout .profile-container .profile-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 0.5rem 0;
 }
 .profile-page-layout .profile-container .profile-info-container .profile-info {
   text-align: center;
@@ -1515,4 +1515,74 @@ footer .bottom-footer .copyright-container {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.profile-page-layout .profile-container .profile-info-section {
+  padding: 2rem 0;
+}
+.profile-page-layout .profile-container .profile-info-section .heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile-page-layout .profile-container .profile-info-section .heading .img-container {
+  position: relative;
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+}
+.profile-page-layout .profile-container .profile-info-section .heading .img-container .edit-icon {
+  position: absolute;
+  top: 0px;
+  right: -5px;
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(220, 13%, 13%);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile-page-layout .profile-container .profile-info-section .heading button {
+  background-color: hsl(220, 13%, 13%);
+  border: none;
+  color: hsl(0, 0%, 100%);
+  padding: 12px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.profile-page-layout .profile-container .profile-info-section .heading button:active {
+  border: 1px solid hsl(220, 13%, 13%);
+}
+.profile-page-layout .profile-container .profile-info-section .form-container {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.profile-page-layout .profile-container .profile-info-section .form-container input, .profile-page-layout .profile-container .profile-info-section .form-container button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid;
+  width: 100%;
+  color: hsl(220, 13%, 13%);
+}
+.profile-page-layout .profile-container .profile-info-section .form-container input:nth-child(5), .profile-page-layout .profile-container .profile-info-section .form-container button:nth-child(5) {
+  grid-column: span 2;
+}
+.profile-page-layout .profile-container .profile-info-section .form-container button {
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(220, 13%, 13%);
+  cursor: pointer;
+  margin-top: 1rem;
+  padding: 13px;
+}
+.profile-page-layout .profile-container .profile-info-section .form-container button:active {
+  border: 1px solid hsl(220, 13%, 13%);
+}
+.profile-page-layout .profile-container .profile-info-section .form-container button .loader {
+  padding: 8px;
 }/*# sourceMappingURL=globals.css.map */

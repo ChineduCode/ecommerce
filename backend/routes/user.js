@@ -10,13 +10,15 @@ const {
     verifyUserEmail, 
     sendUserOTP, 
     verifyUserOTP,
-    updateUserPassword
+    updateUserPassword,
+    updateUser
 } = require('../controllers/user')
 
 router.post('/register', registerUser)
 router.post('/login', loginUser)
 router.get('/', getAllUsers)
 router.get('/profile', protect, getUserProfile)
+router.patch('/profile/update', protect, updateUser)
 router.post('/verify-email', verifyUserEmail)
 router.post('/forgot-password/send-otp', sendUserOTP)
 router.post('/forgot-password/verify-otp', verifyUserOTP)

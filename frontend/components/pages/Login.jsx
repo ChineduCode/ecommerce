@@ -4,7 +4,7 @@ import { useState } from "react"
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import Link from "next/link";
 import { signIn } from 'next-auth/react'
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Login(){
     const [email, setEmail] = useState('')
@@ -15,6 +15,7 @@ export default function Login(){
     const [status, setStatus] = useState('')
 
     const router = useRouter()
+    const searchParams = useSearchParams()
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
@@ -42,7 +43,8 @@ export default function Login(){
                 setPassword('')
                 setStatus('success')
 
-                router.push('/')
+                const callbackUrl = searchParams.get('callbackUrl') || '/';
+                router.push(callbackUrl);
             }else{
                 throw new Error('Invalid credentials')
             }

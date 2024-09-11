@@ -1,13 +1,20 @@
 'use client'
 
-import { BiSolidEdit } from "react-icons/bi";
+import { FaEdit } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa6";
 import { useState, useEffect } from 'react'
 import { useSession } from "next-auth/react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import ResponseMsg from "@/components/ResponseMsg";
+import Loader from "@/components/Loader";
 
 export default function Profile(){
-    const { data: session } = useSession()
+    const { data: session, update } = useSession()
     const [edit, setEdit] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [status, setStatus] = useState(null)
+    const [responseMsg, setResponseMsg] = useState(null)
     const [userInfo, setUserInfo] = useState({
         firstname: '',
         lastname: '',
@@ -15,6 +22,8 @@ export default function Profile(){
         phone: '',
         address: ''
     })
+    const [initialUserInfo, setInitialUserInfo] = useState({})
+    const router = useRouter()
 
     // Update the userInfo state when session data is loaded
     useEffect(() => {
@@ -26,7 +35,16 @@ export default function Profile(){
                 phone: session.user.phone || '',
                 address: session.user.address ? session.user.address[0] : ''
             })
+
+            setInitialUserInfo({
+                firstname: session.user.firstname || '',
+                lastname: session.user.lastname || '',
+                email: session.user.email || '',
+                phone: session.user.phone || '',
+                address: session.user.address ? session.user.address[0] : ''
+            })
         }
+
     }, [session])
 
     const handleOnChange = (e) => {
@@ -39,7 +57,44 @@ export default function Profile(){
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('submitted')
+        setLoading(true)
+        
+        const updatedFields = Object.entries(userInfo).reduce((acc, [key, value])=> {
+            if (value !== initialUserInfo[key]) {
+                acc[key] = value;
+            }
+
+            return acc;
+        }, {})
+
+        if (Object.keys(updatedFields).length === 0) {
+            console.log('No changes to submit');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/profile/update`,
+                updatedFields,
+                {
+                    headers: {'Authorization': `Bearer ${session.accessToken}`}
+                }
+            )
+
+            if(response.data){
+                setStatus('success')
+                setResponseMsg(response.data.message)
+                update(updatedFields)
+                router.refresh()
+            }
+
+        } catch (error) {
+            setStatus('error')
+            setResponseMsg(error.response.data.message)
+            console.error(error)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return(
@@ -49,12 +104,17 @@ export default function Profile(){
                     { session?.user?.image ? 
                         <img src={session.user.image} alt='user-avatar' /> 
                         : 
-                        <FaRegUser /> 
+                        <FaRegUser size={45}/> 
                     }
-                    <BiSolidEdit />
+                    <div className="edit-icon">
+                        <FaEdit size={23} />
+                    </div>
                 </div>
                 <div className="edit-btn">
-                    <button className='btn'>Edit Profile</button>
+                    <button className='btn' onClick={(e)=> setEdit(!edit)} disabled={loading === true}>
+                        <FaEdit size={22}/>
+                        <span>Edit Profile</span>
+                    </button>
                 </div>
             </div>
 
@@ -65,6 +125,7 @@ export default function Profile(){
                     className='firstname'
                     value={userInfo.firstname}
                     onChange={handleOnChange}
+                    disabled={edit === false}
                 />
                 <input
                     type="text" 
@@ -72,6 +133,7 @@ export default function Profile(){
                     className='lastname'
                     value={userInfo.lastname}
                     onChange={handleOnChange}
+                    disabled={edit === false}
                 />
                 <input 
                     type="tel" 
@@ -79,6 +141,7 @@ export default function Profile(){
                     className='phone'
                     value={userInfo.phone}
                     onChange={handleOnChange}
+                    disabled={edit === false}
                 />
                 <input 
                     type="email" 
@@ -86,6 +149,7 @@ export default function Profile(){
                     className='email'
                     value={userInfo.email}
                     onChange={handleOnChange}
+                    disabled={edit === false}
                 />
                 <input 
                     type="text" 
@@ -93,8 +157,19 @@ export default function Profile(){
                     className='address'
                     value={userInfo.address}
                     onChange={handleOnChange}
+                    disabled={edit === false}
                 />
+                <button 
+                    type='submit' 
+                    onSubmit={handleSubmit}
+                    disabled={loading === true}
+                    style={{backgroundColor: loading ? '#ccc' : null}}
+                >
+                    {loading ? <Loader /> : 'Save changes'}
+                </button>
             </div>
+
+            { status && <ResponseMsg setStatus={setStatus} status={status} responseMsg={responseMsg} />}
         </form>
     )
 }

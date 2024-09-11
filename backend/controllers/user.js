@@ -1,4 +1,4 @@
-const Users = require('../models/user')
+const User = require('../models/user')
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
@@ -35,7 +35,7 @@ const registerUser = asyncHandler(async (req, res)=> {
         }
 
         //Checking if user already exists
-        const userExist = await Users.findOne({ email })
+        const userExist = await User.findOne({ email })
         if(userExist){
             return res.status(400).json({ message: 'Email already exists' })
         }
@@ -48,7 +48,7 @@ const registerUser = asyncHandler(async (req, res)=> {
         const hashedPassword = await bcrypt.hash(password, salt)
         
         //registering new user
-        const user = new Users({
+        const user = new User({
             firstname,
             lastname,
             email,
@@ -92,7 +92,7 @@ const loginUser = asyncHandler(async (req, res)=> {
         }
 
         //Checking for the user
-        const user = await Users.findOne({ email })
+        const user = await User.findOne({ email })
         if(!user){
             return res.status(401).json({ message: 'Invalid user credentials' })
         }
@@ -119,7 +119,7 @@ const loginUser = asyncHandler(async (req, res)=> {
 
 const getAllUsers = asyncHandler(async (req, res)=> {
     try{
-        const users = await Users.find({}, {__v: 0, password: 0})
+        const users = await User.find({}, {__v: 0, password: 0})
         return res.status(200).json(users)
         
     }catch (error){
@@ -129,7 +129,7 @@ const getAllUsers = asyncHandler(async (req, res)=> {
 
 const getUserProfile = asyncHandler(async (req, res)=> {
     try{
-        const user = await Users.findById(req.user._id)
+        const user = await User.findById(req.user._id)
         if(!user){
             return res.status(404).json({ message: 'User not found' })
         }
@@ -150,7 +150,7 @@ const verifyUserEmail = asyncHandler(async (req, res) => {
     try {
         const code = req.query.code
         
-        const user = await Users.findOne({ code })
+        const user = await User.findOne({ code })
         if(!user){
             return res.status(404).json({ message: 'Invalid verification code' })
         }
@@ -181,7 +181,7 @@ const sendUserOTP = asyncHandler(async (req, res) => {
             return res.status(400).json({ message: 'Invalid email addres' })
         }
 
-        const user = await Users.findOne({ email })
+        const user = await User.findOne({ email })
         if(!user){
             return res.status(400).json({ message: 'User not found' })
         }
@@ -210,7 +210,7 @@ const verifyUserOTP = asyncHandler(async (req, res)=> {
             return res.status(400).json({message: 'No OTP found'})
         }
 
-        const user = await Users.findOne({ otp })
+        const user = await User.findOne({ otp })
         if(!user || user.otpExpiry < Date.now()){
             return res.status(401).json({ message: 'Invalid OTP or expires OTP' })
         }
@@ -251,7 +251,7 @@ const updateUserPassword = asyncHandler(async (req, res)=> {
             return res.status(400).json({ message: 'Password must be atlease 8 characters' })
         }
 
-        const user = await Users.findOne({_id: uniquecode})
+        const user = await User.findOne({_id: uniquecode})
         if(!user){
             return res.status(400).json({ message: 'Invalid unique code' })
         }
@@ -272,6 +272,35 @@ const updateUserPassword = asyncHandler(async (req, res)=> {
     }
 })
 
+const updateUser = asyncHandler(async (req, res) => {
+    const update = req.body
+    const userID = req.user._id
+    console.log(userID)
+
+    try {
+        const user = await User.findById(userID)
+        if(!user){
+            return res.status(404).json({ message: 'User not found' })
+        }
+        
+        const updatedUser = await User.findByIdAndUpdate(
+            userID, 
+            update,
+            {new: true, runValidators: true}
+        )
+
+        res.status(200).json({
+            message: 'User updated successfully',
+            data: updatedUser
+        });
+
+    } catch (error) {
+        console.error(error.message)
+        return res.status(500).json({message: 'Internal server error'})
+    }
+
+})
+
 module.exports = {
     registerUser,
     loginUser,
@@ -280,5 +309,6 @@ module.exports = {
     verifyUserEmail,
     sendUserOTP,
     verifyUserOTP,
-    updateUserPassword
+    updateUserPassword,
+    updateUser
 }
