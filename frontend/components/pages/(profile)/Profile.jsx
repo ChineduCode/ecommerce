@@ -2,24 +2,31 @@
 
 import { BiSolidEdit } from "react-icons/bi";
 import { FaRegUser } from "react-icons/fa6";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useSession } from "next-auth/react";
 
 export default function Profile(){
     const { data: session } = useSession()
+    const { userInfo, setUserInfo } = useState({
+        firstname: '',
+        lastname: '',
+        email: '',
+        phone: '',
+        address: ''
+    })
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log('submited')
     }
 
-    const handleOnChange = ()=> {}
+    const handleOnChange = (e)=> {}
 
     return(
         <form className="profile-info-section" onSubmit={handleSubmit}>
             <div className="heading">
                 <div className="img-container">
-                    { session.user.image ? 
+                    { session?.user?.image ? 
                         <img src={session.user.image} alt='user-avatar' /> 
                         : 
                         <FaRegUser /> 
@@ -32,7 +39,13 @@ export default function Profile(){
             </div>
 
             <div className="form-container">
-                <div className="form-control"></div>
+                <input 
+                    type="text" 
+                    name="firstname"
+                    defaultValue={session?.user?.firstname}
+                    onChange={handleOnChange}
+                />
+                
             </div>
         </form>
     )

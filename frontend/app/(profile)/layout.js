@@ -3,7 +3,7 @@ import Footer from "@/components/Footer"
 import ProfileSideBar from "@/components/ProfileSideBar"
 import Providers from "@/components/Provider"
 
-export default async function ProfileLayout({ children }){
+export default function ProfileLayout({ children }){
     return(
         <Providers>
             <div className='wrapper'>

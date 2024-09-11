@@ -55,16 +55,15 @@ const registerUser = asyncHandler(async (req, res)=> {
             phone,
             address,
             password: hashedPassword,
-            verificationCode,
-            isAdmin: email === 'chineducode@gmail.com' ? true : false
+            verificationCode
         })
-        await user.save().then(()=> console.log('User registered'))
+        await user.save()
         
         //Sending the email
         const verificationLink = `${process.env.FRONTEND_URL}/verify-email/?code=${verificationCode}`
         sendEmailVerification(firstname, email, verificationLink);
 
-        return res.status(200).json({ 
+        return res.status(200).json({
             message: 'User registered', 
             user: {
                 _id: user._id,
@@ -108,6 +107,8 @@ const loginUser = asyncHandler(async (req, res)=> {
             firstname: user.firstname,
             lastname: user.lastname,
             email: user.email,
+            phone: user.phone,
+            address: user.address[0],
             token: generateJWT(user._id)
         })
 
