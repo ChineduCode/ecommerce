@@ -108,7 +108,7 @@ const loginUser = asyncHandler(async (req, res)=> {
             lastname: user.lastname,
             email: user.email,
             phone: user.phone,
-            address: user.address[0],
+            address: user.address,
             token: generateJWT(user._id)
         })
 
@@ -129,12 +129,6 @@ const getAllUsers = asyncHandler(async (req, res)=> {
 
 const getUserProfile = asyncHandler(async (req, res)=> {
     try{
-        // const id = req.user._id
-        
-        // if (!require('mongoose').Types.ObjectId.isValid(id)) {
-        //     return res.status(400).json({ message: 'Invalid user ID' });
-        // }
-
         const user = await Users.findById(req.user._id)
         if(!user){
             return res.status(404).json({ message: 'User not found' })

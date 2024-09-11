@@ -14,7 +14,7 @@ export default function ProductDetails(){
     const {id} = params
     const [product, setProduct] = useState({})
     const [qty, setQty] = useState(0)
-    const [qtyisZero, setQtyIsZero] = useState(false)
+    const [qtyIsZero, setQtyIsZero] = useState(false)
     const [loading, setLoading] = useState(true)
 
     useEffect(()=> {
@@ -63,7 +63,7 @@ export default function ProductDetails(){
                     </div>
                     <div className="description">{product.description}</div>
                     <div className="add-to-cart">
-                        <Count qty={qty} setQty={setQty} qtyisZero={qtyisZero} />
+                        <Count qty={qty} setQty={setQty} qtyIsZero={qtyIsZero} />
                         <div className="btn-container">
                             <AddToCartBtn productID={product._id} qty={qty} />
 

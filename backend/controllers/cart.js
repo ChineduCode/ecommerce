@@ -41,7 +41,7 @@ const addToCart = asyncHandler(async (req, res)=> {
             //if no cart exist for the user
             const newCart = new Cart({
                 user: user._id,
-                cartItems: [{ product: product._id, qty }]
+                cartItems: [{ product: product._id, quantity: qty }]
             })
 
             await newCart.save()

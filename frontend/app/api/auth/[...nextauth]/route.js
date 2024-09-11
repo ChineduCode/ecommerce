@@ -44,6 +44,8 @@ export const authOptions = {
                 token.firstname = user.firstname,
                 token.lastname = user.lastname,
                 token.email = user.email,
+                token.phone = user.phone,
+                token.address = user.address
                 token.accessToken = user.token
             }
 
@@ -55,6 +57,8 @@ export const authOptions = {
             session.user.firstname = token.firstname,
             session.user.lastname = token.lastname,
             session.user.email = token.email,
+            session.user.phone = token.phone,
+            session.user.address = token.address,
             session.accessToken = token.accessToken
 
             return session

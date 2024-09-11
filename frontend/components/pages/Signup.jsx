@@ -5,6 +5,7 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import Link from "next/link";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { useRouter } from "next/navigation";
 
 export default function Signup(){
     const [firstname, setFirstname] = useState('')
@@ -18,6 +19,7 @@ export default function Signup(){
     const [agreed_terms_conditions, setAgreed_term_conditions] = useState(false)
     const [error, setError] = useState('')
     const [status, setStatus] = useState('')
+    const router = useRouter()
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
@@ -81,6 +83,7 @@ export default function Signup(){
                 setConfirmPassword('')
                 setError('')
                 setStatus('success')
+                router.push('/login')
             }else{
                 throw new Error(data.message)
             }
