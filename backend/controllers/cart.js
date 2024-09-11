@@ -7,7 +7,7 @@ const addToCart = asyncHandler(async (req, res)=> {
     try{
         const userID = req.user?._id
         if(!userID){
-            return res.status(401).json({ message: 'User not authnticated' })
+            return res.status(401).json({ message: 'User not authenticated' })
         }
 
         const { productID, qty } = req.body
@@ -58,7 +58,7 @@ const getUserCart = asyncHandler(async (req, res)=> {
     try{
         const userID = req.user?._id
         if(!userID){
-            return res.status(401).json({ message: 'User not authnticated' })
+            return res.status(401).json({ message: 'User not authenticated' })
         }
     
         const cart = await Cart.findOne({ user: userID }).populate({
@@ -79,8 +79,12 @@ const getUserCart = asyncHandler(async (req, res)=> {
 
 const deleteItem = asyncHandler(async (req, res) => {
     try {
-        const { itemID } = req.body;
         const userID = req.user._id;
+        if(!userID){
+            return res.status(401).json({message: 'User not authenticated'})
+        }
+        
+        const { itemID } = req.body;
 
         let updatedCart = await Cart.findOneAndUpdate(
             { user: userID },
