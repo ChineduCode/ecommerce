@@ -329,6 +329,21 @@ header{
                 cursor: pointer;
             }
         }
+        .img-container{
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background-color: hsl(220, 14%, 75%);
+            border: 1px solid hsl(220, 14%, 75%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            svg{
+                padding: 5px;
+                color: hsl(0, 0, 100%)
+            };
+        }
+
         svg{
             cursor: pointer;
             &:active{color: hsl(219, 9%, 45%);}
@@ -1623,24 +1638,34 @@ footer{
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px;
-                input, button{
-                    padding: 10px;
+                .form-control{
+                    &:nth-child(5){
+                        grid-column: span 2;
+                    }
+                    margin: 5px 0;
+                    label{
+                        display: inline-block;
+                        margin-bottom: 3px;
+                    }
+                }
+                input{
+                    padding: 12px;
                     font-size: 16px;
                     border-radius: 8px;
                     border: 1px solid;
                     width: 100%;
                     color: hsl(220, 13%, 13%);
-
-                    &:nth-child(5){
-                        grid-column: span 2;
-                    }
                 }
                 button{
                     color: hsl(0, 0, 100%);
                     background-color: hsl(220, 13%, 13%);
                     cursor: pointer;
                     margin-top: 1rem;
-                    padding: 13px;
+                    padding: 15px;
+                    font-size: 16px;
+                    border-radius: 8px;
+                    border: none;
+                    display: inline-block;
                     &:active{
                         border: 1px solid hsl(220, 13%, 13%);
                     }

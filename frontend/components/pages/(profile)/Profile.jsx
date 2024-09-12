@@ -119,46 +119,62 @@ export default function Profile(){
             </div>
 
             <div className="form-container">
-                <input 
-                    type="text" 
-                    name="firstname"
-                    className='firstname'
-                    value={userInfo.firstname}
-                    onChange={handleOnChange}
-                    disabled={edit === false}
-                />
-                <input
-                    type="text" 
-                    name="lastname"
-                    className='lastname'
-                    value={userInfo.lastname}
-                    onChange={handleOnChange}
-                    disabled={edit === false}
-                />
-                <input 
-                    type="tel" 
-                    name="phone"
-                    className='phone'
-                    value={userInfo.phone}
-                    onChange={handleOnChange}
-                    disabled={edit === false}
-                />
-                <input 
-                    type="email" 
-                    name="email"
-                    className='email'
-                    value={userInfo.email}
-                    onChange={handleOnChange}
-                    disabled={edit === false}
-                />
-                <input 
-                    type="text" 
-                    name="address"
-                    className='address'
-                    value={userInfo.address}
-                    onChange={handleOnChange}
-                    disabled={edit === false}
-                />
+                <div className="form-control">
+                    <label htmlFor="firstname">First Name</label>
+                    <input 
+                        type="text" 
+                        name="firstname"
+                        className='firstname'
+                        value={userInfo.firstname}
+                        onChange={handleOnChange}
+                        disabled={edit === false}
+                    />
+                </div>
+                <div className="form-control">
+                    <label htmlFor="lastname">Last Name</label>
+                    <input
+                        type="text" 
+                        name="lastname"
+                        className='lastname'
+                        value={userInfo.lastname}
+                        onChange={handleOnChange}
+                        disabled={edit === false}
+                    />
+                </div>
+                <div className="form-control">
+                    <label htmlFor="phone">Phone Number</label>
+                    <input 
+                        type="tel" 
+                        name="phone"
+                        className='phone'
+                        value={userInfo.phone}
+                        onChange={handleOnChange}
+                        disabled={edit === false}
+                    />
+                </div>
+                <div className="form-control">
+                    <label htmlFor="Email">Email</label>
+                    <input 
+                        type="email" 
+                        name="email"
+                        className='email'
+                        value={userInfo.email}
+                        onChange={handleOnChange}
+                        disabled={edit === false}
+                    />
+                </div>
+                <div className="form-control">
+                    <label htmlFor="address">Address</label>
+                    <input 
+                        type="text" 
+                        name="address"
+                        className='address'
+                        value={userInfo.address}
+                        onChange={handleOnChange}
+                        disabled={edit === false}
+                    />
+                </div>
+                
                 <button 
                     type='submit' 
                     onSubmit={handleSubmit}

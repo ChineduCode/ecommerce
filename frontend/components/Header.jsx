@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from "next/link"
 import { IoMenu, IoSearch, IoHeartOutline, IoCartOutline } from "react-icons/io5";
+import { FaRegUser } from 'react-icons/fa6';
 import Nav from "./Nav";
 import Cart from './Cart';
 import { useSession } from 'next-auth/react';
@@ -16,7 +17,7 @@ export default function Header(){
 
     const handleCartClick = ()=> {
         if(!session){
-            return router.push('/login')
+            return router.push(`/login?callbackUrl=${encodeURIComponent(window.location.href)}`)
         }
         setCartActive(!cartActive)
     }
@@ -35,7 +36,19 @@ export default function Header(){
 
                     {cartActive && <Cart />}
 
-                    <button className="btn-login"> <Link href='/login'>Login</Link> </button>
+                    {
+                        !session ? 
+                            <button className="btn-login"> <Link href='/login'>Login</Link> </button>
+                        :   
+                        <Link href='/profile' className='img-container'> 
+                            {session?.user.image ?
+                                <img src={session.user.image} alt="user-avatar" /> 
+                                :
+                                <FaRegUser size={35}/>
+                            }
+                        </Link>
+                    }
+                    
                 </div>
                 <div className="menu-bar" onClick={()=> setNavActive(true)}> <IoMenu size={25}/> </div>
             </div>

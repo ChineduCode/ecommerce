@@ -45,14 +45,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: null
     },
-    otpExpiry: { type: Date },
-    orders: [
-        { 
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Order' 
-        }
-    ]
-
+    otpExpiry: { type: Date }
+    
 },{
     timestamps: true
 })

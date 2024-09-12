@@ -6,8 +6,8 @@ import { Suspense } from 'react'
 import Loading from "@/components/Loading"
 
 export default async function LoginPage(){
-    // const session = await getServerSession(authOptions)
-    // if(session) redirect('/')
+    const session = await getServerSession(authOptions)
+    if(session) redirect('/')
     
     return(
         <Suspense fallback={<Loading />}>
