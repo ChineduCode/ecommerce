@@ -275,7 +275,6 @@ const updateUserPassword = asyncHandler(async (req, res)=> {
 const updateUser = asyncHandler(async (req, res) => {
     const update = req.body
     const userID = req.user._id
-    console.log(userID)
 
     try {
         const user = await User.findById(userID)

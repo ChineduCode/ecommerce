@@ -5,6 +5,8 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import Link from "next/link";
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import Loading from "../Loading";
 
 export default function Login(){
     const [email, setEmail] = useState('')
@@ -56,63 +58,65 @@ export default function Login(){
     }
 
     return(
-        <div className="login">
-            <div className="container">
-                <div className="headers">
-                    <h2 className="heading">Welcome back!!!</h2>
-                    <p className="sub-heading">Please login here</p>
-                </div>
+        <Suspense fallback={<Loading />}>
+            <div className="login">
+                <div className="container">
+                    <div className="headers">
+                        <h2 className="heading">Welcome back!!!</h2>
+                        <p className="sub-heading">Please login here</p>
+                    </div>
 
-                <form method="post" className="form-container" onSubmit={handleSubmit}>
-                    { error && <small className="error">{error}</small> }
-                    <div className="form-control">
-                        <label htmlFor="email">Email Address</label>
-                        <input 
-                            type="email" 
-                            name="email" 
-                            className="email" 
-                            value={email}
-                            onChange={(e)=> setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-control">
-                        <label htmlFor="password">Password</label>
-                        <input 
-                            type={passwordVisible ? 'text' : 'password'} 
-                            name="password" 
-                            className="password" 
-                            value={password}
-                            onChange={(e)=> setPassword(e.target.value)}
-                        />
-                        { passwordVisible && <IoEyeOutline size={22} onClick={()=> setPasswordVisible(false)} /> }
-                        { !passwordVisible && <IoEyeOffOutline size={22} onClick={()=> setPasswordVisible(true)} /> }
-                    </div>
-                    <div className="form-control remember-container">
-                        <div className="checkbox-container">
+                    <form method="post" className="form-container" onSubmit={handleSubmit}>
+                        { error && <small className="error">{error}</small> }
+                        <div className="form-control">
+                            <label htmlFor="email">Email Address</label>
                             <input 
-                                type="checkbox" 
-                                name="remember me" 
-                                checked={rememberMe}
-                                onChange={(e)=> setRememberMe(e.target.checked)}
-                                className="checkbox" 
+                                type="email" 
+                                name="email" 
+                                className="email" 
+                                value={email}
+                                onChange={(e)=> setEmail(e.target.value)}
                             />
-                            <label htmlFor="remember me">Remember Me</label>
+                        </div>
+                        <div className="form-control">
+                            <label htmlFor="password">Password</label>
+                            <input 
+                                type={passwordVisible ? 'text' : 'password'} 
+                                name="password" 
+                                className="password" 
+                                value={password}
+                                onChange={(e)=> setPassword(e.target.value)}
+                            />
+                            { passwordVisible && <IoEyeOutline size={22} onClick={()=> setPasswordVisible(false)} /> }
+                            { !passwordVisible && <IoEyeOffOutline size={22} onClick={()=> setPasswordVisible(true)} /> }
+                        </div>
+                        <div className="form-control remember-container">
+                            <div className="checkbox-container">
+                                <input 
+                                    type="checkbox" 
+                                    name="remember me" 
+                                    checked={rememberMe}
+                                    onChange={(e)=> setRememberMe(e.target.checked)}
+                                    className="checkbox" 
+                                />
+                                <label htmlFor="remember me">Remember Me</label>
+                            </div>
+
+                            <span className="forgot-password">
+                                <Link href="/forgot-password">Forgot Password ?</Link>
+                            </span>
                         </div>
 
-                        <span className="forgot-password">
-                            <Link href="/forgot-password">Forgot Password ?</Link>
-                        </span>
-                    </div>
-
-                    <button 
-                        onClick={handleSubmit} 
-                        className="btn"
-                        disabled={status === 'submitting'}
-                    >
-                        Login
-                    </button>
-                </form>
+                        <button 
+                            onClick={handleSubmit} 
+                            className="btn"
+                            disabled={status === 'submitting'}
+                        >
+                            Login
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
+        </Suspense>
     )
 }
