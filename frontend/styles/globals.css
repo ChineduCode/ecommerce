@@ -319,7 +319,7 @@ header .nav-active {
 header .secondary-nav-menu {
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 35px;
 }
 header .secondary-nav-menu .icons-btn-login {
   display: flex;

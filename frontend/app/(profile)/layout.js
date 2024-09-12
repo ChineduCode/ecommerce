@@ -2,6 +2,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import ProfileSideBar from "@/components/ProfileSideBar"
 import Providers from "@/components/Provider"
+import { WishlistProvider } from '@/utils/wishlistContext'
 
 export default function ProfileLayout({ children }){
     return(
@@ -12,7 +13,9 @@ export default function ProfileLayout({ children }){
                     <h1>My Profile</h1>
                     <div className='profile-container'>
                         <ProfileSideBar />
-                        { children }
+                        <WishlistProvider>
+                            { children }
+                        </WishlistProvider>
                     </div>
                 </main>
                 <Footer />
