@@ -7,6 +7,7 @@ import Loading from '../Loading';
 import Link from 'next/link'
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { LuEye } from "react-icons/lu";
+import AddToWishlist from '../AddToWishlist';
 
 export default function ProductListing() {
     const [products, setProducts] = useState([]);
@@ -53,8 +54,9 @@ export default function ProductListing() {
                                 </div>
                                 <div className="img-cover">
                                     <div className="right-bar">
-                                        <MdOutlineFavoriteBorder size={25}/>
-                                        <LuEye size={25}/>
+                                        {/* <MdOutlineFavoriteBorder size={25}/> */}
+                                        <AddToWishlist productId={product._id} />
+                                        <button> <LuEye size={25}/> </button>
                                     </div>
                                     <div className="btn-add-to-cart"> <button className='btn'>Add to Cart</button> </div>
                                 </div>

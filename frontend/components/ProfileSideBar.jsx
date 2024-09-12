@@ -49,9 +49,8 @@ export default async function ProfileSideBar(){
 
     return(
         <aside className="profile-side-bar">
-            <Link href='/profile' className='back-kink'> <FaAngleLeft size={25}/> </Link>
             <div className='profile-info-container'>
-                <div className='img-container'> 
+                <div className='profile-img-container'> 
                     {session?.user.image ?
                         <img src={session.user.image} alt="user-avatar" /> 
                         :

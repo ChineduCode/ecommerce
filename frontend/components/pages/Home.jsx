@@ -127,11 +127,11 @@ export default function Home(){
                         <div className="img-container"> <img src="/static-images/men_wristwatch5.png" alt="wrist-watch category" /> </div>
                         <div className="text-container">Wrist Watch</div>
                     </Link>
-                    <Link href='/shop/categories/?category=bags' className="container bag">
+                    <Link href='/shop/categories/?category=bag' className="container bag">
                         <div className="img-container"> <img src="/static-images/men_handbag.png" alt="bag" /> </div>
                         <div className="text-container">Bags</div>
                     </Link>
-                    <Link href='/shop/categories/?category=caps' className="container cap">
+                    <Link href='/shop/categories/?category=cap' className="container cap">
                         <div className="img-container"> <img src="/static-images/women_cap.png" alt="cap" /> </div>
                         <div className="text-container">Caps</div>
                     </Link>

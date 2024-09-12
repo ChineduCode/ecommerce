@@ -8,6 +8,7 @@ import Rating from '../Rating'
 import Count from '../Count'
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import AddToCartBtn from '../AddToCartBtn'
+import AddToWishlist from '../AddToWishlist'
 
 export default function ProductDetails(){
     const params = useParams()
@@ -68,7 +69,8 @@ export default function ProductDetails(){
                             <AddToCartBtn productID={product._id} qty={qty} />
 
                             <div className="favorite-btn">
-                                <button className='add-to-favourite'> <MdOutlineFavoriteBorder size={22}/> </button>
+                                {/* <button className='add-to-favourite'> <MdOutlineFavoriteBorder size={22}/> </button> */}
+                                <AddToWishlist productId={product._id}/>
                             </div>
                         </div>
                     </div>

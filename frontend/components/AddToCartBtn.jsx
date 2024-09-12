@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import axios from "axios"
 import Loader from "./Loader"
 import { useState } from "react"
-import { TiTimes } from "react-icons/ti";
+import ResponseMsg from "./ResponseMsg"
 
 export default function AddToCartBtn({ productID, qty }){
     const { data: session } = useSession()
@@ -14,7 +14,7 @@ export default function AddToCartBtn({ productID, qty }){
     const [responseMsg, setResponseMsg] = useState(null)
     const router = useRouter()
 
-    const handleAddToCart = async (e)=> {
+    const handleAddToCart = async ()=> {
         //e.stopPropagation()
         if(!session){
             return router.push('/login')
@@ -49,11 +49,6 @@ export default function AddToCartBtn({ productID, qty }){
         }
     }
 
-    const handleResponseMsg = ()=> {
-        console.log('clicked')
-        setStatus(null)
-    }
-
     return(
         <div className="add-to-cart-btn"> 
             <button 
@@ -68,13 +63,7 @@ export default function AddToCartBtn({ productID, qty }){
             {/* Response status */}
             {status 
                 && 
-                <div 
-                    className="response-msg" 
-                    style={{backgroundColor: status==='success' ? 'hsl(120, 70%, 50%)': status==='error' ? 'orangered': null}}
-                    >
-                        <span className="msg">{responseMsg}</span>
-                        <TiTimes size={25} onClick={handleResponseMsg} />
-                </div>
+                <ResponseMsg setStatus={setStatus} status={status} responseMsg={responseMsg}/>
             }
         </div>
     )

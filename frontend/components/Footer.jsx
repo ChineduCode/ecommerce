@@ -59,7 +59,7 @@ export default function Footer(){
                 <div className="information container">
                     <div className="header">Information</div>
                     <ul>
-                        <li><Link href='/account'>My Account</Link></li>
+                        <li><Link href='/profile'>My Account</Link></li>
                         <li><Link href='/login'>Login</Link></li>
                         <li><Link href='/cart'>My Cart</Link></li>
                         <li><Link href='/wishlist'>My Wishlist</Link></li>
