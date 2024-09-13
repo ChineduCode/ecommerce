@@ -1,8 +1,8 @@
 import { Kumbh_Sans } from "next/font/google";
 import '@/styles/globals.css'
 import Providers from "@/components/Provider";
-import { AuthProvider } from "@/utils/AuthContext";
-import { WishlistProvider } from "@/utils/wishlistContext";
+import { AuthProvider } from "@/utils/context/auth/AuthContext";
+import { WishlistProvider } from "@/utils/context/wishlist/wishlistContext";
 
 const kumbh_sans = Kumbh_Sans({ subsets: ["latin"] });
 
@@ -18,9 +18,9 @@ export default function RootLayout({ children }) {
       <body className={kumbh_sans.className}>
         <Providers>
           <AuthProvider>
-          <WishlistProvider>
-            {children}
-          </WishlistProvider>
+            <WishlistProvider>
+              {children}
+            </WishlistProvider>
           </AuthProvider>
         </Providers>
       </body>

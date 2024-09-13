@@ -6,13 +6,13 @@ import { IoMenu, IoSearch, IoHeartOutline, IoCartOutline } from "react-icons/io5
 import { FaRegUser } from 'react-icons/fa6';
 import Nav from "./Nav";
 import Cart from './Cart';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/utils/context/auth/AuthContext';
 
 export default function Header(){
     const [ navActive, setNavActive ] = useState(false)
     const [ cartActive, setCartActive ] = useState(false)
-    const { data: session } = useSession()
+    const { session } = useAuth()
     const router = useRouter()
 
     const handleCartClick = ()=> {
@@ -37,16 +37,16 @@ export default function Header(){
                     {cartActive && <Cart />}
 
                     {
-                        !session ? 
-                            <button className="btn-login"> <Link href='/login'>Login</Link> </button>
+                        session ? 
+                            <Link href='/profile' className='img-container'> 
+                                {session?.user.image ?
+                                    <img src={session.user.image} alt="user-avatar" /> 
+                                    :
+                                    <FaRegUser size={35}/>
+                                }
+                            </Link>
                         :   
-                        <Link href='/profile' className='img-container'> 
-                            {session?.user.image ?
-                                <img src={session.user.image} alt="user-avatar" /> 
-                                :
-                                <FaRegUser size={35}/>
-                            }
-                        </Link>
+                        <button className="btn-login"> <Link href='/login'>Login</Link> </button>
                     }
                     
                 </div>

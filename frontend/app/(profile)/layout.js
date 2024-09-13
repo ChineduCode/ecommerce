@@ -2,7 +2,7 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import ProfileSideBar from "@/components/ProfileSideBar"
 import Providers from "@/components/Provider"
-import { WishlistProvider } from '@/utils/wishlistContext'
+import { WishlistProvider } from '@/utils/context/wishlist/wishlistContext'
 
 export default function ProfileLayout({ children }){
     return(

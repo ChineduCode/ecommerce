@@ -21,16 +21,16 @@ export const AuthProvider = ({ children })=> {
         });
     };
 
-    const updateData = (data)=> {
-        update(data)
-    }
+    // const updateData = (data)=> {
+    //     update(data)
+    // }
 
     const logout = () => {
         signOut({ redirect: false }); // handle redirect manually
     };
 
     return(
-        <AuthContext.Provider value={{ session, login, loading, logout, updateData }}>
+        <AuthContext.Provider value={{ session, login, loading, logout, update }}>
             {children}
         </AuthContext.Provider>
     )

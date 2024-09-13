@@ -3,10 +3,10 @@
 import { TbTrash } from "react-icons/tb";
 import { useEffect } from 'react';
 import Loading from "@/components/Loading";
-import { useWishlist } from "@/utils/wishlistContext";
+import { useWishlist } from "@/utils/context/wishlist/wishlistContext";
 
 export default function Wishlist() {
-    const { state, loadWishlist } = useWishlist();
+    const { state, loadWishlist, removeFromWishlist } = useWishlist();
 
     useEffect(() => {
         loadWishlist();

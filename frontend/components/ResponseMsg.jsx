@@ -1,5 +1,5 @@
 import { TiTimes } from "react-icons/ti";
-import { useWishlist } from "@/utils/wishlistContext";
+import { useWishlist } from "@/utils/context/wishlist/wishlistContext";
 
 export default function ResponseMsg(){
     const { state, dispatch } = useWishlist()

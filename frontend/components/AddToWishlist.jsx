@@ -2,7 +2,7 @@
 
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import ResponseMsg from "./ResponseMsg";
-import { useWishlist } from "@/utils/wishlistContext";
+import { useWishlist } from "@/utils/context/wishlist/wishlistContext";
 
 export default function AddToWishlist({productId}){
     const { state, addItemToWishlist } = useWishlist()

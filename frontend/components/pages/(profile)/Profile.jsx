@@ -3,14 +3,14 @@
 import { FaEdit } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa6";
 import { useState, useEffect } from 'react'
-import { useSession } from "next-auth/react";
+import { useAuth } from "@/utils/context/auth/AuthContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import ResponseMsg from "@/components/ResponseMsg";
 import Loader from "@/components/Loader";
 
 export default function Profile(){
-    const { data: session, update } = useSession()
+    const { session, update } = useAuth()
     const [edit, setEdit] = useState(false)
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(null)
@@ -68,7 +68,6 @@ export default function Profile(){
         }, {})
 
         if (Object.keys(updatedFields).length === 0) {
-            console.log('No changes to submit');
             setLoading(false);
             return;
         }

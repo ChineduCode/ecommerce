@@ -4,7 +4,6 @@ const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST'
 const SET_WISHLIST = 'SET_WISHLIST'
 const LOADING = 'LOADING'
 const ERROR = 'ERROR'
-const RESPONSE_MSG = 'RESPONSE_MSG'
 
 export const wishlistReducer = (state, action) => {
     switch (action.type) {
