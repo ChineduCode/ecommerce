@@ -13,9 +13,7 @@ export default function ProfileLayout({ children }){
                     <h1>My Profile</h1>
                     <div className='profile-container'>
                         <ProfileSideBar />
-                        <WishlistProvider>
-                            { children }
-                        </WishlistProvider>
+                        { children }
                     </div>
                 </main>
                 <Footer />
