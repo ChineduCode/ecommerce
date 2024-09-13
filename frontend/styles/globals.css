@@ -1775,4 +1775,23 @@ footer .bottom-footer .copyright-container {
 .wishlist-page .containers .product .product-info .selling-cost-prices .cost-price {
   text-decoration: line-through;
   color: hsl(220, 14%, 75%);
+}
+@media (min-width: 330px) and (max-width: 600px) {
+  .wishlist-page .containers {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .wishlist-page .containers .product .img-container .img-cover {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .wishlist-page .containers .product .img-container .img-cover .right-bar {
+    flex-direction: column;
+  }
+  .wishlist-page .containers .product .img-container .img-cover .btn-add-to-cart {
+    align-self: center;
+  }
+  .wishlist-page .containers .product .img-container .img-cover .btn-add-to-cart button {
+    padding: 8px 10px;
+  }
 }/*# sourceMappingURL=globals.css.map */

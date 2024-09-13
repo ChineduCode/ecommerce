@@ -20,7 +20,7 @@ export default function Wishlist() {
         <div className="wishlist-page">
             <div className="containers">
                 {state.items.length > 0 ? (
-                    state.items.map((product, index) => (  // Replace 'wishlists' with 'state.items'
+                    state.items.map((product, index) => (
                         <div key={index} className="product">
                             <div className="img-container">
                                 <div className="img">

@@ -1829,4 +1829,30 @@ footer{
             }
         }
     }
+
+    @media (min-width: 330px) and (max-width: 600px){
+        //padding: 6rem 1rem 3rem;
+        .containers{
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+
+            .product{
+                .img-container{
+                    .img-cover{
+                        flex-direction: column;
+                        justify-content: space-between;
+                        .right-bar{
+                            flex-direction: column;
+                        }
+                        .btn-add-to-cart{
+                            align-self: center;
+                            button{
+                                padding: 8px 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
