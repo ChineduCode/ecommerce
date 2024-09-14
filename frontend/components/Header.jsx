@@ -30,7 +30,7 @@ export default function Header(){
                 <div className="icons-btn-login">
                     <div className="icons">
                         <IoSearch size={22}/>
-                        <IoHeartOutline size={22}/>
+                        <Link href='/profile/wishlists'> <IoHeartOutline size={22}/> </Link>
                         <IoCartOutline size={22} onClick={handleCartClick}/>
                     </div>
 

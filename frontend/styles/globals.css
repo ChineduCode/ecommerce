@@ -508,6 +508,7 @@ header .overlay-active {
   background-color: hsl(120, 70%, 50%);
   border-radius: 7px;
   padding: 10px;
+  z-index: 3;
 }
 .response-msg span {
   color: hsl(0, 0%, 100%);
@@ -1225,7 +1226,16 @@ footer .bottom-footer .copyright-container {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  overflow: hidden; /* Ensures no overflow from images */
+  overflow: hidden;
+}
+.product-listing-page .containers .product .img-container:hover {
+  opacity: 1;
+}
+.product-listing-page .containers .product .img-container:hover img {
+  transform: scale(1.1);
+}
+.product-listing-page .containers .product .img-container:hover .img-cover {
+  opacity: 1;
 }
 .product-listing-page .containers .product .img-container .img {
   width: 100%;
@@ -1239,23 +1249,21 @@ footer .bottom-footer .copyright-container {
   max-width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  transition: transform 0.4s ease-in-out;
 }
 .product-listing-page .containers .product .img-container .img-cover {
   position: absolute;
-  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
   align-items: flex-end;
   padding: 10px;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: opacity 0.3s ease;
-}
-.product-listing-page .containers .product .img-container .img-cover:hover {
-  opacity: 1;
+  background: none;
 }
 .product-listing-page .containers .product .img-container .img-cover .right-bar {
   display: flex;
@@ -1263,8 +1271,8 @@ footer .bottom-footer .copyright-container {
 }
 .product-listing-page .containers .product .img-container .img-cover .right-bar button {
   border: none;
-  background-color: hsl(0, 0%, 100%);
-  color: hsl(220, 13%, 13%);
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(220, 13%, 13%);
   border-radius: 50%;
   padding: 4px;
   display: flex;
@@ -1277,8 +1285,8 @@ footer .bottom-footer .copyright-container {
 .product-listing-page .containers .product .img-container .img-cover .btn-add-to-cart button {
   padding: 7px;
   border-radius: 5px;
-  color: hsl(220, 13%, 13%);
-  background-color: hsl(0, 0%, 100%);
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(220, 13%, 13%);
   font-weight: 600;
   border: none;
   cursor: pointer;
@@ -1738,11 +1746,18 @@ footer .bottom-footer .copyright-container {
   display: flex;
   gap: 8px;
 }
-.wishlist-page .containers .product .img-container .img-cover .right-bar svg {
+.wishlist-page .containers .product .img-container .img-cover .right-bar button {
+  border: none;
   background-color: hsl(0, 0%, 100%);
-  color: hsl(220, 13%, 13%);
+  color: orangered;
   border-radius: 50%;
   padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
 }
 .wishlist-page .containers .product .img-container .img-cover .btn-add-to-cart button {
   padding: 7px;

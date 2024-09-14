@@ -5,9 +5,9 @@ import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import Loading from '../Loading';
 import Link from 'next/link'
-import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { LuEye } from "react-icons/lu";
 import AddToWishlist from '../AddToWishlist';
+import AddToCartBtn from '../AddToCartBtn';
 
 export default function ProductListing() {
     const [products, setProducts] = useState([]);
@@ -48,19 +48,18 @@ export default function ProductListing() {
                 {products.length > 0 ? (
                     products.map((product, index) => (
                         <div key={index} className="product">
-                            <Link href={`/products/${product._id}`} className="img-container">
-                                <div href={`/products/${product._id}`} className="img">
+                            <div className="img-container">
+                                <Link href={`/products/${product._id}`} className="img">
                                     <img src={product.image} alt={product.brand} />
-                                </div>
+                                </Link>
                                 <div className="img-cover">
                                     <div className="right-bar">
-                                        {/* <MdOutlineFavoriteBorder size={25}/> */}
                                         <AddToWishlist productId={product._id} />
                                         <button> <LuEye size={25}/> </button>
                                     </div>
-                                    <div className="btn-add-to-cart"> <button className='btn'>Add to Cart</button> </div>
+                                    <div className="btn-add-to-cart"> <AddToCartBtn productId={product._id}/> </div>
                                 </div>
-                            </Link>
+                            </div>
 
                             <Link href={`/products/${product._id}`} className="product-info">
                                 <h3 className="brand">{product.brand}</h3>

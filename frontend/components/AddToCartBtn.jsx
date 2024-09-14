@@ -1,70 +1,46 @@
 'use client'
 
-import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import axios from "axios"
 import Loader from "./Loader"
-import { useState } from "react"
 import ResponseMsg from "./ResponseMsg"
+import { useAuth } from "@/utils/context/auth/AuthContext"
+import { useCart } from "@/utils/context/cart/cartContext"
+import { useCount } from "@/utils/context/count/countcontext"
+import { useState } from "react"
 
-export default function AddToCartBtn({ productID, qty }){
-    const { data: session } = useSession()
-    const [loading, setLoading] = useState(null)
-    const [status, setStatus] = useState(null)
-    const [responseMsg, setResponseMsg] = useState(null)
+export default function AddToCartBtn({ productId }){
+    const { session } = useAuth()
+    const { state, addItemToCart } = useCart()
+    const { state: { qty }} = useCount()
+    const [loading, setLoading] = useState(false)
     const router = useRouter()
 
     const handleAddToCart = async ()=> {
-        //e.stopPropagation()
+        setLoading(true)
         if(!session){
-            return router.push('/login')
+            return router.push(`/login?callbackUrl=${window.location.href}`)
         }
 
-        try {
-            if(!productID){
-                throw new Error('No product id found')
-            }
-
-            setLoading(true)
-
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/carts/add`,
-                { productID, qty },
-                {
-                    headers: {
-                        'Authorization' : `Bearer ${session.accessToken}`
-                    }
-                }
-            )
-  
-            if(response.data){
-                setStatus('success')
-                setResponseMsg(response.data.message)
-            }
-
-        } catch (error) {
-            setStatus('error')
-            setResponseMsg(error.response.data.message)
-        } finally {
-            setLoading(false)
+        if(!productId){
+            console.error('Product id not found')
         }
+
+        await addItemToCart(productId, qty)
+        setLoading(false)
     }
 
     return(
-        <div className="add-to-cart-btn"> 
+        <> 
             <button 
                 className='btn'
                 onClick={handleAddToCart}
-                disabled={qty === 0 || loading === true}
-                style={{ backgroundColor: (loading || qty===0) ? '#ccc' : null }}
+                disabled={state.qty === 0 || loading  || state.loading}
+                style={{ backgroundColor: (state.loading || state.qty===0) ? '#ccc' : null }}
             > 
                 { loading ? <Loader /> : 'Add to Cart'}
             </button>
 
-            {/* Response status */}
-            {status 
-                && 
-                <ResponseMsg setStatus={setStatus} status={status} responseMsg={responseMsg}/>
-            }
-        </div>
+            {state.responseMsg && <ResponseMsg /> }
+        </>
     )
 }

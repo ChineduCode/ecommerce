@@ -59,6 +59,7 @@ const getWishlist = asyncHandler(async (req, res)=> {
             path: 'wishlistItems.product',
             select: 'name image price brand'
         })
+        
         if(!wishlist){
             return res.status(404).json({message: 'Wishlist not found'})
         }

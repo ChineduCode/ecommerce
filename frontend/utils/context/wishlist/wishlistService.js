@@ -23,7 +23,7 @@ export const addToWishlist = async (productId)=> {
 export const removeFromWishlist = async (productId) => {
     const session = await getSession()
     const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/wishlists/delete`,
-        {productId},
+        {itemId: productId},
         { headers: {'Authorization': `Bearer ${session?.accessToken}` }}
     )
 

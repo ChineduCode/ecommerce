@@ -6,7 +6,6 @@ import axios from "axios"
 import Loading from '../Loading'
 import Rating from '../Rating'
 import Count from '../Count'
-import { MdOutlineFavoriteBorder } from "react-icons/md";
 import AddToCartBtn from '../AddToCartBtn'
 import AddToWishlist from '../AddToWishlist'
 
@@ -66,7 +65,9 @@ export default function ProductDetails(){
                     <div className="add-to-cart">
                         <Count qty={qty} setQty={setQty} qtyIsZero={qtyIsZero} />
                         <div className="btn-container">
-                            <AddToCartBtn productID={product._id} qty={qty} />
+                            <div className="add-to-cart-btn">
+                                <AddToCartBtn productId={product._id} />
+                            </div>
 
                             <div className="favorite-btn">
                                 {/* <button className='add-to-favourite'> <MdOutlineFavoriteBorder size={22}/> </button> */}

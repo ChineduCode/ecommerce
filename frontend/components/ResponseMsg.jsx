@@ -1,20 +1,20 @@
+'use client'
+
 import { TiTimes } from "react-icons/ti";
-import { useWishlist } from "@/utils/context/wishlist/wishlistContext";
+import { useResponse } from "@/utils/context/ResponseContext";
 
-export default function ResponseMsg(){
-    const { state, dispatch } = useWishlist()
+export default function ResponseMsg() {
+    const { responseMsg, error, removeResponse } = useResponse();
 
-    const handleResponseMsg = ()=> {
-        dispatch({ type: 'ERROR', payload: null })
-    }
-
-    return(
-        <div
-            className="response-msg" 
-            style={{backgroundColor: state.error ? 'orangered' : 'hsl(120, 70%, 50%)' }}
+    return (
+        responseMsg && (
+            <div
+                className="response-msg"
+                style={{ backgroundColor: error ? 'orangered' : 'hsl(120, 70%, 50%)' }}
             >
-                <span className="msg">{state.responseMsg}</span>
-                <TiTimes size={25} onClick={handleResponseMsg} />
-        </div>
-    )
+                <span className="msg">{responseMsg}</span>
+                <TiTimes size={25} onClick={removeResponse} />
+            </div>
+        )
+    );
 }

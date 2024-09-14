@@ -4,6 +4,7 @@ const REMOVE_FROM_WISHLIST = 'REMOVE_FROM_WISHLIST'
 const SET_WISHLIST = 'SET_WISHLIST'
 const LOADING = 'LOADING'
 const ERROR = 'ERROR'
+const CLEAR_RESPONSE_MSG = 'CLEAR_RESPONSE_MSG'
 
 export const wishlistReducer = (state, action) => {
     switch (action.type) {
@@ -42,6 +43,11 @@ export const wishlistReducer = (state, action) => {
                 loading: false,
                 responseMsg: action.payload,
                 error: action.payload
+            }
+        case CLEAR_RESPONSE_MSG:
+            return {
+                ...state,
+                responseMsg: null
             }
         default:
             return state;

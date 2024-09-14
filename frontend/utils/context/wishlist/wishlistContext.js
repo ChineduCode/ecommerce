@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useReducer, useContext } from 'react'
+import { createContext, useReducer, useContext, useEffect } from 'react'
 import { wishlistReducer } from './wishlistReducer'
 import { fetchWishlist, addToWishlist, removeFromWishlist } from './wishlistService'
 
@@ -17,6 +17,17 @@ const WishlistContext = createContext()
 //Provider component
 export const WishlistProvider = ({children})=> {
     const [state, dispatch] = useReducer(wishlistReducer, initialState)
+
+    useEffect(()=> {
+        if(state.responseMsg){
+            const timer = setTimeout(()=> {
+                dispatch({ type: 'CLEAR_RESPONSE_MSG' })
+            }, 3000)
+
+            return () => clearTimeout(timer)
+        }
+
+    },[state.responseMsg])
 
     // Fetch wishlist
     const loadWishlist = async () => {
@@ -45,10 +56,10 @@ export const WishlistProvider = ({children})=> {
     const removeItemFromWishlist = async (productId) => {
         dispatch({ type: 'LOADING' });
         try {
-            await removeFromWishlist(productId);
-            dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: productId });
+            const data = await removeFromWishlist(productId);
+            dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: data });
         } catch (error) {
-            dispatch({ type: 'ERROR', payload: error.message });
+            dispatch({ type: 'ERROR', payload: error.response.data.message });
         }
     };
 

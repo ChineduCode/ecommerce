@@ -507,6 +507,7 @@ header{
     background-color: hsl(120, 70%, 50%);
     border-radius: 7px;
     padding: 10px;
+    z-index: 3;
     span{
         color: hsl(0, 0, 100%);
     }
@@ -1244,7 +1245,16 @@ footer{
                 justify-content: center;
                 align-items: center;
                 padding: 15px;
-                overflow: hidden; /* Ensures no overflow from images */
+                overflow: hidden;
+                &:hover {
+                    opacity: 1;
+                    img{
+                        transform: scale(1.1);
+                    }
+                    .img-cover{
+                        opacity: 1;
+                    }
+                }
     
                 .img {
                     width: 100%;
@@ -1257,39 +1267,31 @@ footer{
                         height: 100%;
                         max-width: 100%;
                         object-fit: cover;
+                        transition: transform 0.4s ease-in-out;
                     }
                 }
     
                 .img-cover {
                     position: absolute;
-                    top: 0;
                     left: 0;
                     right: 0;
                     bottom: 0;
-                    display: flex;
+                    display: inline-flex;
                     justify-content: space-between;
                     align-items: flex-end;
                     padding: 10px;
-                    background: rgba(0, 0, 0, 0.5); 
+                    background-color: rgba(0, 0, 0, 0.5); 
                     opacity: 0;
                     transition: opacity 0.3s ease;
-                    &:hover {
-                        opacity: 1;
-                    }
+                    background: none;
 
                     .right-bar {
                         display: flex;
                         gap: 8px;
-                        // svg{
-                        //     background-color: hsl(0, 0, 100%);
-                        //     color: hsl(220, 13%, 13%);
-                        //     border-radius: 50%;
-                        //     padding: 4px;
-                        // }
                         button{
                             border: none;
-                            background-color: hsl(0, 0, 100%);
-                            color: hsl(220, 13%, 13%);
+                            color: hsl(0, 0, 100%);
+                            background-color: hsl(220, 13%, 13%);
                             border-radius: 50%;
                             padding: 4px;
                             display: flex;
@@ -1304,8 +1306,8 @@ footer{
                         button{
                             padding: 7px;
                             border-radius: 5px;
-                            color: hsl(220, 13%, 13%);
-                            background-color: hsl(0, 0, 100%);
+                            color: hsl(0, 0, 100%);
+                            background-color: hsl(220, 13%, 13%);
                             font-weight: 600;
                             border: none;
                             cursor: pointer;
@@ -1786,12 +1788,25 @@ footer{
                     .right-bar {
                         display: flex;
                         gap: 8px;
-                        svg{
+                        button{
+                            border: none;
                             background-color: hsl(0, 0, 100%);
-                            color: hsl(220, 13%, 13%);
+                            color: orangered;
                             border-radius: 50%;
                             padding: 4px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            height: 30px;
+                            width: 30px;
+                            cursor: pointer;
                         }
+                        // svg{
+                        //     background-color: hsl(0, 0, 100%);
+                        //     color: hsl(220, 13%, 13%);
+                        //     border-radius: 50%;
+                        //     padding: 4px;
+                        // }
                     }
                     .btn-add-to-cart{
                         button{

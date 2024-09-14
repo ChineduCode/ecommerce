@@ -4,13 +4,20 @@ import { TbTrash } from "react-icons/tb";
 import { useEffect } from 'react';
 import Loading from "@/components/Loading";
 import { useWishlist } from "@/utils/context/wishlist/wishlistContext";
+import ResponseMsg from "@/components/ResponseMsg";
 
 export default function Wishlist() {
-    const { state, loadWishlist, removeFromWishlist } = useWishlist();
+    const { state, loadWishlist, removeItemFromWishlist } = useWishlist();
 
     useEffect(() => {
         loadWishlist();
     }, []);
+
+    const handleRemoveItem = async (id)=>{
+        console.log(id)
+        await removeItemFromWishlist(id)
+        console.log('Item removed')
+    }
 
     if (state.loading) {
         return <div> <Loading /> </div>;
@@ -28,10 +35,12 @@ export default function Wishlist() {
                                 </div>
                                 <div className="img-cover">
                                     <div className="right-bar">
-                                        <TbTrash size={25} />
+                                        <button onClick={()=> handleRemoveItem(product._id)}>
+                                            <TbTrash size={25} />
+                                        </button>
                                     </div>
                                     <div className="btn-add-to-cart">
-                                        <button className='btn'>Add to Cart</button>
+                                        <button className='btn'>Move to Cart</button>
                                     </div>
                                 </div>
                             </div>
@@ -49,6 +58,7 @@ export default function Wishlist() {
                     <p>No wishlist found.</p>
                 )}
             </div>
+            { state.responseMsg && <ResponseMsg /> }
         </div>
     );
 }
