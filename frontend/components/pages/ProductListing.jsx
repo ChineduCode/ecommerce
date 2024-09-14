@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import Loading from '../Loading';
 import Link from 'next/link'
-import { LuEye } from "react-icons/lu";
 import AddToWishlist from '../AddToWishlist';
 import AddToCartBtn from '../AddToCartBtn';
 
@@ -52,23 +51,25 @@ export default function ProductListing() {
                                 <Link href={`/products/${product._id}`} className="img">
                                     <img src={product.image} alt={product.brand} />
                                 </Link>
-                                <div className="img-cover">
-                                    <div className="right-bar">
-                                        <AddToWishlist productId={product._id} />
-                                        <button> <LuEye size={25}/> </button>
-                                    </div>
-                                    <div className="btn-add-to-cart"> <AddToCartBtn productId={product._id}/> </div>
+                                <div className="right-bar">
+                                    <AddToWishlist productId={product._id} />
+                                    {/* <button> <LuEye size={25}/> </button> */}
                                 </div>
                             </div>
-
-                            <Link href={`/products/${product._id}`} className="product-info">
-                                <h3 className="brand">{product.brand}</h3>
-                                <div className="name">{product.name}</div>
-                                <div className="selling-cost-prices">
-                                    <span className='selling-price'>${product.price}</span>
-                                    <span className='cost-price'>${product.price + ((10/100) * product.price)}</span>
+                            
+                            <div className="product-info">
+                                <Link href={`/products/${product._id}`}>
+                                    <h3 className="brand">{product.brand}</h3>
+                                    <div className="name">{product.name}</div>
+                                    <div className="selling-cost-prices">
+                                        <span className='selling-price'>${product.price}</span>
+                                        <span className='cost-price'>${product.price + ((10/100) * product.price)}</span>
+                                    </div>
+                                </Link>
+                                <div className="btn-add-to-cart">
+                                    <AddToCartBtn productId={product._id}/> 
                                 </div>
-                            </Link>
+                            </div>
                         </div>
                     ))
 

@@ -942,6 +942,11 @@ footer{
         
                 &:hover {
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle hover effect */
+                    .product-info{
+                        .add-to-cart-btn{
+                            opacity: 1;
+                        }
+                    }
                 }
        
                 .img-container {
@@ -953,6 +958,11 @@ footer{
                     align-items: center;
                     padding: 15px;
                     overflow: hidden; /* Ensures no overflow from images */
+                    &:hover {
+                        img{
+                            transform: scale(1.1);
+                        }
+                    }
         
                     .img {
                         width: 100%;
@@ -965,50 +975,37 @@ footer{
                             height: 100%;
                             max-width: 100%;
                             object-fit: cover;
+                            transition: transform 0.4s ease-in-out;
                         }
                     }
-        
-                    .img-cover {
+                     
+                    .right-bar {
                         position: absolute;
-                        top: 0;
-                        left: 0;
+                        top: 10px;
                         right: 0;
-                        bottom: 0;
-                        display: flex;
+                        display: inline-flex;
                         justify-content: space-between;
                         align-items: flex-end;
                         padding: 10px;
-                        background: rgba(0, 0, 0, 0.5); 
-                        opacity: 0;
+                        background-color: rgba(0, 0, 0, 0.5); 
                         transition: opacity 0.3s ease;
-                        &:hover {
-                            opacity: 1;
-                        }
-
-                        .right-bar {
+                        background: none;
+                        gap: 8px;
+    
+                        button{
+                            border: none;
+                            color: hsl(0, 0, 100%);
+                            background-color: hsl(220, 13%, 13%);
+                            border-radius: 50%;
+                            padding: 4px;
                             display: flex;
-                            gap: 8px;
-                            svg{
-                                background-color: hsl(0, 0, 100%);
-                                color: hsl(220, 13%, 13%);
-                                border-radius: 50%;
-                                padding: 4px;
-                            }
-                        }
-                        .add-to-cart-btn{
-                            button{
-                                padding: 7px;
-                                border-radius: 5px;
-                                color: hsl(220, 13%, 13%);
-                                background-color: hsl(0, 0, 100%);
-                                font-weight: 600;
-                                border: none;
-                                cursor: pointer;
-                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                            }
+                            align-items: center;
+                            justify-content: center;
+                            height: 30px;
+                            width: 30px;
+                            cursor: pointer;
                         }
                     }
-        
                 }
         
                 .product-info {
@@ -1025,6 +1022,32 @@ footer{
                         .cost-price{
                             text-decoration: line-through;
                             color: hsl(220, 14%, 75%);
+                        }
+                    }
+                    .add-to-cart-btn{
+                        button{
+                            padding: 8px;
+                            border-radius: 5px;
+                            color: hsl(0, 0, 100%);
+                            background-color: hsl(220, 13%, 13%);
+                            font-weight: 600;
+                            border: none;
+                            cursor: pointer;
+                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        }
+
+                        @media (min-width: 768px){
+                            position: absolute;
+                            top: 60%;
+                            bottom: 50%;
+                            left: 0;
+                            right: 0;
+                            margin: 0 auto;
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            opacity: 0;
                         }
                     }
                 }
@@ -1045,17 +1068,16 @@ footer{
 
                 .best-seller{
                     .img-container{
-                        .img-cover{
+                        height: 200px;
+                        .right-bar{
                             flex-direction: column;
-                            justify-content: space-between;
-                            .right-bar{
-                                flex-direction: column;
-                            }
-                            .btn-add-to-cart{
-                                align-self: center;
-                                button{
-                                    padding: 8px 10px;
-                                }
+                        }
+                    }
+                    .product-info{
+                        .btn-add-to-cart{
+                            align-self: center;
+                            button{
+                                padding: 8px 10px;
                             }
                         }
                     }
@@ -1235,6 +1257,11 @@ footer{
     
             &:hover {
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle hover effect */
+                .product-info{
+                    .btn-add-to-cart{
+                        opacity: 1;
+                    }
+                }
             }
 
             .img-container {
@@ -1247,12 +1274,8 @@ footer{
                 padding: 15px;
                 overflow: hidden;
                 &:hover {
-                    opacity: 1;
                     img{
                         transform: scale(1.1);
-                    }
-                    .img-cover{
-                        opacity: 1;
                     }
                 }
     
@@ -1271,51 +1294,33 @@ footer{
                     }
                 }
     
-                .img-cover {
+                .right-bar {
                     position: absolute;
-                    left: 0;
+                    top: 10px;
                     right: 0;
-                    bottom: 0;
                     display: inline-flex;
                     justify-content: space-between;
                     align-items: flex-end;
                     padding: 10px;
                     background-color: rgba(0, 0, 0, 0.5); 
-                    opacity: 0;
                     transition: opacity 0.3s ease;
                     background: none;
+                    gap: 8px;
 
-                    .right-bar {
+                    button{
+                        border: none;
+                        color: hsl(0, 0, 100%);
+                        background-color: hsl(220, 13%, 13%);
+                        border-radius: 50%;
+                        padding: 4px;
                         display: flex;
-                        gap: 8px;
-                        button{
-                            border: none;
-                            color: hsl(0, 0, 100%);
-                            background-color: hsl(220, 13%, 13%);
-                            border-radius: 50%;
-                            padding: 4px;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            height: 30px;
-                            width: 30px;
-                            cursor: pointer;
-                        }
-                    }
-                    .btn-add-to-cart{
-                        button{
-                            padding: 7px;
-                            border-radius: 5px;
-                            color: hsl(0, 0, 100%);
-                            background-color: hsl(220, 13%, 13%);
-                            font-weight: 600;
-                            border: none;
-                            cursor: pointer;
-                            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                        }
+                        align-items: center;
+                        justify-content: center;
+                        height: 30px;
+                        width: 30px;
+                        cursor: pointer;
                     }
                 }
-    
             }
 
             .product-info {
@@ -1333,6 +1338,34 @@ footer{
                     .cost-price{
                         text-decoration: line-through;
                         color: hsl(220, 14%, 75%);
+                    }
+                }
+
+                .btn-add-to-cart{
+                    margin-top: 8px;
+                    button{
+                        padding: 7px;
+                        border-radius: 5px;
+                        color: hsl(0, 0, 100%);
+                        background-color: hsl(220, 13%, 13%);
+                        font-weight: 600;
+                        border: none;
+                        cursor: pointer;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    }
+
+                    @media (min-width: 768px){
+                        position: absolute;
+                        top: 60%;
+                        bottom: 50%;
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        opacity: 0;
                     }
                 }
             }
