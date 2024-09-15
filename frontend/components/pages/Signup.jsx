@@ -198,6 +198,10 @@ export default function Signup(){
                         Sign Up
                     </button>
                 </form>
+
+                <div className="signup-link">
+                    <span>Already have an account ?</span>&nbsp; <Link href='/login'>Log in</Link>
+                </div>
             </div>
         </div>
     )

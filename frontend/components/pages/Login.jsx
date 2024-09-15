@@ -112,6 +112,10 @@ export default function Login(){
                         Login
                     </button>
                 </form>
+
+                <div className="signup-link">
+                    <span>Don't have an account ?</span>&nbsp; <Link href='/signup'>Sign up</Link>
+                </div>
             </div>
         </div>
     )

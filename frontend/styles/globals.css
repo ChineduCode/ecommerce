@@ -148,6 +148,15 @@ body {
   cursor: pointer;
   margin-top: 1rem;
 }
+.login .signup-link, .login .login-link, .signup .signup-link, .signup .login-link, .forgot-password .signup-link, .forgot-password .login-link, .otp .signup-link, .otp .login-link, .new-password .signup-link, .new-password .login-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+.login .signup-link a, .login .login-link a, .signup .signup-link a, .signup .login-link a, .forgot-password .signup-link a, .forgot-password .login-link a, .otp .signup-link a, .otp .login-link a, .new-password .signup-link a, .new-password .login-link a {
+  text-decoration: underline;
+  color: hsl(220, 13%, 13%);
+  font-weight: 500;
+}
 
 .otp .form-control {
   display: flex;
@@ -332,7 +341,7 @@ header .secondary-nav-menu .icons svg {
   margin: 0 5px;
   cursor: pointer;
 }
-header .secondary-nav-menu .img-container {
+header .secondary-nav-menu .profile-img-container {
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -342,7 +351,7 @@ header .secondary-nav-menu .img-container {
   align-items: flex-end;
   justify-content: center;
 }
-header .secondary-nav-menu .img-container svg {
+header .secondary-nav-menu .profile-img-container svg {
   padding: 5px;
   color: hsl(0, 0%, 100%);
 }

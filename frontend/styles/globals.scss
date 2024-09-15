@@ -146,6 +146,16 @@ body{
             margin-top: 1rem;
         }
     }
+
+    .signup-link, .login-link{
+        text-align: center;
+        margin-top: 1rem;
+        a{
+            text-decoration: underline;
+            color: hsl(220, 13%, 13%);
+            font-weight: 500;
+        }
+    }
 }
 
 .otp{
@@ -334,7 +344,7 @@ header{
                 cursor: pointer;
             }
         }
-        .img-container{
+        .profile-img-container{
             height: 40px;
             width: 40px;
             border-radius: 50%;

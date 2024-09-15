@@ -9,6 +9,4 @@ const newsLetterSchema = new mongoose.Schema({
     }
 })
 
-const NewsLetterSubscribers = mongoose.model('NewsLetterSubscribers', newsLetterSchema)
-
-module.exports = NewsLetterSubscribers;
+module.exports = mongoose.model('NewsLetterSubscribers', newsLetterSchema)

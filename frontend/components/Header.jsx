@@ -38,7 +38,7 @@ export default function Header(){
 
                     {
                         session ? 
-                            <Link href='/profile' className='img-container'> 
+                            <Link href='/profile' className='profile-img-container'> 
                                 {session?.user.image ?
                                     <img src={session.user.image} alt="user-avatar" /> 
                                     :

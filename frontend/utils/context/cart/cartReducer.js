@@ -10,7 +10,7 @@ export default function cartReducer(state, action){
         case ADD_TO_CART:
             return {
                 ...state,
-                items: action.payload.cart,
+                items: action.payload.cart.cartItems,
                 responseMsg: action.payload.message,
                 totalQty: action.payload.cart.cartItems.length,
                 totalPrice: action.payload.cart.cartItems.reduce((sum, cartItem)=> sum + (cartItem.product.price * cartItem.quantity), 0),
@@ -29,7 +29,7 @@ export default function cartReducer(state, action){
         case REMOVE_FROM_CART:
             return {
                 ...state,
-                items: action.payload.cart,
+                items: action.payload.cart.cartItems,
                 totalQty: action.payload.cart.cartItems.length,
                 totalPrice: action.payload.cart.cartItems.reduce((sum, cartItem)=> sum + (cartItem.product.price * cartItem.quantity), 0),
                 responseMsg: action.payload.message,
