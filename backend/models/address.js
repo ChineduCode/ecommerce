@@ -1,13 +1,39 @@
 const mongoose = require('mongoose')
 
 const addressSchema = new mongoose.Schema({
-    street: String,
-    city: String,
-    state: String,
-    zipCode: String,
-    country: String,
-    type: { type: String, enum: ['home', 'work'] },
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' } // Reference to user
+    phone: {
+        type: String,
+        required: true
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    street: {
+        type: String,
+        required: true
+    },
+    houseNo: {
+        type: Number,
+        required: true
+    },
+    zipCode: {
+        type: Number,
+        required: true
+    },
+    userId: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User',
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Address', addressSchema)

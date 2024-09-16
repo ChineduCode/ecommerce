@@ -14,7 +14,6 @@ export default function Signup(){
         lastname: '',
         email: '',
         phone: '',
-        address: '',
         password: '',
         confirmPassword: ''
     }
@@ -43,7 +42,6 @@ export default function Signup(){
                 !userData.lastname ||
                 !userData.email ||
                 !userData.phone ||
-                !userData.address ||
                 !userData.password ||
                 !userData.confirmPassword
             ){
@@ -141,16 +139,6 @@ export default function Signup(){
                                     return true;
                                 }
                             }}
-                        />
-                    </div>
-                    <div className="form-control">
-                        <label htmlFor="address">Address</label>
-                        <input 
-                            type="text" 
-                            name="address" 
-                            className="address" 
-                            value={userData.address}
-                            onChange={handleOnChange}
                         />
                     </div>
                     <div className="form-control">

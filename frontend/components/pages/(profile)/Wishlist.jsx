@@ -24,7 +24,7 @@ export default function Wishlist() {
     }
 
     return (
-        <div className="wishlist-page">
+        <div className="wishlist-page" id='wishlists'>
             <div className="containers">
                 {state.items.length > 0 ? (
                     state.items.map((product, index) => (

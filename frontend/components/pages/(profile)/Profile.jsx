@@ -97,7 +97,7 @@ export default function Profile(){
     }
 
     return(
-        <form className="profile-info-page" onSubmit={handleSubmit}>
+        <form className="profile-info-page" id='profile' onSubmit={handleSubmit}>
             <div className="heading">
                 <div className="profile-img-container">
                     { session?.user?.image ? 

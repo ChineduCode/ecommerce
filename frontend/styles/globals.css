@@ -158,6 +158,44 @@ body {
   font-weight: 500;
 }
 
+.add-address {
+  width: 400px;
+  max-width: 100%;
+  background-color: hsl(0, 0%, 100%);
+  padding: 1rem;
+  border-radius: 8px;
+}
+.add-address .heading {
+  margin-bottom: 2rem;
+}
+.add-address .form-control {
+  margin: 12px 0;
+  position: relative;
+}
+.add-address .form-control label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.add-address .form-control input, .add-address .form-control select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid hsl(220, 13%, 13%);
+  border-radius: 8px;
+  font-size: 16px;
+  color: hsl(220, 13%, 13%);
+  outline: none;
+}
+.add-address .form-control .phone {
+  padding-left: 47px;
+}
+.add-address .form-control svg {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  right: 5px;
+  cursor: pointer;
+}
+
 .otp .form-control {
   display: flex;
   justify-content: center;

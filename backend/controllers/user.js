@@ -15,9 +15,9 @@ const {
 
 const registerUser = asyncHandler(async (req, res)=> {
     try {
-        const { firstname, lastname, email, phone, address, password, confirmPassword } = req.body;
+        const { firstname, lastname, email, phone, password, confirmPassword } = req.body;
         
-        if(!firstname || !lastname || !email || !phone || !address || !password || !confirmPassword){
+        if(!firstname || !lastname || !email || !phone || !password || !confirmPassword){
             return res.status(400).json({ message: 'Please fill all fields' })
         }
 
@@ -53,7 +53,6 @@ const registerUser = asyncHandler(async (req, res)=> {
             lastname,
             email,
             phone,
-            address,
             password: hashedPassword,
             verificationCode
         })

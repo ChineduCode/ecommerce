@@ -13,36 +13,43 @@ export default async function ProfileSideBar(){
         {
             name: 'Profile Information',
             link: '/profile',
+            inlineLink: '#profile',
             icon: <FaRegUser size={22}/>
         },
         {
             name: 'My Orders',
             link: '/profile/orders',
+            inlineLink: '#orders',
             icon: <FaBagShopping size={22}/>
         },
         {
             name: 'My Wishlists',
             link: '/profile/wishlists',
+            inlineLink: '#wishlists',
             icon:  <GrFavorite size={22}/>
         },
         {
             name: 'Manage Addresses',
             link: '/profile/addresses',
+            inlineLink: '#addresses',
             icon: <GrLocation size={22}/>
         },
         {
             name: 'Saved Cards',
             link: '/profile/payment-method',
+            inlineLink: '#payment-method',
             icon: <GrCreditCard />
         },
         {
             name: 'Notifications',
             link: '/profile/notifications',
+            inlineLink: '#notifications',
             icon: <PiBellLight size={22}/>
         },
         {
             name: 'Settings',
             link: '/profile/settings',
+            inlineLink: '#settings',
             icon: <BsGear size={22}/>
         },
     ]
@@ -65,7 +72,7 @@ export default async function ProfileSideBar(){
             <ul className="links">
                 { profileLinks.map((profile, index) => (
                     <li key={index}>
-                        <Link href={profile.link}>
+                        <Link href={`${profile.link}${profile.inlineLink}`}>
                             <span className='icon'>
                                 {profile.icon} <span>{profile.name}</span>
                             </span>
