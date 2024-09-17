@@ -5,16 +5,16 @@ import { FaEdit } from "react-icons/fa";
 import { TbTrash } from "react-icons/tb";
 import { FaPlus } from 'react-icons/fa6'
 import { useAuth } from "@/utils/context/auth/AuthContext";
-import { useState } from "react";
+import { useUX } from "@/utils/context/ux/uxContext";
 
 export default function Address(){
     const { session } = useAuth()
-    const [formActive, setFormActive] = useState(false)
+    const { state, dispatch } = useUX()
 
     return(
         <div className="address-page">
             <div className="add-new-address-container">
-                <button className="add-new-address" onClick={()=> setFormActive(true)}>
+                <button className="add-new-address" onClick={()=> dispatch({type: 'TOGGLE_MODAL'})}>
                     <FaPlus />
                     <span>Add New Address</span>
                 </button>
@@ -22,7 +22,7 @@ export default function Address(){
             <div className="container">
                 {session?.address}
             </div>
-            { formActive && <AddressForm /> }
+            { state.isModalOpen && <AddressForm /> }
         </div>
     )
 }
