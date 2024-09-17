@@ -29,7 +29,11 @@ const addressSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    userId: { 
+    defaultAddress: {
+        type: Boolean,
+        required: true
+    },
+    user: { 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
         required: true

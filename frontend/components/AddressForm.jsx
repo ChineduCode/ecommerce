@@ -8,6 +8,7 @@ import 'react-phone-input-2/lib/style.css'
 export default function AddressForm(){
     const [country, setCountry] = useState('')
     const [region, setRegion] = useState('')
+    const [addressFormActive, setAddressFormActive] = useState(true)
     const [addressData, setAddressData] = useState({
         phone: '',
         country: '',
@@ -15,7 +16,8 @@ export default function AddressForm(){
         city: '',
         street: '',
         houseNo: '',
-        postalCode: ''
+        postalCode: '',
+        defaultAddress: false
     })
 
     const handleOnChange = (e) => {
@@ -43,8 +45,14 @@ export default function AddressForm(){
         });
     };
 
-    const handleSubmit = async() => {
-        console.log('Submited')
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        console.log(addressData)
+    }
+
+    const handleCancel = ()=> {
+        console.log('cancelled')
     }
 
     return(
@@ -130,6 +138,25 @@ export default function AddressForm(){
                         value={addressData.postalCode}
                         onChange={handleOnChange}
                     />
+                </div>
+                <div className="form-control checkbox-container">
+                    <input 
+                        type="checkbox" 
+                        name="default" 
+                        checked={addressData.defaultAddress}
+                        onChange={(e) => setAddressData({...addressData, defaultAddress: e.target.checked})}
+                        className="checkbox" 
+                    />
+                    <label htmlFor="default">Use as my default address</label>
+                </div>
+                <div className="form-control btn-container">
+                    <button 
+                        className='cancel-btn'
+                        onClick={handleCancel}
+                    >
+                        Cancel
+                    </button>
+                    <button type="submit">Add New Address</button>
                 </div>
             </div>
         </form>

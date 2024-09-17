@@ -78,9 +78,9 @@ body{
         }
         .remember-container, .terms-conditions-container{
             input{
-                appearance: none;
                 -webkit-appearance: none;
                 -moz-appearance: none;
+                appearance: none;
                 width: 0px;
                 height: 0px;
                 width: unset;
@@ -190,6 +190,61 @@ body{
             bottom: 50%;
             right: 5px;
             cursor: pointer;
+        }
+    }
+    .checkbox-container{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        input{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 0px;
+            height: 0px;
+            width: unset;
+            border: 1px solid hsl(220, 13%, 13%);
+            border-radius: 8px;
+            background-color: transparent;
+            cursor: pointer;
+            position: relative;
+
+            &:checked{ background-color: hsl(220, 13%, 13%); }
+
+            &:checked::after{
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 5px;
+                height: 10px;
+                border: solid hsl(0, 0, 100%);
+                border-width: 0 2px 2px 0;
+                transform: translate(-50%, -60%) rotate(45deg);
+            }
+        }
+    }
+    .btn-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        button{
+            width: 100%;
+            display: inline-block;
+            background-color: hsl(220, 13%, 13%);
+            color: hsl(0, 0, 100%);
+            padding: 10px;
+            font-size: 15px;
+            border: 1px solid hsl(220, 13%, 13%);
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .cancel-btn{
+            color: hsl(220, 13%, 13%);
+            background-color: hsl(220, 14%, 75%);
+            border-color: hsl(220, 14%, 75%);
         }
     }
 }
@@ -1947,6 +2002,25 @@ footer{
                     }
                 }
             }
+        }
+    }
+}
+
+.address-page{
+    .add-new-address-container{
+        text-align: center;
+        margin: 1rem 0;
+        button{
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: hsl(220, 13%, 13%);
+            color: hsl(0, 0, 100%);
+            padding: 13px 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
         }
     }
 }

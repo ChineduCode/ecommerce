@@ -81,9 +81,9 @@ body {
   cursor: pointer;
 }
 .login .container .remember-container input, .login .container .terms-conditions-container input, .signup .container .remember-container input, .signup .container .terms-conditions-container input, .forgot-password .container .remember-container input, .forgot-password .container .terms-conditions-container input, .otp .container .remember-container input, .otp .container .terms-conditions-container input, .new-password .container .remember-container input, .new-password .container .terms-conditions-container input {
-  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  appearance: none;
   width: 0px;
   height: 0px;
   width: unset;
@@ -194,6 +194,61 @@ body {
   bottom: 50%;
   right: 5px;
   cursor: pointer;
+}
+.add-address .checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.add-address .checkbox-container input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 0px;
+  height: 0px;
+  width: unset;
+  border: 1px solid hsl(220, 13%, 13%);
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  position: relative;
+}
+.add-address .checkbox-container input:checked {
+  background-color: hsl(220, 13%, 13%);
+}
+.add-address .checkbox-container input:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 10px;
+  border: solid hsl(0, 0%, 100%);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -60%) rotate(45deg);
+}
+.add-address .btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.add-address .btn-container button {
+  width: 100%;
+  display: inline-block;
+  background-color: hsl(220, 13%, 13%);
+  color: hsl(0, 0%, 100%);
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid hsl(220, 13%, 13%);
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.add-address .btn-container .cancel-btn {
+  color: hsl(220, 13%, 13%);
+  background-color: hsl(220, 14%, 75%);
+  border-color: hsl(220, 14%, 75%);
 }
 
 .otp .form-control {
@@ -1886,4 +1941,21 @@ footer .bottom-footer .copyright-container {
   .wishlist-page .containers .product .img-container .img-cover .btn-add-to-cart button {
     padding: 8px 10px;
   }
+}
+
+.address-page .add-new-address-container {
+  text-align: center;
+  margin: 1rem 0;
+}
+.address-page .add-new-address-container button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: hsl(220, 13%, 13%);
+  color: hsl(0, 0%, 100%);
+  padding: 13px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
 }/*# sourceMappingURL=globals.css.map */
