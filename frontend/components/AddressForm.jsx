@@ -8,7 +8,6 @@ import 'react-phone-input-2/lib/style.css'
 export default function AddressForm(){
     const [country, setCountry] = useState('')
     const [region, setRegion] = useState('')
-    const [addressFormActive, setAddressFormActive] = useState(true)
     const [addressData, setAddressData] = useState({
         phone: '',
         country: '',

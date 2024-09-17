@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Link from "next/link"
 import { IoMenu, IoSearch, IoHeartOutline, IoCartOutline } from "react-icons/io5";
 import { FaRegUser } from 'react-icons/fa6';
@@ -8,24 +7,25 @@ import Nav from "./Nav";
 import Cart from './Cart';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/utils/context/auth/AuthContext';
+import { useUX } from '@/utils/context/ux/uxContext';
 
 export default function Header(){
-    const [ navActive, setNavActive ] = useState(false)
-    const [ cartActive, setCartActive ] = useState(false)
     const { session } = useAuth()
+    const { state, dispatch } = useUX()
+
     const router = useRouter()
 
     const handleCartClick = ()=> {
         if(!session){
             return router.push(`/login?callbackUrl=${encodeURIComponent(window.location.href)}`)
         }
-        setCartActive(!cartActive)
+        dispatch({type: 'TOGGLE_CART'})
     }
 
     return(
         <header className='header'>
             <div className="logo-container"> <Link href='/' className="logo">Shop</Link> </div>
-            <Nav navActive={navActive} setNavActive={setNavActive} />
+            <Nav />
             <div className="secondary-nav-menu">
                 <div className="icons-btn-login">
                     <div className="icons">
@@ -34,7 +34,7 @@ export default function Header(){
                         <IoCartOutline size={22} onClick={handleCartClick}/>
                     </div>
 
-                    {cartActive && <Cart />}
+                    {state.isCartOpen && <Cart />}
 
                     {
                         session ? 
@@ -50,9 +50,9 @@ export default function Header(){
                     }
                     
                 </div>
-                <div className="menu-bar" onClick={()=> setNavActive(true)}> <IoMenu size={25}/> </div>
+                <div className="menu-bar" onClick={()=> dispatch({type: 'TOGGLE_SIDEBAR'})}> <IoMenu size={25}/> </div>
             </div>
-            <div className={`overlay ${navActive ? 'overlay-active' : 'overlay'}`}></div>
+            <div className={`overlay ${state.isSideBarOpen ? 'overlay-active' : 'overlay'}`}></div>
         </header>
     )
 }

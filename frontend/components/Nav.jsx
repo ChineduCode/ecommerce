@@ -2,13 +2,15 @@ import { IoClose } from "react-icons/io5";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 import Link from "next/link";
 import { useState } from "react";
+import { useUX } from "@/utils/context/ux/uxContext";
 
-export default function Nav({ navActive, setNavActive }){
+export default function Nav(){
     const [ subNavActive, setSubNavActive ] = useState(false)
+    const { state, dispatch } = useUX()
 
     return(
-        <nav className={`nav ${navActive ? 'nav-active' : 'nav'}`}>
-            <div className="close-nav" onClick={()=> setNavActive(false)}> <IoClose size={25}/> </div>
+        <nav className={`nav ${state.isSideBarOpen ? 'nav-active' : 'nav'}`}>
+            <div className="close-nav" onClick={()=> dispatch({type: 'TOGGLE_SIDEBAR'})}> <IoClose size={25}/> </div>
             <ul className="nav-list">
                 <li className="link"> <Link href='/'>Home</Link> </li>
                 <ul className="link">
