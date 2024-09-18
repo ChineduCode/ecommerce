@@ -20,7 +20,7 @@ export default function Wishlist() {
     }
 
     if (state.loading) {
-        return <div> <Loading /> </div>;
+        return <div style={{width: '100%'}}> <Loading /> </div>;
     }
 
     return (

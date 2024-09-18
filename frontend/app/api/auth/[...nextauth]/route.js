@@ -66,6 +66,20 @@ export const authOptions = {
             session.user.address = token.address,
             session.accessToken = token.accessToken
 
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/profile`,{
+                headers: {'Authorization': `Bearer ${token.accessToken}`}
+            })
+            
+            const freshUser = response.data
+            session.user = {
+                id: freshUser._id,
+                firstname: freshUser.firstname,
+                lastname: freshUser.lastname,
+                email: freshUser.email,
+                phone: freshUser.phone,
+                address: freshUser.address
+            }
+
             return session
         }
     }

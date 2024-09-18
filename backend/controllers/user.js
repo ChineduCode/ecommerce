@@ -138,6 +138,8 @@ const getUserProfile = asyncHandler(async (req, res)=> {
             firstname: user.firstname,
             lastname: user.lastname,
             email: user.email,
+            phone: user.phone,
+            address: user.addresses
         })
 
     }catch (error){

@@ -1943,8 +1943,12 @@ footer .bottom-footer .copyright-container {
   }
 }
 
+.address-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .address-page .add-new-address-container {
-  text-align: center;
   margin: 1rem 0;
 }
 .address-page .add-new-address-container button {
@@ -1959,7 +1963,7 @@ footer .bottom-footer .copyright-container {
   cursor: pointer;
   border: none;
 }
-.address-page .container .empty-address {
-  margin: 1rem 0;
+.address-page .container .address-empty {
+  margin: 3rem 0 1rem;
   text-align: center;
 }/*# sourceMappingURL=globals.css.map */

@@ -4,10 +4,13 @@ import { useState } from 'react'
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
+import axios from 'axios';
+import { useAuth } from '@/utils/context/auth/AuthContext';
 
 export default function AddressForm(){
     const [country, setCountry] = useState('')
     const [region, setRegion] = useState('')
+    const { session, update } = useAuth()
     const [addressData, setAddressData] = useState({
         phone: '',
         country: '',
@@ -26,7 +29,22 @@ export default function AddressForm(){
         })
     }
 
+    const handlePhoneChange = (value, country) => {
+        setAddressData({
+            ...addressData,
+            phone: value
+        })
+
+        setCountry(country.name)
+        setRegion('')
+        setAddressData({
+            ...addressData,
+            country: country.name
+        })
+    }
+
     const handleCountryChange = (val) => {
+        
         setCountry(val);
         setRegion('');
         setAddressData({
@@ -63,7 +81,7 @@ export default function AddressForm(){
                     <PhoneInput
                         country={'us'}
                         value={addressData.phone}
-                        onChange={(value)=> setAddressData({...addressData, phone: value})}
+                        onChange={(value, country)=> handlePhoneChange(value, country)}
                         inputProps={{
                             type: 'tel',
                             name: 'phone',
