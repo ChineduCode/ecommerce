@@ -20,7 +20,11 @@ export default function Address(){
                 </button>
             </div>
             <div className="container">
-                {session?.address}
+                {session?.addresses?.length > 0 ?
+                    <div className="address"></div>
+                    :
+                    <div className="address-empty">Your Address is Empty</div>
+                }
             </div>
             { state.isModalOpen && <AddressForm /> }
         </div>

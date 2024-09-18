@@ -62,7 +62,7 @@ export default function Footer(){
                         <li><Link href='/profile'>My Account</Link></li>
                         <li><Link href='/login'>Login</Link></li>
                         <li><Link href='/cart'>My Cart</Link></li>
-                        <li><Link href='/wishlist'>My Wishlist</Link></li>
+                        <li><Link href='/profile/wishlist'>My Wishlist</Link></li>
                         <li><Link href='/checkout'>Checkout</Link></li>
                     </ul>
                 </div>

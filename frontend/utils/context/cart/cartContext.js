@@ -45,6 +45,7 @@ export const CartProvider = ({children}) => {
         dispatch({ type: 'LOADING' })
         try {
             const data = await addToCart(productId, qty)
+            console.log(data)
             dispatch({ type: 'ADD_TO_CART', payload: data })
         } catch (error) {
             dispatch({ type: 'ERROR', payload: error.response.data.message })

@@ -35,6 +35,11 @@ const addToCart = asyncHandler(async (req, res)=> {
             userCart.cartItems.unshift({ product: productId, quantity: qty })
             await userCart.save()
 
+            await userCart.populate({
+                path: 'cartItems.product',
+                select: 'name image price'
+            })
+
             return res.status(201).json({message: 'Item successfully added to cart', cart: userCart})
 
         }else {
@@ -43,8 +48,13 @@ const addToCart = asyncHandler(async (req, res)=> {
                 user: user._id,
                 cartItems: [{ product: product._id, quantity: qty }]
             })
-
             await newCart.save()
+            
+            await newCart.populate({
+                path: 'cartItems.product',
+                select: 'name image price'
+            })
+
             return res.status(201).json({message: 'Item successfully added to cart', cart: newCart});
         }
         

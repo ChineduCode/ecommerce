@@ -1958,4 +1958,8 @@ footer .bottom-footer .copyright-container {
   font-size: 16px;
   cursor: pointer;
   border: none;
+}
+.address-page .container .empty-address {
+  margin: 1rem 0;
+  text-align: center;
 }/*# sourceMappingURL=globals.css.map */
