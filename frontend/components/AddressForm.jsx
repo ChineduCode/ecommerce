@@ -30,15 +30,11 @@ export default function AddressForm(){
     }
 
     const handlePhoneChange = (value, country) => {
-        setAddressData({
-            ...addressData,
-            phone: value
-        })
-
         setCountry(country.name)
         setRegion('')
         setAddressData({
             ...addressData,
+            phone: value,
             country: country.name
         })
     }
@@ -64,8 +60,22 @@ export default function AddressForm(){
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        // console.log(addressData)
 
-        console.log(addressData)
+        try {
+            if(!addressData.phone || !addressData.country || !addressData.state || !addressData.city || !addressData.street || !addressData.houseNo || !addressData.postalCode){
+                throw new Error('Please fill all fields')
+            }
+
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/addresses/add`,
+                {addressData},
+                {headers: {'Authorization': `Bearer ${session.accessToken}`}}
+            )
+            const data = response.data
+            console.log(data)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     const handleCancel = ()=> {
@@ -159,7 +169,7 @@ export default function AddressForm(){
                 <div className="form-control checkbox-container">
                     <input 
                         type="checkbox" 
-                        name="default" 
+                        name="defaultAddress" 
                         checked={addressData.defaultAddress}
                         onChange={(e) => setAddressData({...addressData, defaultAddress: e.target.checked})}
                         className="checkbox" 
@@ -168,6 +178,7 @@ export default function AddressForm(){
                 </div>
                 <div className="form-control btn-container">
                     <button 
+                        type='button'
                         className='cancel-btn'
                         onClick={handleCancel}
                     >

@@ -5,8 +5,9 @@ const asyncHandler = require('express-async-handler')
 const addAddress = asyncHandler( async (req, res)=> {
     try {
         const userId = req.user._id
-        const { phone, country, state, city, street, houseNo, zipCode, defaultAddress } = req.body
-        if(!phone || !country || !state || !street || !city || !houseNo || !zipCode || !defaultAddress ){
+        const { phone, country, state, city, street, houseNo, postalCode, defaultAddress } = req.body.addressData
+        console.log(req.body.addressData)
+        if(!phone || !country || !state || !street || !city || !houseNo || !postalCode){
             return res.status(404).json({message: 'All fields are required'})
         }
 
@@ -22,7 +23,7 @@ const addAddress = asyncHandler( async (req, res)=> {
             city,
             street,
             houseNo,
-            zipCode,
+            postalCode,
             defaultAddress,
             user: userId
         })
@@ -32,10 +33,13 @@ const addAddress = asyncHandler( async (req, res)=> {
         user.addresses.unshift(address._id)
         await user.save()
 
-        console.log(user)
-        console.log(address)
+        // Populate the addresses so the user object contains full address details
+        const updatedUser = await User.findById(userId).populate('addresses');
 
-        return res.status(201).json({message: 'Address added successfully', address })
+        return res.status(201).json({
+            message: 'Address added successfully',
+            user: updatedUser
+        });
 
     } catch (error) {
         console.log(error.message)

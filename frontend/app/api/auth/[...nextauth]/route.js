@@ -24,7 +24,7 @@ export const authOptions = {
                     }
                     
                 } catch (error) {
-                    // console.error('Authorization error', error.response.data.message)
+                    console.error(error.response.data.message)
                     return null
                 }
             }
@@ -50,7 +50,7 @@ export const authOptions = {
                 token.lastname = user.lastname,
                 token.email = user.email,
                 token.phone = user.phone,
-                token.address = user.address
+                token.addresses = user.addresses
                 token.accessToken = user.token
             }
 
@@ -63,7 +63,7 @@ export const authOptions = {
             session.user.lastname = token.lastname,
             session.user.email = token.email,
             session.user.phone = token.phone,
-            session.user.address = token.address,
+            session.user.addresses = token.addresses,
             session.accessToken = token.accessToken
 
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/profile`,{
@@ -77,7 +77,7 @@ export const authOptions = {
                 lastname: freshUser.lastname,
                 email: freshUser.email,
                 phone: freshUser.phone,
-                address: freshUser.address
+                addresses: freshUser.addresses
             }
 
             return session

@@ -25,7 +25,7 @@ const addressSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    zipCode: {
+    postalCode: {
         type: Number,
         required: true
     },

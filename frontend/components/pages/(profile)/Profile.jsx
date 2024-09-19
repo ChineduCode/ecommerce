@@ -15,6 +15,7 @@ export default function Profile(){
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(null)
     const [responseMsg, setResponseMsg] = useState(null)
+    const [address, setAddress] = useState(null)
     const [userInfo, setUserInfo] = useState({
         firstname: '',
         lastname: '',
@@ -33,15 +34,17 @@ export default function Profile(){
                 lastname: session.user.lastname || '',
                 email: session.user.email || '',
                 phone: session.user.phone || '',
-                address: session.user.address ? session.user.address[0] : ''
+                address: session.user.addresses ? 
+                session.user.addresses.find(address => address.defaultAddress === true) || session.user.address[0] : ''
             })
-
+        
             setInitialUserInfo({
                 firstname: session.user.firstname || '',
                 lastname: session.user.lastname || '',
                 email: session.user.email || '',
                 phone: session.user.phone || '',
-                address: session.user.address ? session.user.address[0] : ''
+                address: session.user.addresses ? 
+                session.user.addresses.find(address => address.defaultAddress === true) || session.user.address[0] : ''
             })
         }
 
@@ -168,9 +171,11 @@ export default function Profile(){
                         type="text" 
                         name="address"
                         className='address'
-                        value={userInfo.address}
+                        value={
+                            `${userInfo?.address?.houseNo || ''} ${userInfo?.address?.street || ''} ${userInfo?.address?.city || ''}`
+                        }
                         onChange={handleOnChange}
-                        disabled={edit === false}
+                        disabled //Disabled
                     />
                 </div>
                 

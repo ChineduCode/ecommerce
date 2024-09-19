@@ -128,7 +128,7 @@ const getAllUsers = asyncHandler(async (req, res)=> {
 
 const getUserProfile = asyncHandler(async (req, res)=> {
     try{
-        const user = await User.findById(req.user._id)
+        const user = await User.findById(req.user._id).populate('addresses').exec()
         if(!user){
             return res.status(404).json({ message: 'User not found' })
         }
@@ -139,7 +139,7 @@ const getUserProfile = asyncHandler(async (req, res)=> {
             lastname: user.lastname,
             email: user.email,
             phone: user.phone,
-            address: user.addresses
+            addresses: user.addresses
         })
 
     }catch (error){
