@@ -11,6 +11,7 @@ import { useEffect, useState} from "react";
 import Loading from "@/components/Loading";
 import axios from "axios";
 import { useProfile } from "@/utils/context/profile/profileContext";
+import Link from "next/link";
 
 export default function Address(){
     const { session } = useAuth()
@@ -22,7 +23,6 @@ export default function Address(){
         const setAddress = ()=> {
             if(session?.user){
                 profileDispatch({type: 'FETCH_PROFILE', payload: session.user})
-                console.log(profileState)
             }
             setLoading(false)
         }
@@ -54,12 +54,12 @@ export default function Address(){
     return(
         <div className="address-page">
             <div className="add-new-address-container">
-                <button className="add-new-address" onClick={()=> uxDispatch({type: 'TOGGLE_MODAL'})}>
-                    <Link href='#address-form'>
-                        <FaPlus />
-                        <span>Add New Address</span>
-                    </Link>
-                </button>
+                <Link href='#address-form' className="add-new-address" onClick={()=> uxDispatch({type: 'TOGGLE_MODAL'})}>
+                    <FaPlus />
+                    <span>Add New Address</span>
+                </Link>
+                {/* <button className="add-new-address" onClick={()=> uxDispatch({type: 'TOGGLE_MODAL'})}>
+                </button> */}
             </div>
             <div className="container">
                 {profileState.profile?.addresses?.length > 0 ?

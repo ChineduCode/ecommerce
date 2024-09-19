@@ -1952,22 +1952,21 @@ footer .bottom-footer .copyright-container {
 .address-page .add-new-address-container {
   margin: 1rem 0;
 }
-.address-page .add-new-address-container button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+.address-page .add-new-address-container a {
   background-color: hsl(220, 13%, 13%);
-  color: hsl(0, 0%, 100%);
-  padding: 13px 15px;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
   border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: hsl(0, 0%, 100%);
+  padding: 13px 15px;
 }
 .address-page .container {
   width: 100%;
   margin: 2rem 0;
-  background-color: hsl(0, 0%, 100%);
   padding: 1rem;
 }
 .address-page .container .addresses .address-container {
@@ -1996,7 +1995,7 @@ footer .bottom-footer .copyright-container {
   display: flex;
   align-items: center;
   gap: 5px;
-  background-color: hsl(223, 64%, 98%);
+  background-color: hsl(220, 14%, 75%);
   border-radius: 3px;
   cursor: pointer;
   font-size: 14px;
