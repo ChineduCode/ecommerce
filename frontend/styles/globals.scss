@@ -2010,6 +2010,7 @@ footer{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
     .add-new-address-container{
         margin: 1rem 0;
         button{
@@ -2027,6 +2028,47 @@ footer{
     }
 
     .container{
+        width :100%;
+        margin: 2rem 0;
+        background-color: hsl(0, 0, 100%);
+        padding: 1rem;
+        .addresses{
+            .address-container{
+                margin: 1.5rem 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                color: hsl(220, 13%, 13%);
+                .address{
+                    div{
+                        padding: 5px 0;
+                    }
+                    .name{
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+                    .phone-container{
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                    }
+                }
+                .edit-delete-container{
+                    div{
+                        padding: 7px;
+                        margin: 7px 0;
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        background-color: hsl(223, 64%, 98%);
+                        border-radius: 3px;
+                        cursor: pointer;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
         .address-empty{
             margin: 3rem 0 1rem;
             text-align: center;

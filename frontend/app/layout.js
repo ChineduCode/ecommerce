@@ -7,6 +7,7 @@ import { CartProvider } from "@/utils/context/cart/cartContext";
 import { CountProvider } from "@/utils/context/count/countcontext";
 import { ResponseProvider } from "@/utils/context/ResponseContext";
 import { UXProvider } from "@/utils/context/ux/uxContext";
+import { ProfileProvider } from "@/utils/context/profile/profileContext";
 
 const kumbh_sans = Kumbh_Sans({ subsets: ["latin"] });
 
@@ -22,17 +23,19 @@ export default function RootLayout({ children }) {
       <body className={kumbh_sans.className}>
         <Providers>
           <AuthProvider>
-            <UXProvider>
-              <CountProvider>
-                <CartProvider>
-                  <WishlistProvider>
-                    <ResponseProvider>
-                      {children}
-                    </ResponseProvider>
-                  </WishlistProvider>
-                </CartProvider>
-              </CountProvider>
-            </UXProvider>
+            <ProfileProvider>
+              <UXProvider>
+                <CountProvider>
+                  <CartProvider>
+                    <WishlistProvider>
+                      <ResponseProvider>
+                        {children}
+                      </ResponseProvider>
+                    </WishlistProvider>
+                  </CartProvider>
+                </CountProvider>
+              </UXProvider>
+            </ProfileProvider>
           </AuthProvider>
         </Providers>
       </body>

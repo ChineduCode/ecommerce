@@ -7,13 +7,17 @@ import 'react-phone-input-2/lib/style.css'
 import axios from 'axios';
 import { useAuth } from '@/utils/context/auth/AuthContext';
 import { useUX } from '@/utils/context/ux/uxContext';
+import { useProfile } from '@/utils/context/profile/profileContext';
 
 export default function AddressForm(){
     const [country, setCountry] = useState('')
     const [region, setRegion] = useState('')
     const { session } = useAuth()
-    const { dispatch } = useUX()
-    const [addressData, setAddressData] = useState({
+    const { dispatch: uxDispatch } = useUX()
+    const { state: profileState, dispatch: profileDispatch } = useProfile()
+
+    // Set default state for address form data
+    const initialAddressData = {
         phone: '',
         country: '',
         state: '',
@@ -22,8 +26,9 @@ export default function AddressForm(){
         houseNo: '',
         postalCode: '',
         defaultAddress: false
-    })
-    const initialAddressData = {}
+    }
+
+    const [addressData, setAddressData] = useState(initialAddressData)
 
     const handleOnChange = (e) => {
         setAddressData({
@@ -33,17 +38,18 @@ export default function AddressForm(){
     }
 
     const handlePhoneChange = (value, country) => {
-        setCountry(country.name)
+        // Safeguard if country.name is undefined
+        const countryName = country?.name || '';
+        setCountry(countryName)
         setRegion('')
         setAddressData({
             ...addressData,
             phone: value,
-            country: country.name
+            country: countryName
         })
     }
 
     const handleCountryChange = (val) => {
-        
         setCountry(val);
         setRegion('');
         setAddressData({
@@ -52,7 +58,6 @@ export default function AddressForm(){
         });
     };
 
-    // Handle region/state change
     const handleRegionChange = (val) => {
         setRegion(val);
         setAddressData({
@@ -63,33 +68,35 @@ export default function AddressForm(){
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // console.log(addressData)
 
         try {
+            // Ensure all required fields are filled
             if(!addressData.phone || !addressData.country || !addressData.state || !addressData.city || !addressData.street || !addressData.houseNo || !addressData.postalCode){
                 throw new Error('Please fill all fields')
             }
 
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/addresses/add`,
-                {addressData},
-                {headers: {'Authorization': `Bearer ${session.accessToken}`}}
+                { addressData },
+                { headers: {'Authorization': `Bearer ${session.accessToken}`} }
             )
             
             if(response.data){
-                setAddressData(initialAddressData)
+                profileDispatch({type: 'UPDATE_PROFILE', payload: response.data})
+                setAddressData(initialAddressData) // Reset the form
             }
 
         } catch (error) {
             console.error(error)
+            // Add UI feedback for errors (Optional)
         }
     }
 
-    const handleCancel = ()=> {
-        dispatch({type: 'TOGGLE_MODAL'})
+    const handleCancel = () => {
+        uxDispatch({type: 'TOGGLE_MODAL'})
     }
 
-    return(
-        <form className="add-address" onSubmit={handleSubmit}>
+    return (
+        <form className="add-address" onSubmit={handleSubmit} id='address-form'>
             <h2 className="heading">Add a new address</h2>
             <div className="container">
                 <div className="form-control">
@@ -104,22 +111,13 @@ export default function AddressForm(){
                             required: true,
                             className: 'phone'
                         }}
-                        isValid={(value, country) => {
-                            if (value.match(/12345/)) {
-                                return 'Invalid value: '+value+', '+country.name;
-                            } else if (value.match(/1234/)) {
-                                return false;
-                            } else {
-                                return true;
-                            }
-                        }}
                     />
                 </div>
                 <div className="form-control">
                     <label>Country</label>
                     <CountryDropdown
                         value={country}
-                        onChange={(val) => handleCountryChange(val)}
+                        onChange={handleCountryChange}
                         defaultOptionLabel="Select a country"
                     />
                 </div>
@@ -128,7 +126,7 @@ export default function AddressForm(){
                     <RegionDropdown
                         country={country}
                         value={region}
-                        onChange={(val) => handleRegionChange(val)}
+                        onChange={handleRegionChange}
                         defaultOptionLabel="Select a state/region"
                     />
                 </div>
@@ -153,7 +151,7 @@ export default function AddressForm(){
                     />
                 </div>
                 <div className="form-control">
-                    <label htmlFor="flat, house no, building, company, apartment">Flat, House no., Building, Company, Apartment</label>
+                    <label htmlFor="houseNo">Flat, House no., Building, Company, Apartment</label>
                     <input 
                         type="number" 
                         name="houseNo"
@@ -163,7 +161,7 @@ export default function AddressForm(){
                     />
                 </div>
                 <div className="form-control">
-                    <label htmlFor="postalcode">Postal Code</label>
+                    <label htmlFor="postalCode">Postal Code</label>
                     <input 
                         type="text" 
                         name="postalCode"

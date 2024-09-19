@@ -4,6 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa6";
 import { useState, useEffect } from 'react'
 import { useAuth } from "@/utils/context/auth/AuthContext";
+import { useProfile } from "@/utils/context/profile/profileContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import ResponseMsg from "@/components/ResponseMsg";
@@ -11,11 +12,11 @@ import Loader from "@/components/Loader";
 
 export default function Profile(){
     const { session, update } = useAuth()
+    const { state, dispatch } = useProfile()
     const [edit, setEdit] = useState(false)
     const [loading, setLoading] = useState(false)
     const [status, setStatus] = useState(null)
     const [responseMsg, setResponseMsg] = useState(null)
-    const [address, setAddress] = useState(null)
     const [userInfo, setUserInfo] = useState({
         firstname: '',
         lastname: '',
@@ -46,6 +47,7 @@ export default function Profile(){
                 address: session.user.addresses ? 
                 session.user.addresses.find(address => address.defaultAddress === true) || session.user.address[0] : ''
             })
+            dispatch({type: 'FETCH_PROFILE', payload: session.user})
         }
 
     }, [session])
@@ -58,7 +60,7 @@ export default function Profile(){
         }));
     };
 
-    const handleSubmit = async (e) => {
+    const handleUpdate = async (e) => {
         e.preventDefault()
         setLoading(true)
         
@@ -87,6 +89,7 @@ export default function Profile(){
                 setStatus('success')
                 setResponseMsg(response.data.message)
                 update(updatedFields)
+                dispatch({type: 'UPDATE_PROFILE', payload: response.data})
                 router.refresh()
             }
 
@@ -100,7 +103,7 @@ export default function Profile(){
     }
 
     return(
-        <form className="profile-info-page" id='profile' onSubmit={handleSubmit}>
+        <form className="profile-info-page" id='profile' onSubmit={handleUpdate}>
             <div className="heading">
                 <div className="profile-img-container">
                     { session?.user?.image ? 
@@ -113,7 +116,7 @@ export default function Profile(){
                     </div>
                 </div>
                 <div className="edit-btn">
-                    <button className='btn' onClick={(e)=> setEdit(!edit)} disabled={loading === true}>
+                    <button type="button" className='btn' onClick={(e)=> setEdit(!edit)} disabled={loading === true}>
                         <FaEdit size={22}/>
                         <span>Edit Profile</span>
                     </button>
@@ -181,7 +184,7 @@ export default function Profile(){
                 
                 <button 
                     type='submit' 
-                    onSubmit={handleSubmit}
+                    onSubmit={handleUpdate}
                     disabled={loading === true}
                     style={{backgroundColor: loading ? '#ccc' : null}}
                 >
