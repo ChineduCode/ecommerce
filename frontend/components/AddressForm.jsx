@@ -6,11 +6,13 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
 import axios from 'axios';
 import { useAuth } from '@/utils/context/auth/AuthContext';
+import { useUX } from '@/utils/context/ux/uxContext';
 
 export default function AddressForm(){
     const [country, setCountry] = useState('')
     const [region, setRegion] = useState('')
-    const { session, update } = useAuth()
+    const { session } = useAuth()
+    const { dispatch } = useUX()
     const [addressData, setAddressData] = useState({
         phone: '',
         country: '',
@@ -21,6 +23,7 @@ export default function AddressForm(){
         postalCode: '',
         defaultAddress: false
     })
+    const initialAddressData = {}
 
     const handleOnChange = (e) => {
         setAddressData({
@@ -71,15 +74,18 @@ export default function AddressForm(){
                 {addressData},
                 {headers: {'Authorization': `Bearer ${session.accessToken}`}}
             )
-            const data = response.data
-            console.log(data)
+            
+            if(response.data){
+                setAddressData(initialAddressData)
+            }
+
         } catch (error) {
             console.error(error)
         }
     }
 
     const handleCancel = ()=> {
-        console.log('cancelled')
+        dispatch({type: 'TOGGLE_MODAL'})
     }
 
     return(
