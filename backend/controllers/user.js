@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const generateJWT = require('../utils/generateToken')
 const generateCode = require('../utils/generateCode')
-const protect = require('../middlewares/protectRoute')
 const { 
     sendEmailVerification, 
     successEmailVerification, 
@@ -15,7 +14,7 @@ const {
 
 const registerUser = asyncHandler(async (req, res)=> {
     try {
-        const { firstname, lastname, email, phone, password, confirmPassword } = req.body;
+        const { firstname, lastname, email, phone, password, confirmPassword } = req.body.userData;
         
         if(!firstname || !lastname || !email || !phone || !password || !confirmPassword){
             return res.status(400).json({ message: 'Please fill all fields' })

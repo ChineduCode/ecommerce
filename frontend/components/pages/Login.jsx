@@ -5,6 +5,7 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import Link from "next/link";
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from "next/navigation";
+import Loader from "../Loader";
 
 export default function Login(){
     const [email, setEmail] = useState('')
@@ -13,6 +14,7 @@ export default function Login(){
     const [rememberMe, setRememberMe] = useState(false)
     const [error, setError] = useState('')
     const [status, setStatus] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const router = useRouter()
     const searchParams = useSearchParams()
@@ -20,6 +22,7 @@ export default function Login(){
     const handleSubmit = async (e)=> {
         e.preventDefault()
         setStatus('submitting')
+        setLoading(true)
 
         try {
             if(!email || !password){
@@ -52,6 +55,8 @@ export default function Login(){
         } catch (error) {
             setError(error.message)
             setStatus('failed')
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -105,11 +110,11 @@ export default function Login(){
                     </div>
 
                     <button 
-                        onClick={handleSubmit} 
                         className="btn"
-                        disabled={status === 'submitting'}
+                        disabled={status === 'submitting' || loading === true}
+                        style={{backgroundColor: loading ? '#ccc': null, padding: loading ? '12px': null}}
                     >
-                        Login
+                        {loading ? <Loader /> : 'Login'}
                     </button>
                 </form>
 

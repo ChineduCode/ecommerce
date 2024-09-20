@@ -7,6 +7,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Loader from "../Loader";
 
 export default function Signup(){
     const initialUserData = {
@@ -19,23 +20,23 @@ export default function Signup(){
     }
     const [ userData, setUserData ] = useState(initialUserData)
     const [passwordVisible, setPasswordVisible] = useState(false)
-    const [agreed_terms_conditions, setAgreed_term_conditions] = useState(false)
+    const [agreedTermsConditions, setAgreedTermsConditions] = useState(false);
     const [error, setError] = useState('')
     const [status, setStatus] = useState('')
+    const [loading, setLoading] = useState(false)
     const router = useRouter()
 
     const handleOnChange = (e)=> {
-        const { name, value } = e.target
         setUserData(prevState => ({
             ...prevState,
-            [name]: value
+            [e.target.name]: e.target.value
         }))
     }
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
         setStatus('submitting')
-
+        setLoading(true)
         try {
             if(
                 !userData.firstname || 
@@ -49,7 +50,7 @@ export default function Signup(){
             }
 
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-            if(!emailPattern.test(userDate.email)){
+            if(!emailPattern.test(userData.email)){
                 throw new Error('Invalid email address')
             }
 
@@ -61,7 +62,7 @@ export default function Signup(){
                 throw new Error('Passwords do not match')
             }
 
-            if(agreed_terms_conditions === false){
+            if(agreedTermsConditions === false){
                 throw new Error('Agree to the Terms & Conditions')
             }
 
@@ -75,7 +76,9 @@ export default function Signup(){
             
         } catch (error) {
             setStatus('failed')
-            setError(error.response.data.message)
+            setError(error.response ? error.response.data.message : error.message)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -124,20 +127,11 @@ export default function Signup(){
                         <PhoneInput
                             country={'us'}
                             value={userData.phone}
-                            onChange={handleOnChange}
+                            onChange={(value) => setUserData(prev => ({...prev, phone: value}))}
                             inputProps={{
                                 name: 'phone',
                                 required: true,
                                 className: 'phone'
-                            }}
-                            isValid={(value, country) => {
-                                if (value.match(/12345/)) {
-                                    return 'Invalid value: '+value+', '+country.name;
-                                } else if (value.match(/1234/)) {
-                                    return false;
-                                } else {
-                                    return true;
-                                }
                             }}
                         />
                     </div>
@@ -157,7 +151,7 @@ export default function Signup(){
                         <label htmlFor="confirm password">Confirm Password</label>
                         <input 
                             type={passwordVisible ? 'text' : 'password'} 
-                            name="confirm password" 
+                            name="confirmPassword" 
                             className="confirm-password" 
                             value={userData.confirmPassword}
                             onChange={handleOnChange}
@@ -169,8 +163,8 @@ export default function Signup(){
                         <input 
                             type="checkbox" 
                             name="terms & conditions" 
-                            checked={agreed_terms_conditions}
-                            onChange={(e)=> setAgreed_term_conditions(e.target.checked)}
+                            checked={agreedTermsConditions}
+                            onChange={(e)=> setAgreedTermsConditions(e.target.checked)}
                             className="terms-conditions" 
                         />
                         <span className="terms-conditions">
@@ -179,11 +173,11 @@ export default function Signup(){
                     </div>
 
                     <button 
-                        onClick={handleSubmit} 
                         className="btn"
-                        disabled={status === 'submitting'}
+                        disabled={status === 'submitting' || loading === true}
+                        style={{backgroundColor: loading ? '#ccc' : null, padding: loading ? '12px': null}}
                     >
-                        Sign Up
+                        {loading ? <Loader /> : 'Sign Up'}
                     </button>
                 </form>
 

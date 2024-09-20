@@ -138,7 +138,9 @@ body {
 }
 .login .container button, .signup .container button, .forgot-password .container button, .otp .container button, .new-password .container button {
   width: 100%;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: hsl(220, 13%, 13%);
   color: hsl(0, 0%, 100%);
   padding: 12px;
