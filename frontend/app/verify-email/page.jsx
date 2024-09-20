@@ -20,7 +20,6 @@ export default function VerifyEmail(){
                     throw new Error('Invalid verification code')
                 }
 
-                console.log(code, id)
                 const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/verify-email`,
                     { code, id }
                 )
