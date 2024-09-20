@@ -160,6 +160,36 @@ body{
     }
 }
 
+.signup-success{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    .container{
+        padding: 1.5rem;
+        background-color: hsl(0, 0, 100%);
+        color: hsl(220, 13%, 13%);
+        text-align: center;
+        box-shadow: 0 0 3px hsl(220, 14%, 75%);
+        line-height: 22px;
+        border-radius: 8px;
+    }
+}
+
+.verify-email{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    font-size: 18px;
+    color: hsl(220, 13%, 13%);
+    text-align: center;
+    a{
+        color: hsl(220, 13%, 13%);
+        text-decoration: underline;
+    }
+}
+
 .add-address{
     width: 400px;
     max-width: 100%;

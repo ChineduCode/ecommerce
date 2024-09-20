@@ -18,10 +18,10 @@ export default function Nav(){
                         <span>Shop</span> { !subNavActive && <FaAngleDown /> } { subNavActive && <FaAngleUp /> }
                     </div>
                     <div className={`shop-link-mobile ${subNavActive ? 'shop-mobile-active' : 'shop-link-mobile'}`}>
-                        <li className="link"> <Link href='/shop/men'>Men</Link> </li>
-                        <li className="link"> <Link href='/shop/women'>Women</Link> </li>
-                        <li className="link"> <Link href='/shop/watches'>Watches</Link> </li>
-                        <li className="link"> <Link href='/shop/footwears'>Footwears</Link> </li>
+                        <li className="link"> <Link href='/shop/men/?category=men'>Men</Link> </li>
+                        <li className="link"> <Link href='/shop/women/?category=women'>Women</Link> </li>
+                        <li className="link"> <Link href='/shop/watches?category=wristwatch'>Watches</Link> </li>
+                        <li className="link"> <Link href='/shop/footwears/?category=footwear'>Footwears</Link> </li>
                     </div>
                 </ul>
                 <li className="link"> <Link href='/our-story'>Our Story</Link> </li>

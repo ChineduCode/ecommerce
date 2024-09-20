@@ -58,7 +58,7 @@ const registerUser = asyncHandler(async (req, res)=> {
         await user.save()
         
         //Sending the email
-        const verificationLink = `${process.env.FRONTEND_URL}/verify-email/?code=${verificationCode}`
+        const verificationLink = `${process.env.FRONTEND_URL}/verify-email/?id=${encodeURIComponent(user._id)}&code=${encodeURIComponent(verificationCode)}`;
         sendEmailVerification(firstname, email, verificationLink);
 
         return res.status(200).json({
@@ -148,11 +148,22 @@ const getUserProfile = asyncHandler(async (req, res)=> {
 
 const verifyUserEmail = asyncHandler(async (req, res) => {
     try {
-        const code = req.query.code
+        const {code, id} = req.query
+        if(!code || !id){
+            return res.status(400).json({message: 'Invalid verification link'})
+        }
         
-        const user = await User.findOne({ code })
+        const user = await User.findById(id)
         if(!user){
-            return res.status(404).json({ message: 'Invalid verification code' })
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        if(user.isVerified){
+            return res.status(409).json({message: 'User is already verified'})
+        }
+
+        if(user.verificationCode !== code){
+            return res.status(400).json({message: 'Invalid verification code'})
         }
 
         user.isVerified = true
@@ -162,9 +173,10 @@ const verifyUserEmail = asyncHandler(async (req, res) => {
         const loginLink = `${process.env.FRONTEND_URL}/login`
         await successEmailVerification(user.firstname, user.email, loginLink)
 
-        return res.status(200).json({ message: 'Email verified' })
+        return res.status(200).json({ message: 'Email succesfully verified' })
 
     } catch (error) {
+        console.log(error.message)
         return res.status(500).json({ message: 'Internal server error' })
     }
 })

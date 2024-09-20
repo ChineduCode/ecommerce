@@ -22,7 +22,7 @@ export default function Signup(){
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [agreedTermsConditions, setAgreedTermsConditions] = useState(false);
     const [error, setError] = useState('')
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('success')
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
@@ -70,8 +70,7 @@ export default function Signup(){
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/register`, { userData })
             if(response.data){
                 setUserData(initialUserData)
-
-                router.push('/login')
+                setStatus('success')
             }
             
         } catch (error) {
@@ -80,6 +79,10 @@ export default function Signup(){
         } finally {
             setLoading(false)
         }
+    }
+
+    if(status === 'success'){
+        return <SignUpSuccess />
     }
 
     return(
@@ -184,6 +187,18 @@ export default function Signup(){
                 <div className="signup-link">
                     <span>Already have an account ?</span>&nbsp; <Link href='/login'>Log in</Link>
                 </div>
+            </div>
+        </div>
+    )
+}
+
+
+const SignUpSuccess = ()=> {
+    return (
+        <div className="signup-success">
+            <div className="container">
+                <div className="text">You have successfully registered!</div>
+                <p>Please check your email to verify your account.</p>
             </div>
         </div>
     )
