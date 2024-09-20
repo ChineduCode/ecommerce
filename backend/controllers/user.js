@@ -148,7 +148,7 @@ const getUserProfile = asyncHandler(async (req, res)=> {
 
 const verifyUserEmail = asyncHandler(async (req, res) => {
     try {
-        const {code, id} = req.query
+        const {code, id} = req.body
         if(!code || !id){
             return res.status(400).json({message: 'Invalid verification link'})
         }

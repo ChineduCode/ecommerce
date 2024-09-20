@@ -22,7 +22,7 @@ export default function VerifyEmail(){
 
                 console.log(code, id)
                 const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/verify-email`,
-                    {params: { code, id }}
+                    { code, id }
                 )
 
                 if(response.data){
