@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { useSearchParams } from "next/navigation"
 import axios from "axios"
 import Loading from "@/components/Loading"
 import Link from "next/link"
@@ -9,13 +8,14 @@ import Link from "next/link"
 export default function VerifyEmail(){
     const [loading, setLoading] = useState(true)
     const [responseMsg, setResponseMsg] = useState(null)
-    const searchParams = useSearchParams()
 
     useEffect(()=> {
         const verifyEmail = async () => {
             try {
-                const code = searchParams.get('code')
-                const id = searchParams.get('id')
+                const params = new URLSearchParams(window.location.search)
+                const code = params.get('code')
+                const id = params.get('id')
+
                 if(!code || !id){
                     throw new Error('Invalid verification code')
                 }
@@ -26,7 +26,7 @@ export default function VerifyEmail(){
                 )
 
                 if(response.data){
-                    setResponseMsg(response.data)
+                    setResponseMsg(response.data.message)
                 }
                 
             } catch (error) {
@@ -39,7 +39,7 @@ export default function VerifyEmail(){
 
         verifyEmail()
 
-    }, [searchParams])
+    }, [])
 
     if(loading) return <div style={{textAlign: 'center', padding: '2rem'}}> <Loading /> </div>
 

@@ -5,7 +5,6 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import Link from "next/link";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-import { useRouter } from "next/navigation";
 import axios from "axios";
 import Loader from "../Loader";
 
@@ -22,9 +21,8 @@ export default function Signup(){
     const [passwordVisible, setPasswordVisible] = useState(false)
     const [agreedTermsConditions, setAgreedTermsConditions] = useState(false);
     const [error, setError] = useState('')
-    const [status, setStatus] = useState('success')
+    const [status, setStatus] = useState('')
     const [loading, setLoading] = useState(false)
-    const router = useRouter()
 
     const handleOnChange = (e)=> {
         setUserData(prevState => ({

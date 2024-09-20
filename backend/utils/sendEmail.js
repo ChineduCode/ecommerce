@@ -137,7 +137,7 @@ const successEmailVerification = async (firstname, email, loginLink)=> {
                     <p>Your email address has been successfully verified. You can now access all the features of our platform.</p>
                     <p><a href="${loginLink}">Login to Your Account</a></p>
                     <p>If you did not verify your email, please contact our support team.</p>
-                    <p>Best regards,<br>Your Company Name</p>
+                    <p>Best regards,<br>Ecommerce Shop</p>
                 </div>
             </body>
             </html>

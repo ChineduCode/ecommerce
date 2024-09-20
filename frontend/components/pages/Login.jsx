@@ -4,7 +4,7 @@ import { useState } from "react"
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import Link from "next/link";
 import { signIn } from 'next-auth/react'
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Loader from "../Loader";
 
 export default function Login(){
@@ -17,7 +17,6 @@ export default function Login(){
     const [loading, setLoading] = useState(false)
 
     const router = useRouter()
-    const searchParams = useSearchParams()
 
     const handleSubmit = async (e)=> {
         e.preventDefault()
@@ -46,7 +45,8 @@ export default function Login(){
                 setPassword('')
                 setStatus('success')
 
-                const callbackUrl = searchParams.get('callbackUrl') || '/';
+                const params = new URLSearchParams(window.location.search);
+                const callbackUrl = params.get('callbackUrl') || '/';
                 router.push(callbackUrl);
             }else{
                 throw new Error('Invalid credentials')
