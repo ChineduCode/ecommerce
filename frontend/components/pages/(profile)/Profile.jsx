@@ -35,8 +35,8 @@ export default function Profile(){
                 lastname: session.user.lastname || '',
                 email: session.user.email || '',
                 phone: session.user.phone || '',
-                address: session.user.addresses ? 
-                session.user.addresses.find(address => address.defaultAddress === true) || session.user.address[0] : ''
+                address: session.user.addresses && session.user.addresses.length > 0
+                ? session.user.addresses.find(address => address.defaultAddress === true) || session.user.address[0] : ''
             })
         
             setInitialUserInfo({
