@@ -1735,6 +1735,9 @@ footer{
                         font-size: 22px;
                         font-weight: 600;
                     }
+                    .email{
+                        text-wrap: wrap;
+                    }
                 }
             }
             .links{
@@ -1783,10 +1786,14 @@ footer{
                 background-color: hsl(0, 0, 100%);
                 .profile-info-container{
                     flex-direction: row;
+                    flex-wrap: wrap;
                     border-bottom: 1px solid hsl(220, 14%, 75%);
                     padding-bottom: 1.5rem;
+                    text-align: center;
+                    .profile-img-container{margin: auto;}
                     .profile-info{
-                        text-align: justify;
+                        //text-align: justify;
+                        margin: auto;
                     }
                 }
                 .links{

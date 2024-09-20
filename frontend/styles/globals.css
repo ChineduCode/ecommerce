@@ -1696,6 +1696,9 @@ footer .bottom-footer .copyright-container {
   font-size: 22px;
   font-weight: 600;
 }
+.profile-page-layout .profile-container aside .profile-info-container .profile-info .email {
+  text-wrap: wrap;
+}
 .profile-page-layout .profile-container aside .links {
   margin-top: 1rem;
   padding: 1rem;
@@ -1742,11 +1745,16 @@ footer .bottom-footer .copyright-container {
   }
   .profile-page-layout .profile-container aside .profile-info-container {
     flex-direction: row;
+    flex-wrap: wrap;
     border-bottom: 1px solid hsl(220, 14%, 75%);
     padding-bottom: 1.5rem;
+    text-align: center;
+  }
+  .profile-page-layout .profile-container aside .profile-info-container .profile-img-container {
+    margin: auto;
   }
   .profile-page-layout .profile-container aside .profile-info-container .profile-info {
-    text-align: justify;
+    margin: auto;
   }
   .profile-page-layout .profile-container aside .links {
     padding: 0;
