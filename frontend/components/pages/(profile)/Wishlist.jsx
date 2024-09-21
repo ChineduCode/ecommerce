@@ -9,7 +9,7 @@ import ResponseMsg from "@/components/ResponseMsg";
 
 export default function Wishlist() {
     const { state: wishlistState, loadWishlist, removeItemFromWishlist } = useWishlist();
-    const { addItemToCart } = useCart()
+    const { state: cartState, addItemToCart } = useCart()
 
     useEffect(() => {
         loadWishlist();
@@ -67,6 +67,7 @@ export default function Wishlist() {
                 )}
             </div>
             { wishlistState.responseMsg && <ResponseMsg /> }
+            {/* { cartState.responseMsg && <ResponseMsg /> } */}
         </div>
     );
 }
