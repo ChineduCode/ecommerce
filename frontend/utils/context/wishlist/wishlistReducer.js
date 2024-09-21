@@ -19,7 +19,7 @@ export const wishlistReducer = (state, action) => {
         case REMOVE_FROM_WISHLIST:
             return { 
                 ...state, 
-                items: action.payload.wishlist.wishlistItems,
+                items: action.payload.wishlist?.wishlistItems,
                 responseMsg: action.payload.message,
                 loading: false,
                 error: null

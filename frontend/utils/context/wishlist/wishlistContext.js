@@ -6,7 +6,7 @@ import { fetchWishlist, addToWishlist, removeFromWishlist } from './wishlistServ
 
 const initialState = {
     items: [],
-    loading: false,
+    loading: true,
     responseMsg: null,
     error: null
 }

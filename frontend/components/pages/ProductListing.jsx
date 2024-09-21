@@ -28,7 +28,7 @@ export default function ProductListing() {
                 }
                 const response = await axios.get(url, {params})
                 setProducts(response.data)
-                console.log(products)
+
             } catch (error) {
                 console.error(error)
             } finally {

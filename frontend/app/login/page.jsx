@@ -5,7 +5,11 @@ import { redirect } from "next/navigation"
 
 export default async function LoginPage(){
     const session = await getServerSession(authOptions)
-    if(session) redirect('/')
+
+    const params = new URLSearchParams(window.location.search)
+    const callbackUrl = params.get('callbackUrl' || '/')
+
+    if(session) redirect(callbackUrl)
     
     return(
         <Login />

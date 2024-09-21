@@ -1,6 +1,7 @@
 const Cart = require('../models/cart')
 const Product = require('../models/product')
 const User = require('../models/user')
+const Wishlist = require('../models/wishlist')
 const asyncHandler = require('express-async-handler')
 
 const addToCart = asyncHandler(async (req, res)=> {
@@ -14,13 +15,16 @@ const addToCart = asyncHandler(async (req, res)=> {
         if(!productId || !qty){
             return res.status(400).json({ message: 'All fields are required' })
         }
+
+        const [user, product] = await Promise.all([
+            User.findById(userId),
+            Product.findById(productId)
+        ])
        
-        const user = await User.findById(userId)
         if(!user){
             return res.status(404).json({ message: 'User not found' })
         }
 
-        const product = await Product.findById(productId)
         if(!product){
             return res.status(404).json({ message: 'Product not found' })
         }
@@ -39,8 +43,23 @@ const addToCart = asyncHandler(async (req, res)=> {
                 path: 'cartItems.product',
                 select: 'name image price'
             })
+            
+            //Remove the item from wishlist if it exists
+            const wishlist = await Wishlist.findOneAndUpdate(
+                { user: userId },
+                { $pull: { wishlistItems: productId }},
+                { new: true }
+            )
+            .populate({
+                path: 'wishlistItems',
+                select: 'name image price brand'
+            })
 
-            return res.status(201).json({message: 'Item successfully added to cart', cart: userCart})
+            return res.status(201).json({
+                message: 'Item successfully added to cart',
+                cart: userCart,
+                wishlist: wishlist || null
+            })
 
         }else {
             //if no cart exist for the user
@@ -55,7 +74,22 @@ const addToCart = asyncHandler(async (req, res)=> {
                 select: 'name image price'
             })
 
-            return res.status(201).json({message: 'Item successfully added to cart', cart: newCart});
+            //Remove the item from wishlist if it exists and return it
+            const wishlist = await Wishlist.findOneAndUpdate(
+                { user: userId },
+                { $pull: { wishlistItems: productId }},
+                { new: true }
+            )
+            .populate({
+                path: 'wishlistItems',
+                select: 'name image price brand'
+            })
+
+            return res.status(201).json({
+                message: 'Item successfully added to cart',
+                cart: newCart,
+                wishlist: wishlist || null
+            })
         }
         
     } catch (error){
@@ -104,8 +138,8 @@ const deleteItem = asyncHandler(async (req, res) => {
 
         let updatedCart = await Cart.findOneAndUpdate(
             { user: userId },
-            { $pull: { cartItems: { _id: itemId } } }, // Use $pull to remove the item from the array
-            { new: true } // Return the modified document
+            { $pull: { cartItems: { _id: itemId } } },
+            { new: true }
         )
         .populate({
             path: 'cartItems.product',
