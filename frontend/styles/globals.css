@@ -453,14 +453,14 @@ header .nav-active {
 header .secondary-nav-menu {
   display: flex;
   align-items: center;
-  gap: 35px;
+  gap: 30px;
 }
 header .secondary-nav-menu .icons-btn-login {
   display: flex;
   align-items: center;
 }
 header .secondary-nav-menu .icons {
-  margin-right: 30px;
+  margin-right: 25px;
 }
 header .secondary-nav-menu .icons svg {
   margin: 0 5px;
