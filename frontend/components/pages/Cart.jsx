@@ -10,7 +10,7 @@ import { useCart } from "@/utils/context/cart/cartContext";
 
 export default function Cart(){
     const { state, loadCart, removeItemFromCart } = useCart()
-    const [coupon, setCoupon] = useState('')
+    const [coupon, setCoupon] = useState('FLAT50')
 
     useEffect(()=> {
         loadCart()
