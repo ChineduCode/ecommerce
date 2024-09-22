@@ -38,28 +38,32 @@ export default function Cart(){
                     <div className="container">
                         <div className="heading">You have {state.totalQty} items in your cart</div>
                         {state.items.map((cartItem, index) => (
-                            <div className="item-content" key={index}>
-                                <div className="product-details">
-                                    <div className="img-container">
-                                        <img src={cartItem.product.image} alt={cartItem.product.name} />
-                                    </div>
+                            <div className="product-details" key={index}>
+                                <div className="img-container">
+                                    <img src={cartItem.product.image} alt={cartItem.product.name} />
+                                </div>
+                                <div className="details-container">
                                     <div className="detail">
                                         <div className="name">{cartItem.product.name}</div>
                                         <div className="brand">{cartItem.product.brand}</div>
-                                        <div className="rating">
+                                        <div className="rating-container">
                                             <span>{cartItem.product.rating}</span>
                                             <Rating rating={cartItem.product.rating}/>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="count-price-remove-container">
-                                    <div className="price"> 
-                                        <span className="qty">{cartItem.quantity}</span>
-                                        <span className="times">x</span>
-                                        <span className="selling-price">${cartItem.product.price}</span>
+
+                                    <div className="count-price-remove-container">
+                                        <div className="price-container">
+                                            <div className="price"> 
+                                                <span className="qty">{cartItem.quantity}</span>
+                                                <span className="times">x</span>
+                                                <span className="selling-price">${cartItem.product.price}</span>
+                                            </div>
+                                            <div className="sum-price">$20</div>
+                                        </div>
+                                        <Count />
+                                        <div className="delete-container"> <TbTrash size={22} onClick={(e)=> handleDelete(cartItem._id)}/> </div>
                                     </div>
-                                    <Count />
-                                    <div className="delete-container"> <TbTrash size={22} onClick={(e)=> handleDelete(cartItem._id)}/> </div>
                                 </div>
                             </div>
                         ))}
