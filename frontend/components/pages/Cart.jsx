@@ -26,7 +26,7 @@ export default function Cart(){
         console.log(e.target)
     }
 
-    if(state.loading) return <Loading />
+    if(state.loading) return <div style={{padding: '8rem'}}> <Loading /> </div>
 
     return(
         <main className="cart-page">
