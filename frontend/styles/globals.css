@@ -1764,7 +1764,7 @@ footer .bottom-footer .copyright-container {
 .cart-page .cart-container .container .product-details .details-container .count-price-remove-container .delete-container {
   position: absolute;
   right: 0.7rem;
-  top: 2rem;
+  top: 4rem;
   color: orangered;
 }
 .cart-page .cart-container .container .product-details .details-container .count-price-remove-container svg {
