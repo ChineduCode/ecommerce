@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler')
 
 const getAllProduct = asyncHandler( async (req, res) => {
     try {
-        const products = await Product.find({})
+        const products = await Product.find({}).lean()
         return res.json(products)
         
     } catch (error) {
@@ -15,7 +15,7 @@ const getAllProduct = asyncHandler( async (req, res) => {
 const getProduct = asyncHandler( async (req, res) => {
     try {
         const id = req.params.id
-        const product = await Product.findById(id)
+        const product = await Product.findById(id).lean()
         if(!product){
             return res.status(404).json({message: 'Product not found'})
         }
@@ -77,7 +77,7 @@ const getProductCategory = asyncHandler( async (req, res)=> {
                 break;
         }
 
-        const productCategory = await Product.find(query)
+        const productCategory = await Product.find(query).lean()
         if(productCategory.length === 0){
             return res.status(404).json({ message: 'Products not found' })
         }

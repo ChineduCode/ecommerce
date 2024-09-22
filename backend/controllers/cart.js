@@ -7,34 +7,24 @@ const asyncHandler = require('express-async-handler')
 const addToCart = asyncHandler(async (req, res)=> {
     try{
         const userId = req.user?._id
-        if(!userId){
-            return res.status(401).json({ message: 'User not authenticated' })
-        }
+        if(!userId) return res.status(401).json({ message: 'User not authenticated' })
 
         const { productId, qty } = req.body
-        if(!productId || !qty){
-            return res.status(400).json({ message: 'All fields are required' })
-        }
+        if(!productId || !qty) return res.status(400).json({ message: 'All fields are required' })
 
         const [user, product] = await Promise.all([
             User.findById(userId),
             Product.findById(productId)
         ])
        
-        if(!user){
-            return res.status(404).json({ message: 'User not found' })
-        }
+        if(!user) return res.status(404).json({ message: 'User not found' })
 
-        if(!product){
-            return res.status(404).json({ message: 'Product not found' })
-        }
+        if(!product) return res.status(404).json({ message: 'Product not found' })
 
         let userCart = await Cart.findOne({user: user._id})
         if(userCart){
             const itemExist = userCart.cartItems.find(item => item.product.toString() === productId)
-            if(itemExist){
-                return res.status(400).json({ message: 'Item already exist in cart'})
-            }
+            if(itemExist) return res.status(400).json({ message: 'Item already exist in cart'})
 
             userCart.cartItems.unshift({ product: productId, quantity: qty })
             await userCart.save()
@@ -95,20 +85,14 @@ const addToCart = asyncHandler(async (req, res)=> {
 const getUserCart = asyncHandler(async (req, res)=> {
     try{
         const userId = req.user?._id
-        if(!userId){
-            return res.status(401).json({ message: 'User not authenticated' })
-        }
+        if(!userId) return res.status(401).json({ message: 'User not authenticated' })
 
         const user = await User.findById(userId)
-        if(!user){
-            return res.status(404).json({message: 'User not found'})
-        }
+        if(!user) return res.status(404).json({message: 'User not found'})
 
         const cart = await Cart.findOne({ user: userId }).populate('cartItems.product')
         
-        if(!cart){
-            return res.status(404).json({ message: 'Cart is empty'})
-        }
+        if(!cart) return res.status(404).json({ message: 'Cart is empty'})
         
         return res.status(200).json(cart)
 
@@ -121,9 +105,7 @@ const getUserCart = asyncHandler(async (req, res)=> {
 const deleteItem = asyncHandler(async (req, res) => {
     try {
         const userId = req.user._id;
-        if(!userId){
-            return res.status(401).json({message: 'User not authenticated'})
-        }
+        if(!userId) return res.status(401).json({message: 'User not authenticated'})
         
         const { itemId } = req.body;
 
@@ -134,9 +116,7 @@ const deleteItem = asyncHandler(async (req, res) => {
         )
         .populate('cartItems.product')
 
-        if (!updatedCart) {
-            return res.status(404).json({ message: 'User cart not found' });
-        }
+        if (!updatedCart) return res.status(404).json({ message: 'User cart not found' });
 
         return res.status(200).json({ message: 'Item removed successfully', cart: updatedCart });
 

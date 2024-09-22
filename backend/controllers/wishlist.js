@@ -14,20 +14,13 @@ const addWishlist = asyncHandler(async (req, res)=> {
             Product.findById(productId)
         ])
 
-        if(!user){
-            return res.status(404).json({message: 'User not found'})
-        }
-
-        if(!product){
-            return res.status(404).json({message: 'Product not found'})
-        }
+        if(!user) return res.status(404).json({message: 'User not found'})
+        if(!product) return res.status(404).json({message: 'Product not found'})
 
         const userWishlist = await Wishlist.findOne({user: userId})
         if(userWishlist){
             const wishlistExist = userWishlist.wishlistItems.find(item => item.toString() === productId)
-            if(wishlistExist){
-                return res.status(400).json({message: 'Wishlist already exist'})
-            }
+            if(wishlistExist) return res.status(400).json({message: 'Wishlist already exist'})
 
             userWishlist.wishlistItems.unshift(productId)
             await userWishlist.save()
@@ -86,18 +79,14 @@ const getWishlist = asyncHandler(async (req, res)=> {
 
     try {
         const user = await User.findById(userId)
-        if(!user){
-            return res.status(404).json({message: 'User not found'})
-        }
+        if(!user) return res.status(404).json({message: 'User not found'})
 
         const wishlist = await Wishlist.findOne({user: userId}).populate({
             path: 'wishlistItems',
             select: 'name image price brand'
         })
         
-        if (!wishlist) {
-            return res.json({ message: 'No wishlist found. You can add a new wishlist.' });
-        }
+        if (!wishlist) return res.json({ message: 'No wishlist found. You can add a new wishlist.' });
 
         return res.status(200).json(wishlist)
 
@@ -112,9 +101,7 @@ const removeWishlist = asyncHandler(async (req, res)=> {
         const { productId } = req.body
 
         const user = await User.findById(userId)
-        if(!user){
-            return res.status(404).json({message: 'User not found'})
-        }
+        if(!user) return res.status(404).json({message: 'User not found'})
 
         const wishlist = await Wishlist.findOneAndUpdate(
             { user: userId },
@@ -126,9 +113,7 @@ const removeWishlist = asyncHandler(async (req, res)=> {
             select: 'name image price brand'
         })
 
-        if(!wishlist){
-            return res.status(404).json({message: 'Wishlist not found'})
-        }
+        if(!wishlist) return res.status(404).json({message: 'Wishlist not found'})
 
         if(wishlist.wishlistItems.length === 0){
             await Wishlist.deleteOne({ _id: wishlist._id })
@@ -143,80 +128,79 @@ const removeWishlist = asyncHandler(async (req, res)=> {
     }
 })
 
-const moveToCart = asyncHandler(async (req, res)=> {
-    try {
-        const userId = req.user._id
-        const { productId } = req.body
-        if(!productId){
-            return res.status(404).json({message: 'ProductId not found'})
-        }
+// const moveToCart = asyncHandler(async (req, res)=> {
+//     try {
+//         const userId = req.user._id
+//         const { productId } = req.body
+//         if(!productId){
+//             return res.status(404).json({message: 'ProductId not found'})
+//         }
         
-        const user = await User.findById(userId)
-        if(!user){
-            return res.status(404).json({message: 'User not found'})
-        }
+//         const user = await User.findById(userId)
+//         if(!user){
+//             return res.status(404).json({message: 'User not found'})
+//         }
 
-        const product = await Product.findById(productId)
-        if(!product){
-            return res.status(404).json({message: 'Product not found'})
-        }
+//         const product = await Product.findById(productId)
+//         if(!product){
+//             return res.status(404).json({message: 'Product not found'})
+//         }
 
-        const wishlist = await Wishlist.findOneAndUpdate(
-            { user: userId },
-            { $pull: { wishlistItems: productId }},
-            { new: true }
-        )
-        .populate({
-            path: 'wishlistItems',
-            select: 'name image price brand'
-        })
+//         const wishlist = await Wishlist.findOneAndUpdate(
+//             { user: userId },
+//             { $pull: { wishlistItems: productId }},
+//             { new: true }
+//         )
+//         .populate({
+//             path: 'wishlistItems',
+//             select: 'name image price brand'
+//         })
 
-        if(!wishlist){
-            return res.status(404).json({message: 'Wishlist not found'})
-        }
+//         if(!wishlist){
+//             return res.status(404).json({message: 'Wishlist not found'})
+//         }
 
-        let userCart = await Cart.findOne({user: user._id})
-        if(userCart){
-            const itemExist = userCart.cartItems.find(item => item.product.toString() === productId)
-            if(itemExist){
-                return res.status(400).json({ message: 'Item already exist in cart'})
-            }
+//         let userCart = await Cart.findOne({user: user._id})
+//         if(userCart){
+//             const itemExist = userCart.cartItems.find(item => item.product.toString() === productId)
+//             if(itemExist){
+//                 return res.status(400).json({ message: 'Item already exist in cart'})
+//             }
 
-            userCart.cartItems.unshift({ product: productId, quantity: qty })
-            await userCart.save()
+//             userCart.cartItems.unshift({ product: productId, quantity: qty })
+//             await userCart.save()
 
-            await userCart.populate({
-                path: 'cartItems.product',
-                select: 'name image price'
-            })
+//             await userCart.populate({
+//                 path: 'cartItems.product',
+//                 select: 'name image price'
+//             })
 
-            return res.status(201).json({message: 'Item successfully moved to cart', cart: userCart})
+//             return res.status(201).json({message: 'Item successfully moved to cart', cart: userCart})
 
-        }else {
-            //if no cart exist for the user
-            const newCart = new Cart({
-                user: user._id,
-                cartItems: [{ product: product._id }]
-            })
-            await newCart.save()
+//         }else {
+//             //if no cart exist for the user
+//             const newCart = new Cart({
+//                 user: user._id,
+//                 cartItems: [{ product: product._id }]
+//             })
+//             await newCart.save()
             
-            await newCart.populate({
-                path: 'cartItems.product',
-                select: 'name image price'
-            })
+//             await newCart.populate({
+//                 path: 'cartItems.product',
+//                 select: 'name image price'
+//             })
 
-            return res.status(201).json({message: 'Item successfully moved to cart', cart: newCart});
-        }
+//             return res.status(201).json({message: 'Item successfully moved to cart', cart: newCart});
+//         }
 
-    } catch (error) {
-        console.log(error.message)
-        return res.status(500).json({message: 'Internal server error'})
-    }
-})
+//     } catch (error) {
+//         console.log(error.message)
+//         return res.status(500).json({message: 'Internal server error'})
+//     }
+// })
 
 module.exports = {
     addWishlist,
     getWishlist,
-    removeWishlist,
-    moveToCart
+    removeWishlist
 }
