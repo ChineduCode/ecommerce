@@ -4,7 +4,7 @@ import Link from "next/link"
 import { IoMenu, IoSearch, IoHeartOutline, IoCartOutline } from "react-icons/io5";
 import { FaRegUser } from 'react-icons/fa6';
 import Nav from "./Nav";
-import Cart from './Cart';
+import MiniCart from "./MiniCart";
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/utils/context/auth/AuthContext';
 import { useUX } from '@/utils/context/ux/uxContext';
@@ -34,7 +34,7 @@ export default function Header(){
                         <IoCartOutline size={22} onClick={handleCartClick}/>
                     </div>
 
-                    {state.isCartOpen && <Cart />}
+                    {state.isCartOpen && <MiniCart />}
 
                     {
                         session ? 

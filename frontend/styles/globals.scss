@@ -654,7 +654,7 @@ header{
     }
 }
 
-.cart{
+.mini-cart{
     position: fixed;
     top: 5rem;
     left: 0px;
@@ -757,6 +757,12 @@ header{
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
+        }
+        .cart-btn{
+            background-color: hsl(0, 0, 100%);
+            color: hsl(220, 13%, 13%);
+            border: 1px solid hsl(220, 13%, 13%);
+            font-weight: 600;
         }
     }
 
@@ -1677,6 +1683,96 @@ footer{
                         gap: 15px;
                     }
                 }
+            }
+        }
+    }
+}
+
+.cart-page{
+    padding: 7rem 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .header{
+        display: none;
+        .heading{
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
+
+    .cart-container{
+        display: flex;
+        flex-direction: column;
+        .container{
+            order: 2;
+            margin: 3rem 0 1rem;
+        }
+        .footer{
+            order: 1;
+            color: hsl(220, 13%, 13%);
+            .sub-total{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 18px;
+                font-weight: 600;
+                padding: 1rem 0;
+                border-bottom: 1px solid hsl(220, 14%, 75%);
+            }
+            .coupon{
+                padding: 1rem 0;
+                label{
+                    display: inline-block;
+                    margin-bottom: 5px;
+                }
+                .control{
+                    display: flex;
+                    input{
+                        width: 90%;
+                        padding: 12px;
+                        border: 1px solid hsl(220, 13%, 13%);
+                        border-radius: 8px 0 0 8px;
+                        font-size: 16px;
+                        outline: none;
+                    }
+                    button{
+                        width: 30%;
+                        padding: 12px 15px;
+                        color: hsl(0, 0, 100%);
+                        background-color: hsl(220, 13%, 13%);
+                        border: none;
+                        border-radius: 0 8px 8px 0;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .delivery-charge{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-weight: 600;
+            }
+            .grand-total{
+                padding: 1.5rem 0;
+                font-weight: 700;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            button.checkout-btn{
+                text-align: center;
+                background-color: hsl(220, 13%, 13%);
+                color: hsl(0, 0, 100%);
+                padding: 13px;
+                display: inline-block;
+                border: none;
+                font-size: 16px;
+                width: 100%;
+                border-radius: 8px;
+                cursor: pointer;
             }
         }
     }

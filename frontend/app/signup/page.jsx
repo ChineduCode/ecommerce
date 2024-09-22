@@ -5,11 +5,7 @@ import { redirect } from "next/navigation";
 
 export default async function SignupPage(){
     const session = await getServerSession(authOptions)
-    
-    const params = new URLSearchParams(window.location.search)
-    const callbackUrl = params.get('callbackUrl' || '/')
-
-    if(session) redirect(callbackUrl)
+    if(session) redirect('/')
     
     return(
         <Signup />

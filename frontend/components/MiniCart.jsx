@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useCart } from "@/utils/context/cart/cartContext";
 import { useAuth } from "@/utils/context/auth/AuthContext";
 
-export default function Cart(){
+export default function MiniCart(){
     const { state, loadCart, removeItemFromCart } = useCart()
     const { session } = useAuth()
 
@@ -23,7 +23,7 @@ export default function Cart(){
     }
 
     return(
-        <section className="cart">
+        <section className="mini-cart">
             <div className="heading">You have {state.totalQty} items in your cart</div>
             { state.loading ? <Loader /> :
               state.items.length > 0 ?
@@ -53,6 +53,10 @@ export default function Cart(){
                             <span>Subtotal</span>
                             <span>${state.totalPrice}</span>
                         </div>
+
+                        <Link href={'/cart'}>
+                            <button className="cart-btn">View Cart</button>
+                        </Link>
 
                         <Link href='/checkout'>
                             <button className="checkout-btn">Checkout</button>
