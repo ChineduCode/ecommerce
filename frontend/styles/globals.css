@@ -794,6 +794,9 @@ footer .top-footer {
   flex-direction: column;
   padding: 1rem 1rem 2rem;
 }
+footer .top-footer .container {
+  margin: 10px 0;
+}
 footer .top-footer .container .header {
   margin: 10px 0;
   font-size: 18px;
@@ -801,6 +804,7 @@ footer .top-footer .container .header {
 }
 footer .top-footer .container li, footer .top-footer .container .description {
   margin: 8px 0;
+  font-size: 15px;
 }
 footer .top-footer .contact li {
   display: flex;
