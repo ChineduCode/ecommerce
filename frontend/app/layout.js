@@ -1,7 +1,6 @@
 import { Kumbh_Sans } from "next/font/google";
 import '@/styles/globals.css'
 import Providers from "@/components/Provider";
-import { AuthProvider } from "@/utils/context/auth/AuthContext";
 import { WishlistProvider } from "@/utils/context/wishlist/wishlistContext";
 import { CartProvider } from "@/utils/context/cart/cartContext";
 import { CountProvider } from "@/utils/context/count/countcontext";
@@ -22,21 +21,19 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={kumbh_sans.className}>
         <Providers>
-          <AuthProvider>
-            <ProfileProvider>
-              <UXProvider>
-                <CountProvider>
-                  <CartProvider>
-                    <WishlistProvider>
-                      <ResponseProvider>
-                        {children}
-                      </ResponseProvider>
-                    </WishlistProvider>
-                  </CartProvider>
-                </CountProvider>
-              </UXProvider>
-            </ProfileProvider>
-          </AuthProvider>
+          <ProfileProvider>
+            <UXProvider>
+              <CountProvider>
+                <CartProvider>
+                  <WishlistProvider>
+                    <ResponseProvider>
+                      {children}
+                    </ResponseProvider>
+                  </WishlistProvider>
+                </CartProvider>
+              </CountProvider>
+            </UXProvider>
+          </ProfileProvider>
         </Providers>
       </body>
     </html>

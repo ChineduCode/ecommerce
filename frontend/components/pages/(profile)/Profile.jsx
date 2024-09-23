@@ -3,7 +3,7 @@
 import { FaEdit } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa6";
 import { useState, useEffect } from 'react'
-import { useAuth } from "@/utils/context/auth/AuthContext";
+import { useSession } from "next-auth/react";
 import { useProfile } from "@/utils/context/profile/profileContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,7 @@ import ResponseMsg from "@/components/ResponseMsg";
 import Loader from "@/components/Loader";
 
 export default function Profile(){
-    const { session, update } = useAuth()
+    const { data: session, update } = useSession()
     const { state, dispatch } = useProfile()
     const [edit, setEdit] = useState(false)
     const [loading, setLoading] = useState(false)

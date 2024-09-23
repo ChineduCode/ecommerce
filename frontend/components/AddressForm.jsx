@@ -5,14 +5,14 @@ import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
 import axios from 'axios';
-import { useAuth } from '@/utils/context/auth/AuthContext';
+import { useSession } from 'next-auth/react';
 import { useUX } from '@/utils/context/ux/uxContext';
 import { useProfile } from '@/utils/context/profile/profileContext';
 
 export default function AddressForm(){
     const [country, setCountry] = useState('')
     const [region, setRegion] = useState('')
-    const { session } = useAuth()
+    const { data: session } = useSession()
     const { dispatch: uxDispatch } = useUX()
     const { state: profileState, dispatch: profileDispatch } = useProfile()
 

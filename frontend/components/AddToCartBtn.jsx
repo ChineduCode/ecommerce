@@ -3,13 +3,13 @@
 import { useRouter } from "next/navigation"
 import Loader from "./Loader"
 import ResponseMsg from "./ResponseMsg"
-import { useAuth } from "@/utils/context/auth/AuthContext"
 import { useCart } from "@/utils/context/cart/cartContext"
 import { useCount } from "@/utils/context/count/countcontext"
 import { useState } from "react"
+import { useSession } from "next-auth/react"
 
 export default function AddToCartBtn({ productId }){
-    const { session } = useAuth()
+    const { data: session } = useSession()
     const { state, addItemToCart } = useCart()
     const { state: { qty }} = useCount()
     const [loading, setLoading] = useState(false)

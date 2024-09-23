@@ -3,12 +3,12 @@
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import ResponseMsg from "./ResponseMsg";
 import { useWishlist } from "@/utils/context/wishlist/wishlistContext";
-import { useAuth } from "@/utils/context/auth/AuthContext";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function AddToWishlist({ productId }){
     const { state, addItemToWishlist } = useWishlist()
-    const { session } = useAuth()
+    const { data: session } = useSession()
     const router = useRouter()
 
     const handleAddToWishlist = async () => {

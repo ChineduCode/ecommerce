@@ -2,7 +2,6 @@
 
 import { useEffect, createContext, useContext, useReducer } from "react"
 import { profileReducer } from "./profileReducer"
-import { useAuth } from "../auth/AuthContext"
 
 const initialState = {
     profile: null, // Start with null and update it once session is available

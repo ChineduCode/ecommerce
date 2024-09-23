@@ -6,11 +6,11 @@ import { FaRegUser } from 'react-icons/fa6';
 import Nav from "./Nav";
 import MiniCart from "./MiniCart";
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/utils/context/auth/AuthContext';
 import { useUX } from '@/utils/context/ux/uxContext';
+import { useSession } from "next-auth/react";
 
 export default function Header(){
-    const { session } = useAuth()
+    const { data: session } = useSession()
     const { state, dispatch } = useUX()
 
     const router = useRouter()

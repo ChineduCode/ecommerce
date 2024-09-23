@@ -5,7 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import { TbTrash } from "react-icons/tb";
 import { BiPhoneCall } from "react-icons/bi";
 import { FaPlus } from 'react-icons/fa6'
-import { useAuth } from "@/utils/context/auth/AuthContext";
+import { useSession } from "next-auth/react";
 import { useUX } from "@/utils/context/ux/uxContext";
 import { useEffect, useState} from "react";
 import Loading from "@/components/Loading";
@@ -14,7 +14,7 @@ import { useProfile } from "@/utils/context/profile/profileContext";
 import Link from "next/link";
 
 export default function Address(){
-    const { session } = useAuth()
+    const { data: session } = useSession()
     const { state: profileState, dispatch: profileDispatch } = useProfile()
     const { state: uxState, dispatch: uxDispatch } = useUX()
     const [loading, setLoading] = useState(true)

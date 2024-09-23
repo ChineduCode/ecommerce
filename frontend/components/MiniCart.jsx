@@ -5,11 +5,11 @@ import { useEffect } from "react";
 import Loader from "./Loader";
 import Link from "next/link";
 import { useCart } from "@/utils/context/cart/cartContext";
-import { useAuth } from "@/utils/context/auth/AuthContext";
+import { useSession } from "next-auth/react";
 
 export default function MiniCart(){
     const { state, loadCart, removeItemFromCart } = useCart()
-    const { session } = useAuth()
+    const { data: session } = useSession()
 
     useEffect(()=> {
         if(session){
