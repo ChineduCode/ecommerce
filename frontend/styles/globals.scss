@@ -1876,6 +1876,63 @@ footer{
             }
         }
     }
+
+    @media (min-width: 768px){
+        padding: 7rem 4% 3rem;
+        .header{
+            display: block;
+        }
+
+        .cart-container{
+            flex-direction: row;
+            justify-content: center;
+            gap: 100px;
+            .container{
+                order: 1;
+            }
+            .footer{
+                order: 2;
+            }
+        }
+    }
+
+    @media (min-width: 1024px){
+        padding: 7rem 5% 4rem;
+        .cart-container{
+            justify-content: center;
+
+            .container{
+                width: 100%;
+                max-width: 50%;
+                .product-details{
+                    width: 100%;
+                    .details-container{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 100%;
+                        gap: 20px;
+                        .detail{
+                            width: 50%;
+                        }
+            
+                        .count-price-remove-container{
+                            width: 50%;
+                            .delete-container{
+                                position: unset;
+                                right: unset;
+                                top: unset;
+                                text-align: right;
+                            }
+                        }
+                    }
+                }
+            }
+            .footer{
+                width: 50%;
+            }
+        }
+    }
 }
 
 //Profile page styling

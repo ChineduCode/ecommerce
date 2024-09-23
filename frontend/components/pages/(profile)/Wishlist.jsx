@@ -3,6 +3,7 @@
 import { TbTrash } from "react-icons/tb";
 import { useEffect } from 'react';
 import Loading from "@/components/Loading";
+import Loader from "@/components/Loader"
 import { useWishlist } from "@/utils/context/wishlist/wishlistContext";
 import { useCart } from "@/utils/context/cart/cartContext";
 import ResponseMsg from "@/components/ResponseMsg";
@@ -63,11 +64,10 @@ export default function Wishlist() {
                         </div>
                     ))
                 ) : (
-                    <p>No wishlist found.</p>
+                    <p style={{textAlign: 'center', width: '100%'}}>No wishlist found.</p>
                 )}
             </div>
-            { wishlistState.responseMsg && <ResponseMsg /> }
-            {/* { cartState.responseMsg && <ResponseMsg /> } */}
+            { cartState.responseMsg && <ResponseMsg /> }
         </div>
     );
 }
