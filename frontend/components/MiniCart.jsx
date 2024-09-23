@@ -29,7 +29,7 @@ export default function MiniCart(){
               state.items.length > 0 ?
                 <>
                     <div className="container">
-                        {state.items.map((cartItem, index) => (
+                        {state.items.slice(0, 2).map((cartItem, index) => (
                             <div className="item-content" key={index}>
                                 <div className="product-details">
                                     <div className="img-container">

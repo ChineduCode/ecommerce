@@ -96,7 +96,7 @@ export default function Cart(){
                         </div>
 
                         <Link href='/checkout'>
-                            <button className="checkout-btn">Proceed to Checkout</button>
+                            <button className="checkout-btn" type="button">Proceed to Checkout</button>
                         </Link>
                     </form>
                 </div> :

@@ -64,7 +64,7 @@ export default function Login(){
         <div className="login">
             <div className="container">
                 <div className="headers">
-                    <h2 className="heading">Welcome back!!!</h2>
+                    <h2 className="heading">Welcome back!!! 👋</h2>
                     <p className="sub-heading">Please login here</p>
                 </div>
 

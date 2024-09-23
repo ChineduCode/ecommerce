@@ -18,18 +18,8 @@ export default function Nav() {
                 dispatch({ type: 'TOGGLE_SIDEBAR' });
             }
 
-            if (state.isCartOpen || state.isModalOpen || state.isSideBarOpen) {
-                if (!target.closest('.cart') && !target.closest('.nav')) {
-                    if (state.isCartOpen) {
-                        dispatch({ type: 'TOGGLE_CART' });
-                    }
-                    if (state.isModalOpen) {
-                        dispatch({ type: 'TOGGLE_MODAL' });
-                    }
-                    if(state.isSideBarOpen){
-                        dispatch({type: 'TOGGLE_SIDEBAR'})
-                    }
-                }
+            if (state.isCartOpen && (target.tagName === 'A' || target.tagName === 'BUTTON')) {
+                dispatch({ type: 'TOGGLE_CART' });
             }
         };
 
