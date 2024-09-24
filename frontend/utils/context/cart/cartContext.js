@@ -6,7 +6,7 @@ import { fetchCart, addToCart, removeFromCart } from "./cartSevices";
 
 const initialState = {
     items: [],
-    loading: true,
+    loading: false,
     responseMsg: null,
     totalQty: 0,
     totalPrice: 0,

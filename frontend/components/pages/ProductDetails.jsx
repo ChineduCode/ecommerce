@@ -13,8 +13,7 @@ export default function ProductDetails(){
     const params = useParams()
     const {id} = params
     const [product, setProduct] = useState({})
-    const [qty, setQty] = useState(0)
-    const [qtyIsZero, setQtyIsZero] = useState(false)
+    const [qty, setQty] = useState(1)
     const [loading, setLoading] = useState(true)
 
     useEffect(()=> {
@@ -63,14 +62,13 @@ export default function ProductDetails(){
                     </div>
                     <div className="description">{product.description}</div>
                     <div className="add-to-cart">
-                        <Count qty={qty} setQty={setQty} qtyIsZero={qtyIsZero} />
+                        <Count qty={qty} setQty={setQty} />
                         <div className="btn-container">
                             <div className="add-to-cart-btn">
                                 <AddToCartBtn productId={product._id} />
                             </div>
 
                             <div className="favorite-btn">
-                                {/* <button className='add-to-favourite'> <MdOutlineFavoriteBorder size={22}/> </button> */}
                                 <AddToWishlist productId={product._id}/>
                             </div>
                         </div>

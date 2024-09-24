@@ -1,22 +1,22 @@
+'use client'
+
 import { FaMinus, FaPlus } from "react-icons/fa6";
-import { useCount } from "@/utils/context/count/countcontext";
 
-export default function Count(){
-    const { state, incrementQty, decrementQty } = useCount()
+export default function Count({qty, setQty}){
 
-    const handleIncrement = ()=> {
-        incrementQty()
+    const incrementQty = ()=> {
+        setQty(qty + 1)
     }
-    
-    const handleDecrement = ()=> {
-        decrementQty()
+
+    const decrementQty = () => {
+        setQty(qty - 1)
     }
 
     return(
         <div className="count">
-            <button onClick={handleDecrement} disabled={state.qty === 0}> <FaMinus size={22} /> </button>
-            <span>{ state.qty }</span>
-            <button onClick={handleIncrement}> <FaPlus size={22} /> </button>
+            <button onClick={decrementQty} disabled={qty === 1}> <FaMinus size={22} /> </button>
+            <span>{ qty }</span>
+            <button onClick={incrementQty}> <FaPlus size={22} /> </button>
         </div>
     )
 }

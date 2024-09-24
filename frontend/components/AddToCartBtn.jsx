@@ -4,14 +4,12 @@ import { useRouter } from "next/navigation"
 import Loader from "./Loader"
 import ResponseMsg from "./ResponseMsg"
 import { useCart } from "@/utils/context/cart/cartContext"
-import { useCount } from "@/utils/context/count/countcontext"
 import { useState } from "react"
 import { useSession } from "next-auth/react"
 
 export default function AddToCartBtn({ productId }){
     const { data: session } = useSession()
     const { state, addItemToCart } = useCart()
-    const { state: { qty }} = useCount()
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
@@ -34,8 +32,8 @@ export default function AddToCartBtn({ productId }){
             <button 
                 className='btn'
                 onClick={handleAddToCart}
-                disabled={state.qty === 0 || loading  || state.loading}
-                style={{ backgroundColor: (state.loading || state.qty===0) ? '#ccc' : null }}
+                disabled={loading  || state.loading}
+                style={{ backgroundColor: state.loading ? '#ccc' : null }}
             > 
                 { loading ? <Loader /> : 'Add to Cart'}
             </button>

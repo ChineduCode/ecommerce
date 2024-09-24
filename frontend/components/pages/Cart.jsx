@@ -11,10 +11,27 @@ import { useCart } from "@/utils/context/cart/cartContext";
 export default function Cart(){
     const { state, loadCart, removeItemFromCart } = useCart()
     const [coupon, setCoupon] = useState('FLAT50')
+    const [nums, setNums] = useState([])
+    const [prices, setPrices] = useState([])
+    const [totals, setTotals] = useState([])
+    const [subTotal, setSubTotal] = useState(0)
+    const [grandTotal, setGrandTotal] = useState(0)
+    const [loading, setLoading] = useState(true)
 
     useEffect(()=> {
         loadCart()
     }, [])
+    
+    useEffect(()=> {
+        if (state.items?.length > 0) {
+            setNums(state.items.map(item => item.quantity)); // Initialize quantities
+            setPrices(state.items.map(item => item.product.price)); // Initialize prices
+            setTotals(state.items.map(item => item.quantity * item.product.price)); // Initialize totals
+            setSubTotal(state.totalPrice)
+            setGrandTotal(subTotal + 5)
+        }
+        setLoading(false)
+    },[state.items])
 
     const handleDelete = async (id)=> {
         await removeItemFromCart(id)
@@ -22,11 +39,10 @@ export default function Cart(){
 
     const handleCoupon = async (e)=> {
         e.preventDefault()
-
-        console.log(e.target)
+        return null
     }
 
-    if(state.loading) return <div style={{padding: '8rem'}}> <Loading /> </div>
+    if(loading) return <div style={{padding: '8rem'}}> <Loading /> </div>
 
     return(
         <main className="cart-page">
@@ -55,13 +71,25 @@ export default function Cart(){
                                     <div className="count-price-remove-container">
                                         <div className="price-container">
                                             <div className="price"> 
-                                                <span className="qty">{cartItem.quantity}</span>
+                                                <span className="qty">{nums[index]}</span>
                                                 <span className="times">x</span>
-                                                <span className="selling-price">${cartItem.product.price}</span>
+                                                <span className="selling-price">${prices[index]}</span>
                                             </div>
-                                            <div className="sum-price">$20</div>
+                                            <div className="sum-price">${totals[index]}</div>
                                         </div>
-                                        <Count />
+                                        <Count qty={nums[index]} setQty={(value)=> {
+                                            const updatedNums = [...nums];
+                                            updatedNums[index] = value
+                                            setNums(updatedNums)
+                                            
+                                            const newTotals = [...totals]
+                                            newTotals[index] = value * prices[index]
+                                            setTotals(newTotals)
+                                            
+                                            const newSubTotal = newTotals.reduce((sum, total) => sum + total, 0)
+                                            setSubTotal(newSubTotal)
+                                            setGrandTotal(newSubTotal + 5)
+                                        }}/>
                                         <div className="delete-container"> <TbTrash size={22} onClick={(e)=> handleDelete(cartItem._id)}/> </div>
                                     </div>
                                 </div>
@@ -71,7 +99,7 @@ export default function Cart(){
                     <form className="footer" onSubmit={handleCoupon}>
                         <div className="sub-total">
                             <span>Subtotal</span>
-                            <span>${state.totalPrice}</span>
+                            <span>${subTotal}</span>
                         </div>
                         <div className="coupon">
                             <label htmlFor="discount-code">Enter Discount Code</label>
@@ -92,11 +120,11 @@ export default function Cart(){
 
                         <div className="grand-total">
                             <span>Grand Total</span>
-                            <span>${state.totalPrice + 5}</span>
+                            <span>${grandTotal}</span>
                         </div>
 
                         <Link href='/checkout'>
-                            <button className="checkout-btn" type="button">Proceed to Checkout</button>
+                            <button className="checkout-btn" type="submit">Proceed to Checkout</button>
                         </Link>
                     </form>
                 </div> :

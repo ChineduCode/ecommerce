@@ -1837,6 +1837,11 @@ footer .bottom-footer .copyright-container {
   border-radius: 8px;
   cursor: pointer;
 }
+.cart-page .empty-cart {
+  padding: 8rem 1rem;
+  width: 100%;
+  text-align: center;
+}
 @media (min-width: 768px) {
   .cart-page {
     padding: 7rem 4% 3rem;
