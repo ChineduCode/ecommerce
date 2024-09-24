@@ -63,7 +63,7 @@ export default function Cart(){
         }
     }
 
-    if(state.loading) return <div style={{padding: '8rem'}}> <Loading /> </div>
+    if(loading) return <div style={{padding: '8rem'}}> <Loading /> </div>
 
     return(
         <main className="cart-page">
