@@ -7,6 +7,8 @@ import Rating from "../Rating";
 import Loading from "../Loading";
 import Loader from "../Loader";
 import { useCart } from "@/utils/context/cart/cartContext";
+import ResponseMsg from "../ResponseMsg";
+import { useRouter } from "next/navigation";
 
 export default function Cart(){
     const { state, loadCart, removeItemFromCart, updateUserCart } = useCart()
@@ -18,6 +20,7 @@ export default function Cart(){
     const [grandTotal, setGrandTotal] = useState(0)
     const [cart, setCart] = useState([])
     const [loading, setLoading] = useState(true)
+    const router = useRouter()
 
     useEffect(()=> {
         loadCart()
@@ -54,12 +57,13 @@ export default function Cart(){
                 quantity: nums[index],
             }));
             await updateUserCart(updatedCart)
+            router.push('/checkout')
         } catch (error) {
             console.error("Error updating cart:", error);
         }
     }
 
-    if(loading) return <div style={{padding: '8rem'}}> <Loading /> </div>
+    if(state.loading) return <div style={{padding: '8rem'}}> <Loading /> </div>
 
     return(
         <main className="cart-page">
@@ -148,9 +152,13 @@ export default function Cart(){
                             className="checkout-btn" 
                             type="submit"
                             onClick={handleCartUpdate}
+                            disabled={state.loading}
+                            style={{backgroundColor: state.loading ? '#ccc': null}}
                             >
-                                Proceed to Checkout
+                                {state.loading ? 'Updating Cart': 'Proceed to Checkout'}
                         </button>
+
+                        {state.responseMsg && <ResponseMsg />}
                     </form>
                 </div> :
 
