@@ -29,3 +29,13 @@ export const removeFromCart = async (productId) => {
 
     return response.data
 }
+
+export const updateCart = async (updatedCart) => {
+    const session = await getSession()
+    const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/carts/update`,
+        {updatedCart},
+        {headers: {'Authorization': `Bearer ${session.accessToken}`}}
+    )
+
+    return response.data
+}

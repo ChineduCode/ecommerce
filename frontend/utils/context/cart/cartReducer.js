@@ -1,6 +1,7 @@
 const ADD_TO_CART = 'ADD_TO_CART'
 const SET_CART = 'SET_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const UPDATE_CART = 'UPDATE_CART'
 const LOADING = 'LOADING'
 const ERROR = 'ERROR'
 const CLEAR_RESPONSE_MSG = 'CLEAR_RESPONSE_MSG'
@@ -27,6 +28,16 @@ export default function cartReducer(state, action){
                 error: false
             }
         case REMOVE_FROM_CART:
+            return {
+                ...state,
+                items: action.payload.cart.cartItems,
+                totalQty: action.payload.cart.cartItems.length,
+                totalPrice: action.payload.cart.cartItems.reduce((sum, cartItem)=> sum + (cartItem.product.price * cartItem.quantity), 0),
+                responseMsg: action.payload.message,
+                loading: false,
+                error: null
+            }
+        case UPDATE_CART:
             return {
                 ...state,
                 items: action.payload.cart.cartItems,

@@ -126,8 +126,40 @@ const deleteItem = asyncHandler(async (req, res) => {
     }
 });
 
+const updateCart = asyncHandler(async (req, res)=> {
+    try {
+        const userId = req.user._id
+        const { updatedCart } = req.body
+        if(!updatedCart || !Array.isArray(updatedCart)) return res.status(400).json({ message: 'No data to be updated' })
+
+        const user = await User.findById(userId)
+        if(!user) return res.status(404).json({ message: 'User not found' })
+
+        let userCart = await Cart.findOne({user: userId})
+        if (!userCart) return res.status(404).json({ message: "Cart not found" });
+
+        // Update the cart items
+        userCart.cartItems = updatedCart.map((item) => ({
+            product: item.productId,
+            quantity: item.quantity,
+        }));
+
+        await userCart.save()
+        await userCart.populate({
+            path: 'cartItems.product',
+            select: 'name brand image rating price'
+        })
+
+        return res.status(200).json({ message: "Cart updated successfully", cart: userCart });
+
+    } catch (error) {
+        return res.status(500).json({ message: 'Internal server error' })
+    }
+})
+
 module.exports = {
     addToCart,
     getUserCart,
-    deleteItem
+    deleteItem,
+    updateCart
 }

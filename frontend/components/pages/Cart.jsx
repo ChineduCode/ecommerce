@@ -5,17 +5,18 @@ import { useEffect, useState } from "react";
 import Count from "../Count";
 import Rating from "../Rating";
 import Loading from "../Loading";
-import Link from "next/link";
+import Loader from "../Loader";
 import { useCart } from "@/utils/context/cart/cartContext";
 
 export default function Cart(){
-    const { state, loadCart, removeItemFromCart } = useCart()
+    const { state, loadCart, removeItemFromCart, updateUserCart } = useCart()
     const [coupon, setCoupon] = useState('FLAT50')
     const [nums, setNums] = useState([])
     const [prices, setPrices] = useState([])
     const [totals, setTotals] = useState([])
     const [subTotal, setSubTotal] = useState(0)
     const [grandTotal, setGrandTotal] = useState(0)
+    const [cart, setCart] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(()=> {
@@ -28,10 +29,14 @@ export default function Cart(){
             setPrices(state.items.map(item => item.product.price)); // Initialize prices
             setTotals(state.items.map(item => item.quantity * item.product.price)); // Initialize totals
             setSubTotal(state.totalPrice)
-            setGrandTotal(subTotal + 5)
+            setCart([...state.items])
         }
         setLoading(false)
     },[state.items])
+
+    useEffect(()=> {
+        setGrandTotal(subTotal + 5)
+    },[subTotal])
 
     const handleDelete = async (id)=> {
         await removeItemFromCart(id)
@@ -40,6 +45,18 @@ export default function Cart(){
     const handleCoupon = async (e)=> {
         e.preventDefault()
         return null
+    }
+
+    const handleCartUpdate = async ()=> {
+        try {
+            const updatedCart = cart.map((item, index) => ({
+                productId: item.product._id,
+                quantity: nums[index],
+            }));
+            await updateUserCart(updatedCart)
+        } catch (error) {
+            console.error("Error updating cart:", error);
+        }
     }
 
     if(loading) return <div style={{padding: '8rem'}}> <Loading /> </div>
@@ -89,6 +106,10 @@ export default function Cart(){
                                             const newSubTotal = newTotals.reduce((sum, total) => sum + total, 0)
                                             setSubTotal(newSubTotal)
                                             setGrandTotal(newSubTotal + 5)
+
+                                            const updatedCart = [...cart]
+                                            updatedCart[index].quantity = value
+                                            setCart(updatedCart)
                                         }}/>
                                         <div className="delete-container"> <TbTrash size={22} onClick={(e)=> handleDelete(cartItem._id)}/> </div>
                                     </div>
@@ -123,9 +144,13 @@ export default function Cart(){
                             <span>${grandTotal}</span>
                         </div>
 
-                        <Link href='/checkout'>
-                            <button className="checkout-btn" type="submit">Proceed to Checkout</button>
-                        </Link>
+                        <button 
+                            className="checkout-btn" 
+                            type="submit"
+                            onClick={handleCartUpdate}
+                            >
+                                Proceed to Checkout
+                        </button>
                     </form>
                 </div> :
 

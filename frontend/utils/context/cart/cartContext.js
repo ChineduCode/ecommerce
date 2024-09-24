@@ -2,7 +2,7 @@
 
 import { useContext, createContext, useReducer, useEffect } from "react";
 import cartReducer from "./cartReducer";
-import { fetchCart, addToCart, removeFromCart } from "./cartSevices";
+import { fetchCart, addToCart, removeFromCart, updateCart } from "./cartSevices";
 
 const initialState = {
     items: [],
@@ -62,13 +62,25 @@ export const CartProvider = ({children}) => {
         }
     } 
 
+    //Update userCart
+    const updateUserCart = async (updatedCart) => {
+        dispatch({ type: 'LOADING' })
+        try {
+            const data = await updateCart(updatedCart)
+            dispatch({ type: 'UPDATE_CART', payload: data })
+        } catch (error) {
+            dispatch({ type: 'ERROR', payload: error.response.data.message })
+        }
+    }
+
     return (
         <CartContext.Provider value={{
             state,
             dispatch,
             addItemToCart,
             loadCart,
-            removeItemFromCart
+            removeItemFromCart,
+            updateUserCart
         }}>
             {children}
         </CartContext.Provider>
