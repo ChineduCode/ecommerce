@@ -1,7 +1,18 @@
+import { PiHouse, PiNote, PiCreditCardBold } from "react-icons/pi";
+import ShippingAddress from "./ShippingAddress";
+
 export default function Checkout(){
-    return(
+    return (
         <main className="checkout-page">
-            <h1 className="heading">Checkout Page coming soon 🥰😊</h1>
+            <div className="container">
+                <h1 className="heading">Shipping Address</h1>
+                <div className="steps-container">
+                    <span className="address-step-icon"> <PiHouse /> </span>
+                    <span className="payment-step-icon"> <PiCreditCardBold /> </span>
+                    <span className="review-step-icon"> <PiNote /> </span>
+                </div>
+                <ShippingAddress />
+            </div>
         </main>
     )
 }

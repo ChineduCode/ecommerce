@@ -4,7 +4,7 @@ import { useEffect, createContext, useContext, useReducer } from "react"
 import { profileReducer } from "./profileReducer"
 
 const initialState = {
-    profile: null, // Start with null and update it once session is available
+    profile: null,
     responseMsg: null,
     error: null,
     loading: false

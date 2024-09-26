@@ -106,7 +106,7 @@ const loginUser = asyncHandler(async (req, res)=> {
             lastname: user.lastname,
             email: user.email,
             phone: user.phone,
-            address: user.address,
+            addresses: user.addresses,
             token: generateJWT(user._id)
         })
 

@@ -26,6 +26,7 @@ export default function Address(){
             }
             setLoading(false)
         }
+        console.log(session)
 
         setAddress()
     },[session])
@@ -33,7 +34,7 @@ export default function Address(){
     const handleDelete = async (addressId) => {
         try {
             const response = await axios.delete(
-                `${process.env.NEXT_PUBLIC_API_URL}/api/v1/addresses/delete`, 
+                `${process.env.NEXT_PUBLIC_API_URL}/api/v1/addresses/delete`,
                 {
                   headers: {'Authorization': `Bearer ${session.accessToken}`},
                   data: { addressId }
@@ -58,8 +59,6 @@ export default function Address(){
                     <FaPlus />
                     <span>Add New Address</span>
                 </Link>
-                {/* <button className="add-new-address" onClick={()=> uxDispatch({type: 'TOGGLE_MODAL'})}>
-                </button> */}
             </div>
             <div className="container">
                 {profileState.profile?.addresses?.length > 0 ?

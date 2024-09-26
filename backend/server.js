@@ -11,9 +11,9 @@ connectDB()
 // Configure CORS options
 const corsOptions = {
     origin: [process.env.FRONTEND_URL], // Allow only your frontend domain
-    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'], // Allow specific HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
-    credentials: true, // If you want to allow cookies or authorization headers
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true, // Allowing cookies or authorization headers
 };
 
 //Middlewares

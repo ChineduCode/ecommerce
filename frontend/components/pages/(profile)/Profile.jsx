@@ -9,13 +9,13 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import ResponseMsg from "@/components/ResponseMsg";
 import Loader from "@/components/Loader";
+import Loading from "@/components/Loading";
 
 export default function Profile(){
-    const { data: session, update } = useSession()
+    const { data: session, status, update } = useSession()
     const { state, dispatch } = useProfile()
     const [edit, setEdit] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [status, setStatus] = useState(null)
     const [responseMsg, setResponseMsg] = useState(null)
     const [userInfo, setUserInfo] = useState({
         firstname: '',
@@ -27,9 +27,19 @@ export default function Profile(){
     const [initialUserInfo, setInitialUserInfo] = useState({})
     const router = useRouter()
 
+    useEffect(()=> {
+        if (status === 'authenticated' && session?.user) {
+            update(session).then(() => {
+                console.log('Session updated');
+            }).catch((error) => {
+                console.error('Error updating session:', error);
+            });
+        }
+    },[])
+    
     // Update the userInfo state when session data is loaded
     useEffect(() => {
-        if (session) {
+        if (session?.user) {
             setUserInfo({
                 firstname: session.user.firstname || '',
                 lastname: session.user.lastname || '',
@@ -50,6 +60,7 @@ export default function Profile(){
             })
             dispatch({type: 'FETCH_PROFILE', payload: session.user})
         }
+        //console.log(session)
 
     }, [session])
 
@@ -102,6 +113,8 @@ export default function Profile(){
             setLoading(false)
         }
     }
+
+    if(status === 'loading') return <div style={{textAlign: 'center'}}> <Loading /> </div>
 
     return(
         <form className="profile-info-page" id='profile' onSubmit={handleUpdate}>
@@ -193,7 +206,7 @@ export default function Profile(){
                 </button>
             </div>
 
-            { status && <ResponseMsg setStatus={setStatus} status={status} responseMsg={responseMsg} />}
+            {/* { status && <ResponseMsg setStatus={setStatus} status={status} responseMsg={responseMsg} />} */}
         </form>
     )
 }

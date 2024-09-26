@@ -18,7 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={kumbh_sans.className}>
+      <body className={kumbh_sans.className}> 
         <Providers>
           <ProfileProvider>
             <UXProvider>
