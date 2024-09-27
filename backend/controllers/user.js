@@ -127,12 +127,13 @@ const getAllUsers = asyncHandler(async (req, res)=> {
 
 const getUserProfile = asyncHandler(async (req, res)=> {
     try{
-        const user = await User.findById(req.user._id).populate('addresses').exec()
+        const userId = req.user._id
+        const user = await User.findById(userId).populate('addresses').exec()
         if(!user){
             return res.status(404).json({ message: 'User not found' })
         }
 
-        return res.json({
+        return res.status(200).json({
             _id: user._id,
             firstname: user.firstname,
             lastname: user.lastname,
@@ -142,7 +143,7 @@ const getUserProfile = asyncHandler(async (req, res)=> {
         })
 
     }catch (error){
-        return res.status(200).json({ message: 'Internal server error' })
+        return res.status(500).json({ message: 'Internal server error' })
     }
 })
 

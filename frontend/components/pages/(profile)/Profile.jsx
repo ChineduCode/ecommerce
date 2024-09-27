@@ -7,16 +7,15 @@ import { useSession } from "next-auth/react";
 import { useProfile } from "@/utils/context/profile/profileContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import ResponseMsg from "@/components/ResponseMsg";
-import Loader from "@/components/Loader";
 import Loading from "@/components/Loading";
 
 export default function Profile(){
-    const { data: session, status, update } = useSession()
-    const { state, dispatch } = useProfile()
+    const { data: session, update } = useSession()
+    const { dispatch } = useProfile()
     const [edit, setEdit] = useState(false)
-    const [loading, setLoading] = useState(false)
-    const [responseMsg, setResponseMsg] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [status, setStatus] = useState(null)
+    const [hasUpdated, setHasUpdated] = useState(false); // State to track if update has been done
     const [userInfo, setUserInfo] = useState({
         firstname: '',
         lastname: '',
@@ -27,26 +26,28 @@ export default function Profile(){
     const [initialUserInfo, setInitialUserInfo] = useState({})
     const router = useRouter()
 
-    useEffect(()=> {
-        if (status === 'authenticated' && session?.user) {
-            update(session).then(() => {
-                console.log('Session updated');
-            }).catch((error) => {
-                console.error('Error updating session:', error);
-            });
+    useEffect(() => {
+        if (session && !hasUpdated) {
+            update(session)
+                .then(() => {
+                    setHasUpdated(true);
+                })
+                .catch((error) => {
+                    console.error('Error updating session:', error);
+                });
         }
-    },[])
+    }, [session, update, hasUpdated]);
     
-    // Update the userInfo state when session data is loaded
     useEffect(() => {
         if (session?.user) {
+            const defaultAddress = session.user.addresses?.find(address => address.defaultAddress) || session.user.addresses?.[0] || '';
+
             setUserInfo({
                 firstname: session.user.firstname || '',
                 lastname: session.user.lastname || '',
                 email: session.user.email || '',
                 phone: session.user.phone || '',
-                address: session.user.addresses && session.user.addresses.length > 0
-                ? session.user.addresses.find(address => address.defaultAddress === true) || session.user.address[0] : ''
+                address: defaultAddress
             })
         
             setInitialUserInfo({
@@ -54,15 +55,13 @@ export default function Profile(){
                 lastname: session.user.lastname || '',
                 email: session.user.email || '',
                 phone: session.user.phone || '',
-                address: session.user.addresses && session.user.addresses.length > 0 
-                ? session.user.addresses.find(address => address.defaultAddress === true) || session.user.addresses[0]
-                : ''
+                address: defaultAddress
             })
             dispatch({type: 'FETCH_PROFILE', payload: session.user})
         }
-        //console.log(session)
+        setLoading(false)
 
-    }, [session])
+    }, [session?.user])
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
@@ -74,7 +73,6 @@ export default function Profile(){
 
     const handleUpdate = async (e) => {
         e.preventDefault()
-        setLoading(true)
         
         const updatedFields = Object.entries(userInfo).reduce((acc, [key, value])=> {
             if (value !== initialUserInfo[key]) {
@@ -85,11 +83,11 @@ export default function Profile(){
         }, {})
 
         if (Object.keys(updatedFields).length === 0) {
-            setLoading(false);
             return;
         }
 
         try {
+            setStatus('submitting')
             const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/profile/update`,
                 updatedFields,
                 {
@@ -98,23 +96,19 @@ export default function Profile(){
             )
 
             if(response.data){
-                setStatus('success')
-                setResponseMsg(response.data.message)
-                update(updatedFields)
+                update(session)
                 dispatch({type: 'UPDATE_PROFILE', payload: response.data})
-                router.refresh()
+                router.refresh('/profile');
             }
 
         } catch (error) {
-            setStatus('error')
-            setResponseMsg(error.response.data.message)
             console.error(error)
         } finally {
-            setLoading(false)
+            setStatus('submitted')
         }
     }
 
-    if(status === 'loading') return <div style={{textAlign: 'center'}}> <Loading /> </div>
+    if(loading === 'loading') return <div style={{textAlign: 'center', width: '100%'}}> <Loading /> </div>
 
     return(
         <form className="profile-info-page" id='profile' onSubmit={handleUpdate}>
@@ -199,14 +193,15 @@ export default function Profile(){
                 <button 
                     type='submit' 
                     onSubmit={handleUpdate}
-                    disabled={loading === true}
-                    style={{backgroundColor: loading ? '#ccc' : null}}
+                    disabled={status === 'submitting'}
+                    style={{
+                        backgroundColor: status === 'submitting' ? '#ccc' : null,
+                        color: status === 'submitting' ? 'hsl(220, 13%, 13%)' : null
+                    }}
                 >
-                    {loading ? <Loader /> : 'Save changes'}
+                    {status === 'submitting' ? 'Updating...' : 'Save changes'}
                 </button>
             </div>
-
-            {/* { status && <ResponseMsg setStatus={setStatus} status={status} responseMsg={responseMsg} />} */}
         </form>
     )
 }

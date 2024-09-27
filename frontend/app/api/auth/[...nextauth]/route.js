@@ -37,54 +37,6 @@ export const authOptions = {
 
     secret: process.env.NEXTAUTH_SECRET,
 
-    // callbacks: {
-    //     async jwt({ token, user, session, trigger }){
-
-    //         if (trigger === "update" && session) {
-    //             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/profile`,{
-    //                 headers: {'Authorization': `Bearer ${token.accessToken}`}
-    //             })
-                
-    //             const freshUser = response.data
-    //             token = {
-    //                 id: freshUser._id,
-    //                 firstname: freshUser.firstname,
-    //                 lastname: freshUser.lastname,
-    //                 email: freshUser.email,
-    //                 phone: freshUser.phone,
-    //                 addresses: freshUser.addresses
-    //             }
-
-    //             token = {...token, ...session}
-    //             return token;
-    //         };
-            
-    //         if(user){
-    //             token.id = user._id,
-    //             token.firstname = user.firstname,
-    //             token.lastname = user.lastname,
-    //             token.email = user.email,
-    //             token.phone = user.phone,
-    //             token.addresses = user.addresses
-    //             token.accessToken = user.token
-    //         }
-    //         console.log('Token', token)
-
-    //         return token
-    //     },
-
-    //     async session({ session, token }){
-    //         session.user.id = token.id,
-    //         session.user.firstname = token.firstname,
-    //         session.user.lastname = token.lastname,
-    //         session.user.email = token.email,
-    //         session.user.phone = token.phone,
-    //         session.user.addresses = token.addresses,
-    //         session.accessToken = token.accessToken
-
-    //         return session
-    //     }
-    // }
     callbacks: {
         async jwt({ token, user, session, trigger }) {
             if (trigger === "update" && session) {
@@ -97,8 +49,6 @@ export const authOptions = {
                     );
             
                     const freshUser = response.data;
-            
-                    // Update the token with the fresh user data
                     token = {
                         id: freshUser._id,
                         firstname: freshUser.firstname,
@@ -117,7 +67,6 @@ export const authOptions = {
                 }
             }
       
-            // When user logs in, populate token with user data
             if (user) {
                 token = {
                     id: user._id,
@@ -134,7 +83,6 @@ export const authOptions = {
         },
       
         async session({ session, token }) {
-            // Update the session with token data
             session.user = {
                 id: token.id,
                 firstname: token.firstname,
@@ -143,13 +91,12 @@ export const authOptions = {
                 phone: token.phone,
                 addresses: token.addresses,
             };
-        
+            
             session.accessToken = token.accessToken;
         
             return session;
         },
-    },
-      
+    },  
 }
 
 const handler = NextAuth(authOptions)
