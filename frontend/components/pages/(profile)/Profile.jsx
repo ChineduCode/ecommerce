@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import Loading from "@/components/Loading";
 
 export default function Profile(){
-    const { data: session, update } = useSession()
+    const { data: session, status: sessionStatus, update } = useSession()
     const { dispatch } = useProfile()
     const [edit, setEdit] = useState(false)
     const [loading, setLoading] = useState(true)
@@ -108,7 +108,7 @@ export default function Profile(){
         }
     }
 
-    if(loading === 'loading') return <div style={{textAlign: 'center', width: '100%'}}> <Loading /> </div>
+    if(loading) return <div style={{textAlign: 'center', width: '100%'}}> <Loading /> </div>
 
     return(
         <form className="profile-info-page" id='profile' onSubmit={handleUpdate}>

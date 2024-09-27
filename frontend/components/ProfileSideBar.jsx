@@ -11,13 +11,13 @@ export default async function ProfileSideBar(){
     const session = await getServerSession(authOptions)
 
     const profileLinks = [
-        { name: 'Profile Information', link: '/profile', icon: <FaRegUser size={22}/> },
-        { name: 'My Orders', link: '/profile/orders', icon: <FaBagShopping size={22}/> },
-        { name: 'My Wishlists', link: '/profile/wishlists', icon: <GrFavorite size={22}/> },
-        { name: 'Manage Addresses', link: '/profile/addresses', icon: <GrLocation size={22}/> },
-        { name: 'Saved Cards', link: '/profile/payment-method', icon: <GrCreditCard size={22}/> },
-        { name: 'Notifications', link: '/profile/notifications', icon: <PiBellLight size={22}/> },
-        { name: 'Settings', link: '/profile/settings', icon: <BsGear size={22}/> },
+        { name: 'Profile Information', link: '/profile', inlineLink: '#profile', icon: <FaRegUser size={22}/> },
+        { name: 'My Orders', link: '/profile/orders', inlineLink: '#orders', icon: <FaBagShopping size={22}/> },
+        { name: 'My Wishlists', link: '/profile/wishlists', inlineLink: '#wishlists', icon: <GrFavorite size={22}/> },
+        { name: 'Manage Addresses', link: '/profile/addresses', inlineLink: '#addresses', icon: <GrLocation size={22}/> },
+        { name: 'Saved Cards', link: '/profile/payment-method', inlineLink: '#payment-method', icon: <GrCreditCard size={22}/> },
+        { name: 'Notifications', link: '/profile/notifications', inlineLink: '#notifications', icon: <PiBellLight size={22}/> },
+        { name: 'Settings', link: '/profile/settings', inlineLink: '#settings', icon: <BsGear size={22}/> },
     ];
 
     return(

@@ -26,7 +26,6 @@ export default function Address(){
             }
             setLoading(false)
         }
-        console.log(session)
 
         setAddress()
     },[session])
