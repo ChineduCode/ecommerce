@@ -108,7 +108,7 @@ export default function Profile(){
         }
     }
 
-    if(loading) return <div style={{textAlign: 'center', width: '100%'}}> <Loading /> </div>
+    if(sessionStatus === 'loading' || loading) return <div style={{textAlign: 'center', width: '100%'}}> <Loading /> </div>
 
     return(
         <form className="profile-info-page" id='profile' onSubmit={handleUpdate}>
