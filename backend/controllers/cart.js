@@ -29,7 +29,10 @@ const addToCart = asyncHandler(async (req, res)=> {
             userCart.cartItems.unshift({ product: productId, quantity: qty })
             await userCart.save()
 
-            await userCart.populate('cartItems.product')
+            await userCart.populate({
+                path: 'cartItems.product',
+                select: 'name brand price image rating'
+            })
             
             //Remove the item from wishlist if it exists
             const wishlist = await Wishlist.findOneAndUpdate(
@@ -56,7 +59,10 @@ const addToCart = asyncHandler(async (req, res)=> {
             })
             await newCart.save()
             
-            await newCart.populate('cartItems.product')
+            await newCart.populate({
+                path: 'cartItems.product',
+                select: 'name brand price image rating'
+            })
 
             //Remove the item from wishlist if it exists and return it
             const wishlist = await Wishlist.findOneAndUpdate(
@@ -90,7 +96,10 @@ const getUserCart = asyncHandler(async (req, res)=> {
         const user = await User.findById(userId)
         if(!user) return res.status(404).json({message: 'User not found'})
 
-        const cart = await Cart.findOne({ user: userId }).populate('cartItems.product')
+        const cart = await Cart.findOne({ user: userId }).populate({
+            path: 'cartItems.product',
+            select: 'name brand price image rating'
+        })
         
         if(!cart) return res.status(404).json({ message: 'Cart is empty'})
         
@@ -113,8 +122,10 @@ const deleteItem = asyncHandler(async (req, res) => {
             { user: userId },
             { $pull: { cartItems: { _id: itemId } } },
             { new: true }
-        )
-        .populate('cartItems.product')
+        ).populate({
+            path: 'cartItems.product',
+            select: 'name brand price image rating'
+        })
 
         if (!updatedCart) return res.status(404).json({ message: 'User cart not found' });
 
