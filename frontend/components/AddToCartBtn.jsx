@@ -7,7 +7,7 @@ import { useCart } from "@/utils/context/cart/cartContext"
 import { useState } from "react"
 import { useSession } from "next-auth/react"
 
-export default function AddToCartBtn({ productId }){
+export default function AddToCartBtn({ productId, qty }){
     const { data: session } = useSession()
     const { state, addItemToCart } = useCart()
     const [loading, setLoading] = useState(false)
@@ -23,12 +23,12 @@ export default function AddToCartBtn({ productId }){
             console.error('Product id not found')
         }
 
-        await addItemToCart(productId, qty)
+        await addItemToCart(productId, qty || 1)
         setLoading(false)
     }
 
     return(
-        <> 
+        <>
             <button 
                 className='btn'
                 onClick={handleAddToCart}

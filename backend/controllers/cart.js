@@ -83,7 +83,6 @@ const addToCart = asyncHandler(async (req, res)=> {
         }
         
     } catch (error){
-        console.log(error.message)
         return res.status(500).json({ message: 'Internal server error' })
     }
 })
@@ -106,7 +105,6 @@ const getUserCart = asyncHandler(async (req, res)=> {
         return res.status(200).json(cart)
 
     } catch(error){
-        console.log(error.message)
         return res.status(500).json({ message: 'Internal server error' })
     }
 })
@@ -132,7 +130,6 @@ const deleteItem = asyncHandler(async (req, res) => {
         return res.status(200).json({ message: 'Item removed successfully', cart: updatedCart });
 
     } catch (error) {
-        console.log(error.message)
         return res.status(500).json({ message: 'Internal server error' });
     }
 });
