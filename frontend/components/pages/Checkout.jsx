@@ -13,12 +13,12 @@ export default function Checkout(){
     const { data: session } = useSession()
     const currentStepRef = useRef(null)
     const [ currentStep, setCurrentStep ] = useState(1)
+    const [coupon, setCoupon] = useState('FLAT50')
 
     useEffect(()=> {
         if(session){
             loadCart()
         }
-        console.log(state)
     },[session])
 
     const handleNextStep = () => {
@@ -50,10 +50,10 @@ export default function Checkout(){
                     { currentStep === 3 && <ReviewOrder /> }
                 </div>
             </div>
-            {/* <form className="footer">
+            <form className="footer">
                 <div className="sub-total">
-                    <span>Subtotal</span>
-                    <span>${subTotal}</span>
+                    <span>SubTotal</span>
+                    <span>${state.totalPrice}</span>
                 </div>
                 <div className="coupon">
                     <label htmlFor="discount-code">Enter Discount Code</label>
@@ -74,21 +74,11 @@ export default function Checkout(){
 
                 <div className="grand-total">
                     <span>Grand Total</span>
-                    <span>${grandTotal}</span>
+                    <span>${state.totalPrice + 5}</span>
                 </div>
 
-                <button 
-                    className="checkout-btn" 
-                    type="submit"
-                    onClick={handleCartUpdate}
-                    disabled={state.loading}
-                    style={{backgroundColor: state.loading ? '#ccc': null}}
-                    >
-                        {state.loading ? 'Updating Cart': 'Proceed to Checkout'}
-                </button>
-
                 {state.responseMsg && <ResponseMsg />}
-            </form> */}
+            </form>
         </main>
     )
 }
