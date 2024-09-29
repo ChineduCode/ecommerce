@@ -191,11 +191,18 @@ body {
 }
 
 .add-address {
-  width: 400px;
-  max-width: 100%;
+  width: 100%;
   background-color: hsl(0, 0%, 100%);
   padding: 1rem;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.add-address .form-container {
+  width: 400px;
+  max-width: 100%;
 }
 .add-address .heading {
   margin-bottom: 2rem;
@@ -2306,7 +2313,6 @@ footer .bottom-footer .copyright-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
 }
 .checkout-page .container .heading {
   font-size: 500;
@@ -2412,7 +2418,6 @@ footer .bottom-footer .copyright-container {
 }
 .checkout-page .container .steps-container .shipping-address-step .containers .deliver-btn {
   width: 100%;
-  text-align: center;
   margin: 2rem 0;
 }
 .checkout-page .container .steps-container .shipping-address-step .containers .deliver-btn button {
@@ -2425,5 +2430,5 @@ footer .bottom-footer .copyright-container {
   align-items: center;
   gap: 10px;
   color: hsl(0, 0%, 100%);
-  padding: 13px 15px;
+  padding: 13px 20px;
 }/*# sourceMappingURL=globals.css.map */

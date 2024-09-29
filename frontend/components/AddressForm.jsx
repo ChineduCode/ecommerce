@@ -97,98 +97,100 @@ export default function AddressForm(){
 
     return (
         <form className="add-address" onSubmit={handleSubmit} id='address-form'>
-            <h2 className="heading">Add a new address</h2>
-            <div className="container">
-                <div className="form-control">
-                    <label htmlFor="phone">Mobile Number</label>
-                    <PhoneInput
-                        country={'us'}
-                        value={addressData.phone}
-                        onChange={(value, country)=> handlePhoneChange(value, country)}
-                        inputProps={{
-                            type: 'tel',
-                            name: 'phone',
-                            required: true,
-                            className: 'phone'
-                        }}
-                    />
-                </div>
-                <div className="form-control">
-                    <label>Country</label>
-                    <CountryDropdown
-                        value={country}
-                        onChange={handleCountryChange}
-                        defaultOptionLabel="Select a country"
-                    />
-                </div>
-                <div className="form-control">
-                    <label>State/Region</label>
-                    <RegionDropdown
-                        country={country}
-                        value={region}
-                        onChange={handleRegionChange}
-                        defaultOptionLabel="Select a state/region"
-                    />
-                </div>
-                <div className="form-control">
-                    <label htmlFor="city">City</label>
-                    <input 
-                        type="text" 
-                        name="city" 
-                        className='city' 
-                        value={addressData.city} 
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <div className="form-control">
-                    <label htmlFor="street">Street</label>
-                    <input 
-                        type="text" 
-                        name="street"
-                        className='street'
-                        value={addressData.street}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <div className="form-control">
-                    <label htmlFor="houseNo">Flat, House no., Building, Company, Apartment</label>
-                    <input 
-                        type="number" 
-                        name="houseNo"
-                        className='house-no'
-                        value={addressData.houseNo}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <div className="form-control">
-                    <label htmlFor="postalCode">Postal Code</label>
-                    <input 
-                        type="text" 
-                        name="postalCode"
-                        className='postalcode'
-                        value={addressData.postalCode}
-                        onChange={handleOnChange}
-                    />
-                </div>
-                <div className="form-control checkbox-container">
-                    <input 
-                        type="checkbox" 
-                        name="defaultAddress" 
-                        checked={addressData.defaultAddress}
-                        onChange={(e) => setAddressData({...addressData, defaultAddress: e.target.checked})}
-                        className="checkbox" 
-                    />
-                    <label htmlFor="default">Use as my default address</label>
-                </div>
-                <div className="form-control btn-container">
-                    <button 
-                        type='button'
-                        className='cancel-btn'
-                        onClick={handleCancel}
-                    >
-                        Cancel
-                    </button>
-                    <button type="submit">Add New Address</button>
+            <div className="form-container">
+                <h2 className="heading">Add a new address</h2>
+                <div className="container">
+                    <div className="form-control">
+                        <label htmlFor="phone">Mobile Number</label>
+                        <PhoneInput
+                            country={'us'}
+                            value={addressData.phone}
+                            onChange={(value, country)=> handlePhoneChange(value, country)}
+                            inputProps={{
+                                type: 'tel',
+                                name: 'phone',
+                                required: true,
+                                className: 'phone'
+                            }}
+                        />
+                    </div>
+                    <div className="form-control">
+                        <label>Country</label>
+                        <CountryDropdown
+                            value={country}
+                            onChange={handleCountryChange}
+                            defaultOptionLabel="Select a country"
+                        />
+                    </div>
+                    <div className="form-control">
+                        <label>State/Region</label>
+                        <RegionDropdown
+                            country={country}
+                            value={region}
+                            onChange={handleRegionChange}
+                            defaultOptionLabel="Select a state/region"
+                        />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="city">City</label>
+                        <input 
+                            type="text" 
+                            name="city" 
+                            className='city' 
+                            value={addressData.city} 
+                            onChange={handleOnChange}
+                        />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="street">Street</label>
+                        <input 
+                            type="text" 
+                            name="street"
+                            className='street'
+                            value={addressData.street}
+                            onChange={handleOnChange}
+                        />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="houseNo">Flat, House no., Building, Company, Apartment</label>
+                        <input 
+                            type="number" 
+                            name="houseNo"
+                            className='house-no'
+                            value={addressData.houseNo}
+                            onChange={handleOnChange}
+                        />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="postalCode">Postal Code</label>
+                        <input 
+                            type="text" 
+                            name="postalCode"
+                            className='postalcode'
+                            value={addressData.postalCode}
+                            onChange={handleOnChange}
+                        />
+                    </div>
+                    <div className="form-control checkbox-container">
+                        <input 
+                            type="checkbox" 
+                            name="defaultAddress" 
+                            checked={addressData.defaultAddress}
+                            onChange={(e) => setAddressData({...addressData, defaultAddress: e.target.checked})}
+                            className="checkbox" 
+                        />
+                        <label htmlFor="default">Use as my default address</label>
+                    </div>
+                    <div className="form-control btn-container">
+                        <button 
+                            type='button'
+                            className='cancel-btn'
+                            onClick={handleCancel}
+                        >
+                            Cancel
+                        </button>
+                        <button type="submit">Add New Address</button>
+                    </div>
                 </div>
             </div>
         </form>

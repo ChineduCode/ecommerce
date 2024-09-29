@@ -1,18 +1,15 @@
 "use client"
 
 import AddressForm from "../AddressForm"
-import { useUX } from "@/utils/context/ux/uxContext"
 import { useProfile } from "@/utils/context/profile/profileContext"
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 import { FaEdit } from "react-icons/fa";
 import { TbTrash } from "react-icons/tb";
 import { BiPhoneCall } from "react-icons/bi";
-import { FaPlus } from 'react-icons/fa6'
 import axios from "axios"
 
-export default function ShippingAddress(){
-    const { state: stateUX, dispatch: dispatchUX } = useUX()
+export default function ShippingAddress({handleNextStep}){
     const { data: session, status } = useSession()
     const [ addresses, setAddresses ] = useState([])
 
@@ -98,13 +95,13 @@ export default function ShippingAddress(){
 
                 <div className="deliver-btn">
                     <button 
-                        onClick={()=> dispatchUX({ type: 'TOGGLE_MODAL' })}
+                        onClick={handleNextStep}
                     > 
-                        <FaPlus /> <span>Deliver Here</span> 
+                        Deliver to this Address 
                     </button>
                 </div>
             </div>
-            { stateUX.isModalOpen && <AddressForm /> }
+            <AddressForm />
         </div>
     )
 }

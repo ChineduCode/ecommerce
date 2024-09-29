@@ -191,11 +191,18 @@ body{
 }
 
 .add-address{
-    width: 400px;
-    max-width: 100%;
+    width: 100%;
     background-color: hsl(0, 0, 100%);
     padding: 1rem;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .form-container{
+        width: 400px;
+        max-width: 100%;
+    }
     .heading{
         margin-bottom: 2rem;
     }
@@ -2378,7 +2385,6 @@ footer{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
     .container{
         .heading{
             font-size: 500;
@@ -2489,7 +2495,7 @@ footer{
 
                     .deliver-btn{
                         width: 100%;
-                        text-align: center;
+                        
                         margin: 2rem 0;
                         button{
                             background-color: hsl(220, 13%, 13%);
@@ -2501,7 +2507,7 @@ footer{
                             align-items: center;
                             gap: 10px;
                             color: hsl(0, 0, 100%);
-                            padding: 13px 15px;
+                            padding: 13px 20px;
                         }
                     }
                 }
