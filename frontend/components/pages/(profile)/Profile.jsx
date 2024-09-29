@@ -11,7 +11,7 @@ import Loading from "@/components/Loading";
 
 export default function Profile(){
     const { data: session, status: sessionStatus, update } = useSession()
-    const { dispatch } = useProfile()
+    const { state, dispatch } = useProfile()
     const [edit, setEdit] = useState(false)
     const [loading, setLoading] = useState(true)
     const [status, setStatus] = useState(null)
@@ -108,7 +108,7 @@ export default function Profile(){
         }
     }
 
-    if(sessionStatus === 'loading' || loading) return <div style={{textAlign: 'center', width: '100%'}}> <Loading /> </div>
+    if(sessionStatus === 'loading' || loading || state.loading) return <div style={{textAlign: 'center', width: '100%'}}> <Loading /> </div>
 
     return(
         <form className="profile-info-page" id='profile' onSubmit={handleUpdate}>

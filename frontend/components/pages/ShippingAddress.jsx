@@ -3,10 +3,13 @@
 import AddressForm from "../AddressForm"
 import { useUX } from "@/utils/context/ux/uxContext"
 import { useProfile } from "@/utils/context/profile/profileContext"
-import { getSession } from "next-auth/react"
-import { FaPlus } from "react-icons/fa6"
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
+import { FaEdit } from "react-icons/fa";
+import { TbTrash } from "react-icons/tb";
+import { BiPhoneCall } from "react-icons/bi";
+import { FaPlus } from 'react-icons/fa6'
+import axios from "axios"
 
 export default function ShippingAddress(){
     const { state: stateUX, dispatch: dispatchUX } = useUX()
@@ -17,8 +20,23 @@ export default function ShippingAddress(){
         if(status === 'authenticated' && session?.user?.addresses){
             setAddresses(session.user.addresses)
         }
-        console.log(addresses)
     },[session, status])
+
+    const handleAddressDefaultChange = async (id) => {
+        console.log(id)
+        try {
+            // const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/addresses/update`, 
+            //     id,
+            //     {headers: {'Authorization': `Bearer ${session.accessToken}`}}
+            // )
+            // if(response.data){
+            //     setAddresses(response.data)
+            // }
+            console.log(id)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     if(status === 'loading') return <main style={{textAlign: 'center'}}>Loading...</main>
 
@@ -32,28 +50,42 @@ export default function ShippingAddress(){
                     Or you can enter a new delivery address.
                 </div>
 
-                {/* { session.user?.addresses?.length > 0 ?
-                    <div className="addresses">
-                        {session.user.addresses.map((address, index)=> (
+                { addresses?.length > 0 ?
+                    <div className="addresses-container">
+                        {addresses.map((address, index)=> (
                             <div className="addresses" key={index}>
-                                <div className="content">
-                                    <div className="name">{address.street}</div>
-                                    <div className="street">
-                                        {`${address.houseNo} ${address.street} ${address.city}, ${address.state}, ${address.country} ${address.postalCode}`}
+                                <div className="address">
+                                    <div className="content">
+                                        <div className="name">{address.street}</div>
+                                        <div className="street">
+                                            {`${address.houseNo} ${address.street} ${address.city}, ${address.state}, ${address.country} ${address.postalCode}`}
+                                        </div>
+                                        <div className="phone-container">
+                                            <BiPhoneCall size={20}/> <span>{address.phone}</span>
+                                        </div>
                                     </div>
-                                    <div className="phone-container">
-                                        <BiPhoneCall size={20}/> <span>{address.phone}</span>
-                                    </div>
+                                    <form className="checkbox-container">
+                                        <input 
+                                            type="checkbox" 
+                                            name="defaultAddress" 
+                                            checked={address.defaultAddress}
+                                            onChange={(e) => handleAddressDefaultChange(address._id)}
+                                            className="checkbox-input" 
+                                        />
+                                    </form>
                                 </div>
 
                                 <div className="edit-delete-container">
-                                    <div className="edit">
+                                    <div 
+                                        className="edit"
+                                        >
                                         <FaEdit size={20}/> <span>Edit</span>
                                     </div>
                                     <div 
                                         className="delete" 
                                         style={{backgroundColor: 'hsl(10, 100%, 85%)', color: 'orangered'}}
-                                        onClick={()=> handleDelete(address._id)}>
+                                        onClick={()=> handleDelete(address._id)}
+                                        >
                                         <TbTrash size={20}/> <span>Delete</span>
                                     </div>
                                 </div>
@@ -62,7 +94,7 @@ export default function ShippingAddress(){
                     </div>
                     :
                     <div className="address-empty">No address found!!!</div>
-                } */}
+                }
 
                 <div className="deliver-btn">
                     <button 
