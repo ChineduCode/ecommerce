@@ -303,7 +303,14 @@ const updateUser = asyncHandler(async (req, res) => {
 
         res.status(200).json({
             message: 'User updated successfully',
-            data: updatedUser
+            data: {
+                _id: updatedUser._id,
+                firstname: updatedUser.firstname,
+                lastname: updatedUser.lastname,
+                email: updatedUser.email,
+                phone: updatedUser.phone,
+                addresses: updatedUser.addresses
+            }
         });
 
     } catch (error) {

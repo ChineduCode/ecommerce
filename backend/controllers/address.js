@@ -46,30 +46,40 @@ const addAddress = asyncHandler( async (req, res)=> {
     }
 })
 
-const editAddress = asyncHandler( async (req, res) => {
+const updateAddress = asyncHandler( async (req, res) => {
     try{
         const userId = req.user._id
-        const {addressId, updatedAddress } = req.body
+        const {addressId} = req.body
 
-        const user = await User.findById(userId)
+        const user = await User.findById(userId).populate('addresses').exec()
         if(!user){
             return res.status(404).json({message: 'User not found'})
         }
 
-        const address = await Address.findByIdAndUpdate(
-            addressId,
-            {updatedAddress},
-            {new: true}
-        )
-
+        const address = await Address.findById(addressId)
         if(!address){
-            return res.status(404).josn({message: 'Address not found'})
+            return res.status(404).json({message: 'Address not found'})
         }
 
-        return res.status(200).json({message: 'Address successfully updated', address})
+        const userAddresses = await Address.find({user: userId})
+        userAddresses.forEach( async(addr)=> {
+            addr.defaultAddress = addr._id.toString() === addressId
+            await addr.save()
+        })
+
+        return res.status(200).json({
+            message: 'Address successfully updated', 
+            userData: {
+                _id: user._id,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                email: user.email,
+                phone: user.phone,
+                addresses: user.addresses
+            }
+        })
 
     } catch(error){
-        console.error(error.message)
         return res.status(500).json({message: 'Internal server error'})
     }
 })
@@ -101,6 +111,6 @@ const deleteAddress = asyncHandler( async (req, res) => {
 
 module.exports = {
     addAddress,
-    editAddress,
+    updateAddress,
     deleteAddress
 }

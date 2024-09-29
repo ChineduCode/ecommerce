@@ -1,7 +1,6 @@
 "use client"
 
 import AddressForm from "../AddressForm"
-import { useProfile } from "@/utils/context/profile/profileContext"
 import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 import { FaEdit } from "react-icons/fa";
@@ -10,7 +9,7 @@ import { BiPhoneCall } from "react-icons/bi";
 import axios from "axios"
 
 export default function ShippingAddress({handleNextStep}){
-    const { data: session, status } = useSession()
+    const { data: session, status, update } = useSession()
     const [ addresses, setAddresses ] = useState([])
 
     useEffect(()=> {
@@ -20,16 +19,16 @@ export default function ShippingAddress({handleNextStep}){
     },[session, status])
 
     const handleAddressDefaultChange = async (id) => {
-        console.log(id)
         try {
-            // const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/addresses/update`, 
-            //     id,
-            //     {headers: {'Authorization': `Bearer ${session.accessToken}`}}
-            // )
-            // if(response.data){
-            //     setAddresses(response.data)
-            // }
-            console.log(id)
+            const response = await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/addresses/update`, 
+                {addressId: id},
+                {headers: {'Authorization': `Bearer ${session.accessToken}`}}
+            )
+            if(response.data){
+                update(response.data.userData)
+                setAddresses(session.user.addresses)
+            }
+
         } catch (error) {
             console.error(error)
         }
