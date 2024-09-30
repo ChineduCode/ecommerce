@@ -2587,24 +2587,25 @@ footer{
                                 width: 100%;
                                 color: hsl(220, 13%, 13%);
                             }
-                            button{
-                                color: hsl(0, 0, 100%);
-                                background-color: hsl(220, 13%, 13%);
-                                cursor: pointer;
-                                margin-top: 1rem;
-                                padding: 15px;
-                                font-size: 16px;
-                                border-radius: 8px;
-                                border: none;
-                                display: inline-block;
-                                &:active{
-                                    border: 1px solid hsl(220, 13%, 13%);
-                                }
-                                .loader{
-                                    padding: 8px;
-                                }
-                            }
                         }
+                    }
+                    button{
+                        color: hsl(0, 0, 100%);
+                        background-color: hsl(220, 13%, 13%);
+                        cursor: pointer;
+                        margin-top: 1rem;
+                        padding: 15px;
+                        font-size: 16px;
+                        border-radius: 8px;
+                        border: none;
+                        display: inline-block;
+                        &:active{
+                            border: 1px solid hsl(220, 13%, 13%);
+                        }
+                    }
+                    .continue-btn{
+                        width: 50%;
+                        margin-top: 2rem;
                     }
                 }
             }

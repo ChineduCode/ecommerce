@@ -46,7 +46,7 @@ export default function Checkout(){
                 </div>
                 <div className="steps-container">
                     { currentStep === 1 && <ShippingAddress handleNextStep={handleNextStep} />}
-                    { currentStep === 2 && <PaymentMethod /> }
+                    { currentStep === 2 && <PaymentMethod handleNextStep={handleNextStep} /> }
                     { currentStep === 3 && <ReviewOrder /> }
                 </div>
             </div>

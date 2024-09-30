@@ -2507,7 +2507,7 @@ footer .bottom-footer .copyright-container {
   width: 100%;
   color: hsl(220, 13%, 13%);
 }
-.checkout-page .container .steps-container .payment-method-step .method-container form .form-container button {
+.checkout-page .container .steps-container .payment-method-step .method-container button {
   color: hsl(0, 0%, 100%);
   background-color: hsl(220, 13%, 13%);
   cursor: pointer;
@@ -2518,11 +2518,12 @@ footer .bottom-footer .copyright-container {
   border: none;
   display: inline-block;
 }
-.checkout-page .container .steps-container .payment-method-step .method-container form .form-container button:active {
+.checkout-page .container .steps-container .payment-method-step .method-container button:active {
   border: 1px solid hsl(220, 13%, 13%);
 }
-.checkout-page .container .steps-container .payment-method-step .method-container form .form-container button .loader {
-  padding: 8px;
+.checkout-page .container .steps-container .payment-method-step .method-container .continue-btn {
+  width: 50%;
+  margin-top: 2rem;
 }
 .checkout-page .footer {
   order: 1;

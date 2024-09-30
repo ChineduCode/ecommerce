@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export default function PaymentMethod() {
+export default function PaymentMethod({handleNextStep}) {
     // For Debit/Credit Card Details
     const [cardDetails, setCardDetails] = useState({
         cardNumber: '',
@@ -132,6 +132,7 @@ export default function PaymentMethod() {
                                     onChange={handlePaypalDetailChange}
                                 />
                             </div>
+                            <button>Pay with Paypal</button>
                         </div>
                     )}
                 </form>
@@ -147,6 +148,13 @@ export default function PaymentMethod() {
                         <label>Cash on Delivery</label>
                     </div>
                 </form>
+                <button 
+                    type='button' 
+                    className='continue-btn'
+                    onClick={handleNextStep}
+                >
+                    Continue
+                </button>
             </div>
         </div>
     );
