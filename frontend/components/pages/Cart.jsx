@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Count from "../Count";
 import Rating from "../Rating";
 import Loading from "../Loading";
-import Loader from "../Loader";
 import { useCart } from "@/utils/context/cart/cartContext";
 import ResponseMsg from "../ResponseMsg";
 import { useRouter } from "next/navigation";
@@ -56,7 +55,7 @@ export default function Cart(){
                 productId: item.product._id,
                 quantity: nums[index],
             }));
-            await updateUserCart(updatedCart)
+            await updateUserCart(updatedCart) 
             router.push('/checkout')
         } catch (error) {
             console.error("Error updating cart:", error);

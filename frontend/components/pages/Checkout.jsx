@@ -77,7 +77,7 @@ export default function Checkout(){
                     <span>${state.totalPrice + 5}</span>
                 </div>
 
-                {state.responseMsg && <ResponseMsg />}
+                {/* {state?.responseMsg && <ResponseMsg />} */}
             </form>
         </main>
     )
