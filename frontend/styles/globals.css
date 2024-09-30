@@ -196,7 +196,6 @@ body {
   padding: 1rem;
   border-radius: 8px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -2494,10 +2493,40 @@ footer .bottom-footer .copyright-container {
 @media (min-width: 768px) {
   .checkout-page {
     padding: 7rem 4% 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: space-between;
+    width: 100%;
+    gap: 50px;
+  }
+  .checkout-page .container {
+    order: 1;
+  }
+  .checkout-page .container .add-address {
+    justify-content: flex-start;
+    padding: 2rem 0px;
+  }
+  .checkout-page .container .add-address .form-container {
+    width: 400px;
+    max-width: 100%;
+  }
+  .checkout-page .footer {
+    order: 2;
+    min-width: 250px;
   }
 }
-@media (min-width: 1024) {
+@media (min-width: 1024px) {
   .checkout-page {
     padding: 7rem 5% 4rem;
+    gap: 100px;
+  }
+  .checkout-page .container .steps-container .shipping-address-step .containers .addresses-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  .checkout-page .footer {
+    min-width: 400px;
   }
 }/*# sourceMappingURL=globals.css.map */
