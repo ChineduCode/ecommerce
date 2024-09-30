@@ -47,14 +47,16 @@ export default function PaymentMethod() {
             <div className="method-container">
                 {/* Credit/Debit Card Form */}
                 <form className="card-method">
-                    <input
-                        type="radio"
-                        name="payment-method"
-                        value="card"
-                        checked={selectedMethod === 'card'}
-                        onChange={handlePaymentMethodChange}
-                    />
-                    <label>Credit/Debit Card</label>
+                    <div className="radio-input">
+                        <input
+                            type="radio"
+                            name="payment-method"
+                            value="card"
+                            checked={selectedMethod === 'card'}
+                            onChange={handlePaymentMethodChange}
+                        />
+                        <label>Credit/Debit Card</label>
+                    </div>
                     {selectedMethod === 'card' && (
                         <div className="form-container">
                             <div className="form-control">
@@ -93,20 +95,23 @@ export default function PaymentMethod() {
                                     onChange={handleCardDetailChange}
                                 />
                             </div>
+                            <button>Add Card</button>
                         </div>
                     )}
                 </form>
 
                 {/* PayPal Form */}
                 <form className="paypal-method">
-                    <input
-                        type="radio"
-                        name="payment-method"
-                        value="paypal"
-                        checked={selectedMethod === 'paypal'}
-                        onChange={handlePaymentMethodChange}
-                    />
-                    <label>PayPal</label>
+                    <div className="radio-input">
+                        <input
+                            type="radio"
+                            name="payment-method"
+                            value="paypal"
+                            checked={selectedMethod === 'paypal'}
+                            onChange={handlePaymentMethodChange}
+                        />
+                        <label>PayPal</label>
+                    </div>
                     {selectedMethod === 'paypal' && (
                         <div className="form-container">
                             <div className="form-control">
@@ -129,6 +134,18 @@ export default function PaymentMethod() {
                             </div>
                         </div>
                     )}
+                </form>
+                <form className="pay-on-delivery">
+                    <div className="radio-input">
+                        <input
+                            type="radio"
+                            name="payment-method"
+                            value="delivery"
+                            checked={selectedMethod === 'delivery'}
+                            onChange={handlePaymentMethodChange}
+                        />
+                        <label>Cash on Delivery</label>
+                    </div>
                 </form>
             </div>
         </div>

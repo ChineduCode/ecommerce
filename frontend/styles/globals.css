@@ -2434,6 +2434,96 @@ footer .bottom-footer .copyright-container {
   color: hsl(0, 0%, 100%);
   padding: 13px 20px;
 }
+.checkout-page .container .steps-container .payment-method-step .method-container {
+  margin: 2rem 0;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form {
+  padding: 1rem 0;
+  border-bottom: 1px solid hsl(223, 64%, 98%);
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form:last-child {
+  border-bottom: none;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .radio-input {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .radio-input label {
+  font-size: 18px;
+  font-weight: 600;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form input[type=radio] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 2px solid grey;
+  border-radius: 50%;
+  background-color: hsl(0, 0%, 100%);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form input[type=radio]:checked {
+  border-color: black;
+  background-color: hsl(0, 0%, 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form input[type=radio]:checked::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: hsl(220, 13%, 13%);
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .form-container {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .form-container .form-control {
+  margin: 5px 0;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .form-container .form-control:first-child {
+  grid-column: span 2;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .form-container .form-control:nth-child(2) {
+  grid-column: span 2;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .form-container .form-control label {
+  display: inline-block;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .form-container input {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid;
+  width: 100%;
+  color: hsl(220, 13%, 13%);
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .form-container button {
+  color: hsl(0, 0%, 100%);
+  background-color: hsl(220, 13%, 13%);
+  cursor: pointer;
+  margin-top: 1rem;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  display: inline-block;
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .form-container button:active {
+  border: 1px solid hsl(220, 13%, 13%);
+}
+.checkout-page .container .steps-container .payment-method-step .method-container form .form-container button .loader {
+  padding: 8px;
+}
 .checkout-page .footer {
   order: 1;
   color: hsl(220, 13%, 13%);
