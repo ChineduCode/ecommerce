@@ -3,6 +3,7 @@ import { useCart } from "@/utils/context/cart/cartContext"
 export default function ReviewOrder({ session }){
     const { state } = useCart()
     const address = session?.user?.addresses.find((address) => (address.defaultAddress)) || session?.user?.addresses[0]
+    console.log('from prop drilign', address)
 
     return(
         <div className="review-order-step">
@@ -24,9 +25,12 @@ export default function ReviewOrder({ session }){
                 </div>
 
                 <div className="address-container">
+                    <h3>Shipping Address</h3>
                     <div className="address">
-                        {address && `${address?.houseNo || ''} ${address?.street || ''} ${address?.city || ''}, 
-                        ${address?.state || ''}, ${address?.country || ''} ${address?.postalCode || ''}`}
+                        <div className="name">{address.street}</div>
+                        <div className="street">
+                            {`${address.houseNo} ${address.street} ${address.city}, ${address.state}, ${address.country} ${address.postalCode}`}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { useCart } from "@/utils/context/cart/cartContext";
 import axios from 'axios';
 
 function Message({ content }) {
@@ -9,7 +8,6 @@ function Message({ content }) {
 
 export default function PayPalCheckout({ shippingPrice, grandPrice, session }) {
     const [message, setMessage] = useState("");
-    const { state } = useCart();
     const [forceReRender, setForceReRender] = useState(false);
 
     const initialOptions = {

@@ -57,7 +57,7 @@ export default function Checkout(){
                 </div>
                 <div className="steps-container">
                     { currentStep === 1 && <ShippingAddress handleNextStep={handleNextStep} />}
-                    { currentStep === 2 && <ReviewOrder session={session}/> }
+                    { currentStep === 2 && <ReviewOrder session={session} /> }
                     { currentStep === 3 && <PayPalCheckout shippingPrice={shippingPrice} totalPrice={totalPrice} session={session}/> }
                 </div>
             </div>
@@ -88,7 +88,16 @@ export default function Checkout(){
                     <span>${totalPrice}</span>
                 </div>
 
-                { currentStep === 2 && <button className="place-order-btn" type="button">Place Order</button> }
+                {  currentStep === 2 
+                    && 
+                    <button 
+                        className="place-order-btn" 
+                        type="button"
+                        onClick={handleNextStep}
+                    >
+                        Place Order
+                    </button> 
+                }
             </form>
         </main>
     )

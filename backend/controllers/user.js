@@ -90,7 +90,7 @@ const loginUser = asyncHandler(async (req, res)=> {
         }
 
         //Checking for the user
-        const user = await User.findOne({ email })
+        const user = await User.findOne({ email }).populate('addresses')
         if(!user){
             return res.status(401).json({ message: 'Invalid user credentials' })
         }
@@ -299,7 +299,7 @@ const updateUser = asyncHandler(async (req, res) => {
             userID, 
             update,
             {new: true, runValidators: true}
-        )
+        ).populate('addresses')
 
         res.status(200).json({
             message: 'User updated successfully',
