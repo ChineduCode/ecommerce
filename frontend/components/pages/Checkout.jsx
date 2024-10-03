@@ -2,8 +2,8 @@
 
 import { PiHouse, PiNote, PiCreditCardBold } from "react-icons/pi";
 import ShippingAddress from "./ShippingAddress";
-import PaymentMethod from "./PaymentMethod";
 import ReviewOrder from "./ReviewOrder";
+import PayPalCheckout from "../PaypalCheckout";
 import { useCart } from "@/utils/context/cart/cartContext";
 import { useEffect, useState, useRef } from "react";
 import { useSession } from "next-auth/react";
@@ -12,8 +12,11 @@ export default function Checkout(){
     const { state, loadCart } = useCart()
     const { data: session } = useSession()
     const currentStepRef = useRef(null)
-    const [ currentStep, setCurrentStep ] = useState(1)
+    const [ currentStep, setCurrentStep ] = useState(2)
     const [coupon, setCoupon] = useState('FLAT50')
+    const [ grandPrice, setGrandPrice ] = useState(0)
+
+    const shippingPrice = 5
 
     useEffect(()=> {
         if(session){
@@ -21,9 +24,14 @@ export default function Checkout(){
         }
     },[session])
 
+    useEffect(()=> {
+        if(state.totalPrice){
+            setGrandPrice(state.totalPrice + 5)
+        }
+    }, [state])
+
     const handleNextStep = () => {
         setCurrentStep(currentStep + 1)
-        console.log(currentStep)
     }
 
     return (
@@ -46,7 +54,7 @@ export default function Checkout(){
                 </div>
                 <div className="steps-container">
                     { currentStep === 1 && <ShippingAddress handleNextStep={handleNextStep} />}
-                    { currentStep === 2 && <PaymentMethod handleNextStep={handleNextStep} /> }
+                    { currentStep === 2 && <PayPalCheckout shippingPrice={shippingPrice} grandPrice={grandPrice} session={session}/> }
                     { currentStep === 3 && <ReviewOrder /> }
                 </div>
             </div>
@@ -69,15 +77,15 @@ export default function Checkout(){
                 </div>
                 <div className="delivery-charge">
                     <span>Delivery charge</span>
-                    <span className="delivery-charge">$5</span>
+                    <span className="delivery-charge">${shippingPrice}</span>
                 </div>
 
                 <div className="grand-total">
                     <span>Grand Total</span>
-                    <span>${state.totalPrice + 5}</span>
+                    <span>${grandPrice}</span>
                 </div>
 
-                {/* {state?.responseMsg && <ResponseMsg />} */}
+                { currentStep === 3 && <button className="place-order-btn">Place Order</button> }
             </form>
         </main>
     )

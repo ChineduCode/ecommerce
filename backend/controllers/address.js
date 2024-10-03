@@ -32,7 +32,6 @@ const addAddress = asyncHandler( async (req, res)=> {
         user.addresses.unshift(address._id)
         await user.save()
 
-        // Populate the addresses so the user object contains full address details
         const updatedUser = await User.findById(userId).populate('addresses').lean();
 
         return res.status(201).json({
@@ -41,7 +40,6 @@ const addAddress = asyncHandler( async (req, res)=> {
         });
 
     } catch (error) {
-        console.log(error.message)
         return res.status(500).json({message: 'Internal server error'})
     }
 })

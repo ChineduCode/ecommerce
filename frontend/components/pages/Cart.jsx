@@ -69,11 +69,11 @@ export default function Cart(){
             <div className="header">
                 <h1>Shopping Cart</h1>
             </div>
-            { state.items.length > 0 ?
+            { state.items?.length > 0 ?
                 <div className="cart-container">
                     <div className="container">
                         <div className="heading">You have {state.totalQty} items in your cart</div>
-                        {state.items.map((cartItem, index) => (
+                        {state.items?.map((cartItem, index) => (
                             <div className="product-details" key={index}>
                                 <div className="img-container">
                                     <img src={cartItem.product.image} alt={cartItem.product.name} />

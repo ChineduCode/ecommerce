@@ -26,10 +26,10 @@ export default function MiniCart(){
         <section className="mini-cart">
             <div className="heading">You have {state.totalQty} items in your cart</div>
             { state.loading ? <Loader /> :
-              state.items.length > 0 ?
+              state.items?.length > 0 ?
                 <>
                     <div className="container">
-                        {state.items.slice(0, 2).map((cartItem, index) => (
+                        {state.items?.slice(0, 2).map((cartItem, index) => (
                             <div className="item-content" key={index}>
                                 <div className="product-details">
                                     <div className="img-container">

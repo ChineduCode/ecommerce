@@ -2525,6 +2525,9 @@ footer .bottom-footer .copyright-container {
   width: 50%;
   margin-top: 2rem;
 }
+.checkout-page .container .steps-container .paypal-checkout-step h3 {
+  margin: 1rem 0;
+}
 .checkout-page .footer {
   order: 1;
   color: hsl(220, 13%, 13%);
