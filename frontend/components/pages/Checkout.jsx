@@ -41,16 +41,16 @@ export default function Checkout(){
                     {currentStep === 1 ? 
                         'Shipping Address': 
                         currentStep === 2 ? 
-                        'Payment Method': 
-                        currentStep === 3 ? 
                         'Review Your Order' : 
+                        currentStep === 3 ? 
+                        'Payment Method': 
                         null
                     }
                 </h2>
                 <div className="steps-icons">
                     <span className="address-step-icon"> <PiHouse size={25}/> </span>
-                    <span className="payment-step-icon"> <PiCreditCardBold size={25}/> </span>
                     <span className="review-step-icon"> <PiNote size={25}/> </span>
+                    <span className="payment-step-icon"> <PiCreditCardBold size={25}/> </span>
                 </div>
                 <div className="steps-container">
                     { currentStep === 1 && <ShippingAddress handleNextStep={handleNextStep} />}
