@@ -3,7 +3,6 @@ import { useCart } from "@/utils/context/cart/cartContext"
 export default function ReviewOrder({ session }){
     const { state } = useCart()
     const address = session?.user?.addresses.find((address) => (address.defaultAddress)) || session?.user?.addresses[0]
-    console.log('from prop drilign', address)
 
     return(
         <div className="review-order-step">
