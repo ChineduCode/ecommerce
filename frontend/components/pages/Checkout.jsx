@@ -14,7 +14,7 @@ export default function Checkout(){
     const currentStepRef = useRef(null)
     const [ currentStep, setCurrentStep ] = useState(2)
     const [coupon, setCoupon] = useState('FLAT50')
-    const [ grandPrice, setGrandPrice ] = useState(0)
+    const [ totalPrice, setTotalPrice ] = useState(0)
 
     const shippingPrice = 5
 
@@ -26,7 +26,7 @@ export default function Checkout(){
 
     useEffect(()=> {
         if(state.totalPrice){
-            setGrandPrice(state.totalPrice + 5)
+            setTotalPrice(state.totalPrice + 5)
         }
     }, [state])
 
@@ -54,8 +54,8 @@ export default function Checkout(){
                 </div>
                 <div className="steps-container">
                     { currentStep === 1 && <ShippingAddress handleNextStep={handleNextStep} />}
-                    { currentStep === 2 && <PayPalCheckout shippingPrice={shippingPrice} grandPrice={grandPrice} session={session}/> }
-                    { currentStep === 3 && <ReviewOrder /> }
+                    { currentStep === 2 && <ReviewOrder /> }
+                    { currentStep === 3 && <PayPalCheckout shippingPrice={shippingPrice} totalPrice={totalPrice} session={session}/> }
                 </div>
             </div>
             <form className="footer">
@@ -82,7 +82,7 @@ export default function Checkout(){
 
                 <div className="grand-total">
                     <span>Grand Total</span>
-                    <span>${grandPrice}</span>
+                    <span>${totalPrice}</span>
                 </div>
 
                 { currentStep === 3 && <button className="place-order-btn">Place Order</button> }
