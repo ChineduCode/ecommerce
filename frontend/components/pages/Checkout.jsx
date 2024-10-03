@@ -12,7 +12,7 @@ export default function Checkout(){
     const { state, loadCart } = useCart()
     const { data: session } = useSession()
     const currentStepRef = useRef(null)
-    const [ currentStep, setCurrentStep ] = useState(2)
+    const [ currentStep, setCurrentStep ] = useState(1)
     const [coupon, setCoupon] = useState('FLAT50')
     const [ totalPrice, setTotalPrice ] = useState(0)
 
