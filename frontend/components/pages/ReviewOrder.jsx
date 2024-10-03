@@ -1,7 +1,35 @@
-export default function ReviewOrder(){
+import { useCart } from "@/utils/context/cart/cartContext"
+
+export default function ReviewOrder({ session }){
+    const { state } = useCart()
+    const address = session?.user?.addresses.find((address) => (address.defaultAddress)) || session?.user?.addresses[0]
+
     return(
         <div className="review-order-step">
-            <h2>Review Your Order</h2>
+            <h3>Estimate delivery - 3 days</h3>
+            <div className="containers">
+                <div className="cart-container">
+                    {state.items.map((item, index) => (
+                        <div className="item" key={index}>
+                            <div className="img-container">
+                                <img src={item.product.image} alt={item.product.image} />
+                            </div>
+                            <div className="detail-container">
+                                <div className="name">{item.product.name}</div>
+                                <div className="price">${item.product.price}</div>
+                                <div className="qty">Quantity: {item.quantity}</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="address-container">
+                    <div className="address">
+                        {address && `${address?.houseNo || ''} ${address?.street || ''} ${address?.city || ''}, 
+                        ${address?.state || ''}, ${address?.country || ''} ${address?.postalCode || ''}`}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

@@ -7,12 +7,13 @@ import PayPalCheckout from "../PayPalCheckout";
 import { useCart } from "@/utils/context/cart/cartContext";
 import { useEffect, useState, useRef } from "react";
 import { useSession } from "next-auth/react";
+import Loading from "../Loading";
 
 export default function Checkout(){
     const { state, loadCart } = useCart()
-    const { data: session } = useSession()
+    const { data: session, status } = useSession()
     const currentStepRef = useRef(null)
-    const [ currentStep, setCurrentStep ] = useState(1)
+    const [ currentStep, setCurrentStep ] = useState(2)
     const [coupon, setCoupon] = useState('FLAT50')
     const [ totalPrice, setTotalPrice ] = useState(0)
 
@@ -34,6 +35,8 @@ export default function Checkout(){
         setCurrentStep(currentStep + 1)
     }
 
+    if(status === 'loading') return <main> <Loading /> </main>
+
     return (
         <main className="checkout-page">
             <div className="container">
@@ -54,7 +57,7 @@ export default function Checkout(){
                 </div>
                 <div className="steps-container">
                     { currentStep === 1 && <ShippingAddress handleNextStep={handleNextStep} />}
-                    { currentStep === 2 && <ReviewOrder /> }
+                    { currentStep === 2 && <ReviewOrder session={session}/> }
                     { currentStep === 3 && <PayPalCheckout shippingPrice={shippingPrice} totalPrice={totalPrice} session={session}/> }
                 </div>
             </div>
@@ -85,7 +88,7 @@ export default function Checkout(){
                     <span>${totalPrice}</span>
                 </div>
 
-                { currentStep === 3 && <button className="place-order-btn">Place Order</button> }
+                { currentStep === 2 && <button className="place-order-btn" type="button">Place Order</button> }
             </form>
         </main>
     )

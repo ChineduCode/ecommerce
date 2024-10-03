@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useCart } from "@/utils/context/cart/cartContext";

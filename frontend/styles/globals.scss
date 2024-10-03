@@ -2513,6 +2513,47 @@ footer{
                 }
             }
 
+            .review-order-step{
+                .containers{
+                    margin: 1rem 0;
+                    .cart-container{
+                        border-bottom: 2px solid hsl(223, 64%, 98%);
+                        padding: 1rem 0;
+                        .item{
+                            display: grid;
+                            grid-template-columns: auto 1fr;
+                            align-items: flex-start;
+                            justify-content: space-evenly;
+                            gap: 50px;
+                            margin: 1rem 0;
+                            .img-container{
+                                width: 100px;
+                                height: 100px;
+                                flex: 1;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                padding: 5px;
+                                img{
+                                    height: 100%;
+                                    width: 100%;
+                                    max-width: 100%;
+                                    display: block;
+                                    object-fit: contain;
+                                }
+                            }
+                            .detail-container{
+                                line-height: 30px;
+                                .name{
+                                    font-size: 18px;
+                                    font-weight: 600;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             .payment-method-step{
                 .method-container{
                     margin: 2rem 0;
