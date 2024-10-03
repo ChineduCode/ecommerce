@@ -3,7 +3,7 @@
 import { PiHouse, PiNote, PiCreditCardBold } from "react-icons/pi";
 import ShippingAddress from "./ShippingAddress";
 import ReviewOrder from "./ReviewOrder";
-import PayPalCheckout from "../PaypalCheckout";
+import PayPalCheckout from "../PayPalCheckout";
 import { useCart } from "@/utils/context/cart/cartContext";
 import { useEffect, useState, useRef } from "react";
 import { useSession } from "next-auth/react";

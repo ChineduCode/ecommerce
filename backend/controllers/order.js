@@ -32,14 +32,7 @@ const generateAccessToken = async () => {
 
 const createOrder = async (cart) => {
     try {
-        // use the cart information passed from the front-end to calculate the purchase unit details
-        console.log(
-            "shopping cart information passed from the frontend createOrder() callback:",
-            cart,
-        );
-        
         const accessToken = await generateAccessToken();
-        console.log(accessToken)
         const url = `${base}/v2/checkout/orders`;
         const payload = {
             intent: "CAPTURE",
