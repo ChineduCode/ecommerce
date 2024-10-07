@@ -34,6 +34,7 @@ export default function Checkout(){
         if(state.totalPrice){
             setTotalPrice(state.totalPrice + 5)
         }
+        console.log(process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY)
     }, [state])
 
     const handleNextStep = () => {
@@ -44,17 +45,34 @@ export default function Checkout(){
         
         if (typeof window !== 'undefined') {
             try {
-                const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/orders/create`, 
-                    {},
-                    { headers: { 'Authorization': `Bearer ${session.accessToken}` } }
-                );
+                // const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/orders/create`, 
+                //     {},
+                //     { headers: { 'Authorization': `Bearer ${session.accessToken}` } }
+                // );
         
-                const access_code = response.data.data.access_code;
+                // const access_code = response.data.data.access_code;
         
                 const PaystackPop = (await import('@paystack/inline-js')).default;
                 const popup = new PaystackPop();
-                const transaction = await popup.resumeTransaction(access_code);
-                console.log(transaction);
+                // const transaction = await popup.resumeTransaction(access_code);
+                // console.log(transaction);
+                popup.checkout({
+                    key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+                    email: session.user.email,
+                    amount: 23400,
+                    onSuccess: (transaction) => {
+                        console.log(transaction);
+                    },
+                    onLoad: (response) => {
+                        console.log("onLoad: ", response);
+                    },
+                    onCancel: () => {
+                        console.log("onCancel");
+                    },
+                    onError: (error) => {
+                        console.log("Error: ", error.message);
+                    }
+                })
                 setOrderStatus('success');
                 dispatch({ type: 'TOGGLE_MODAL' });
                 
