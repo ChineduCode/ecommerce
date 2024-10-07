@@ -10,8 +10,8 @@ import { useEffect, useState, useRef } from "react";
 import { useSession } from "next-auth/react";
 import Loading from "../Loading";
 import axios from "axios";
-import PaystackPop from '@paystack/inline-js'
 import Link from 'next/link'
+import dynamic from "next/dynamic";
 
 export default function Checkout(){
     const { state, loadCart } = useCart()
@@ -40,26 +40,30 @@ export default function Checkout(){
         setCurrentStep(currentStep + 1)
     }
     const createOrder = async () => {
-        setOrderStatus('processing')
-        try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/orders/create`, 
-                {},
-                {headers: {'Authorization': `Bearer ${session.accessToken}`}}
-            )
-    
-            const access_code = response.data.data.access_code
-    
-            const popup = new PaystackPop()
-            const transaction = await popup.resumeTransaction(access_code)
-            console.log(transaction)
-            setOrderStatus('success')
-            dispatch({ type: 'TOGGLE_MODAL' })
-            
-        } catch (error) {
-            setOrderStatus('failed')
-            console.error(error.response?.data.message || error.message)
+        setOrderStatus('processing');
+        
+        if (typeof window !== 'undefined') {
+            try {
+                const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/orders/create`, 
+                    {},
+                    { headers: { 'Authorization': `Bearer ${session.accessToken}` } }
+                );
+        
+                const access_code = response.data.data.access_code;
+        
+                const PaystackPop = (await import('@paystack/inline-js')).default;
+                const popup = new PaystackPop();
+                const transaction = await popup.resumeTransaction(access_code);
+                console.log(transaction);
+                setOrderStatus('success');
+                dispatch({ type: 'TOGGLE_MODAL' });
+                
+            } catch (error) {
+                setOrderStatus('failed');
+                console.error(error.response?.data.message || error.message);
+            }
         }
-    }
+    };
 
     if(status === 'loading') return <main> <Loading /> </main>
 
