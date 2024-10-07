@@ -1,34 +1,20 @@
 const asyncHandler = require('express-async-handler')
 const Order = require('../models/order')
 const Cart = require('../models/cart')
-const Address = require('../models/address')
+const Address = require('../models/address') 
 const User = require('../models/user')
-const axios = require('axios')
 
 const addOrder = asyncHandler(async (req, res) => {
     try {
         const userId = req.user._id
+        const { totalPrice } = req.body
         const user = await User.findById(userId).populate('addresses')
         if(!user){
             return res.status(404).json({message: 'User not found'})
         }
 
-        const email = req.user.email
-        const amount = 10000000
-        const response = await axios.post(
-            'https://api.paystack.co/transaction/initialize', 
-            {
-                email: user.email,
-                amount
-            },
-            {headers: {
-                Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
-                'Content-Type': 'application/json'
-            }}
-        );
-      
-        res.json(response.data);
-          
+        console.log(totalPrice)
+
     } catch (error) {
         console.error(error)
         //return res.status(500).json({ message: 'Internal server error' })

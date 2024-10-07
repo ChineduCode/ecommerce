@@ -11,7 +11,6 @@ import { useSession } from "next-auth/react";
 import Loading from "../Loading";
 import axios from "axios";
 import Link from 'next/link'
-import dynamic from "next/dynamic";
 
 export default function Checkout(){
     const { state, loadCart } = useCart()
@@ -34,34 +33,35 @@ export default function Checkout(){
         if(state.totalPrice){
             setTotalPrice(state.totalPrice + 5)
         }
-        console.log(process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY)
     }, [state])
 
     const handleNextStep = () => {
         setCurrentStep(currentStep + 1)
     }
-    const createOrder = async () => {
+
+    const checkout = async () => {
         setOrderStatus('processing');
         
         if (typeof window !== 'undefined') {
             try {
-                // const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/orders/create`, 
-                //     {},
-                //     { headers: { 'Authorization': `Bearer ${session.accessToken}` } }
-                // );
-        
-                // const access_code = response.data.data.access_code;
-        
+
                 const PaystackPop = (await import('@paystack/inline-js')).default;
                 const popup = new PaystackPop();
-                // const transaction = await popup.resumeTransaction(access_code);
-                // console.log(transaction);
                 popup.checkout({
                     key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
                     email: session.user.email,
-                    amount: 23400,
-                    onSuccess: (transaction) => {
+                    amount: totalPrice * 100,
+                    onSuccess: async (transaction) => {
                         console.log(transaction);
+                        const response = await axios.post(
+                            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/orders/create`,
+                            {totalPrice},
+                            {headers: {'Authorization': `Bearer ${session.accessToken}`}}
+                        )
+
+                        if(response.data){
+                            console.log(response.data)
+                        }
                     },
                     onLoad: (response) => {
                         console.log("onLoad: ", response);
@@ -140,7 +140,7 @@ export default function Checkout(){
                     <button 
                         className="place-order-btn" 
                         type="button"
-                        onClick={createOrder}
+                        onClick={checkout}
                     >
                         Place Order
                     </button> 
