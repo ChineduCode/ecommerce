@@ -1,7 +1,8 @@
 'use client'
 
 import Link from "next/link"
-import { IoMenu, IoSearch, IoHeartOutline, IoCartOutline } from "react-icons/io5";
+import { IoMenu, IoSearch, IoHeartOutline } from "react-icons/io5";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { FaRegUser } from 'react-icons/fa6';
 import Nav from "./Nav";
 import MiniCart from "./MiniCart";
@@ -31,7 +32,7 @@ export default function Header(){
                     <div className="icons">
                         <IoSearch size={22}/>
                         <Link href='/profile/wishlists'> <IoHeartOutline size={22}/> </Link>
-                        <IoCartOutline size={22} onClick={handleCartClick}/>
+                        <HiOutlineShoppingBag size={22} onClick={handleCartClick}/>
                     </div>
 
                     {state.isCartOpen && <MiniCart />}
@@ -52,7 +53,8 @@ export default function Header(){
                 </div>
                 <div className="menu-bar" onClick={()=> dispatch({type: 'TOGGLE_SIDEBAR'})}> <IoMenu size={25}/> </div>
             </div>
-            <div className={`overlay ${state.isSideBarOpen ? 'overlay-active' : 'overlay'}`}></div>
+
+            {(state.isSideBarOpen || state.isCartOpen || state.isModalOpen) && <div className='overlay'></div>}
         </header>
     )
 }
