@@ -1,7 +1,7 @@
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import Link from "next/link"
-import { FaRegUser, FaArrowLeftLong, FaAngleLeft } from "react-icons/fa6";
+import { FaRegUser } from "react-icons/fa6";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { GrLocation, GrFavorite, GrCreditCard } from "react-icons/gr";
 import { PiBellLight } from "react-icons/pi";
