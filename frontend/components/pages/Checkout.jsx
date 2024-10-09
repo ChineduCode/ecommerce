@@ -51,16 +51,19 @@ export default function Checkout(){
                     key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
                     email: session.user.email,
                     amount: totalPrice * 100,
+
                     onSuccess: async (transaction) => {
-                        console.log(transaction);
+                        const date = new Date()
                         const response = await axios.post(
                             `${process.env.NEXT_PUBLIC_API_URL}/api/v1/orders/create`,
-                            {totalPrice},
+                            { totalPrice, shippingPrice, ...transaction, date },
                             {headers: {'Authorization': `Bearer ${session.accessToken}`}}
                         )
 
                         if(response.data){
                             console.log(response.data)
+                            setOrderStatus('success');
+                            dispatch({ type: 'TOGGLE_MODAL' });
                         }
                     },
                     onLoad: (response) => {
@@ -73,8 +76,6 @@ export default function Checkout(){
                         console.log("Error: ", error.message);
                     }
                 })
-                setOrderStatus('success');
-                dispatch({ type: 'TOGGLE_MODAL' });
                 
             } catch (error) {
                 setOrderStatus('failed');

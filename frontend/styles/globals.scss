@@ -2742,6 +2742,7 @@ footer{
         display: flex;
         align-items: center;
         justify-content: center;
+        z-index: 11;
         .container{
             width: 350px;
             max-width: 100%;
@@ -2749,7 +2750,6 @@ footer{
             border-radius: 8px;
             padding: 1rem;
             text-align: center;
-            z-index: 20;
             .icon-container{
                 display: inline-block;
                 width: 70px;

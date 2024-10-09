@@ -21,6 +21,10 @@ export default function Nav() {
             if (state.isCartOpen && (target.tagName === 'A' || target.tagName === 'BUTTON')) {
                 dispatch({ type: 'TOGGLE_CART' });
             }
+
+            if (state.isModalOpen && (target.tagName === 'A' || target.tagName === 'BUTTON')) {
+                dispatch({ type: 'TOGGLE_MODAL' });
+            }
         };
 
         body.addEventListener('click', handleClickOutside);
@@ -32,7 +36,7 @@ export default function Nav() {
 
 
     return (
-        <nav className={`nav ${state.isSideBarOpen ? 'nav-active' : 'nav'}`}>
+        <nav className={`nav ${state.isSideBarOpen ? 'nav-active' : 'nav'}`}> 
             <div className="close-nav" onClick={() => dispatch({ type: 'TOGGLE_SIDEBAR' })}>
                 <IoClose size={25} className="close-icon" />
             </div>
@@ -72,5 +76,5 @@ export default function Nav() {
                 </li>
             </ul>
         </nav>
-    );
-}
+    ); 
+} 
