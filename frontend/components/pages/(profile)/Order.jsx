@@ -5,31 +5,23 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { useSession } from "next-auth/react"
 import Loading from "@/components/Loading"
+import { useOrder } from "@/utils/context/order/orderContext"
 
 export default function Order(){
-    const [orders, setOrders] = useState([])
     const { data: session } = useSession()
+    const { state, loadOrder } = useOrder()
 
     useEffect(()=> {
-        const fetchOrders = async () => {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/orders`, {
-                headers: {'Authorization': `Bearer ${session.accessToken}`}
-            })
-            if(response.data){
-                setOrders(response.data)
-                console.log(orders)
-            }
-        }
-
-        fetchOrders()
-    },[session])
+        loadOrder()
+        console.log(state.orders)
+    },[])
 
     return(
         <div className="order-page">
             <div className="filter-container">
                 <input type="search" name="filter" id="" />
             </div>
-            {orders.length > 0 ?
+            {state?.orders?.length > 0 ?
                 <div className="orders-container">Your Orders</div>
                 :
                 <div className="empty-orders">You have no orders yet</div>
