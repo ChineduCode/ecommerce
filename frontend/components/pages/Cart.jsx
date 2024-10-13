@@ -9,6 +9,7 @@ import { useCart } from "@/utils/context/cart/cartContext";
 import ResponseMsg from "../ResponseMsg";
 import { useRouter } from "next/navigation";
 import Link from 'next/link'
+import { useSession } from "next-auth/react";
 
 export default function Cart(){
     const { state, loadCart, removeItemFromCart, updateUserCart } = useCart()
@@ -23,7 +24,12 @@ export default function Cart(){
     const router = useRouter()
 
     useEffect(()=> {
-        loadCart()
+        const fetchCart = async () => {
+            setLoading(true);
+            await loadCart();
+            setLoading(false);
+        };
+        fetchCart();
     }, [])
     
     useEffect(()=> {
@@ -34,7 +40,6 @@ export default function Cart(){
             setSubTotal(state.totalPrice)
             setCart([...state.items])
         }
-        setLoading(false)
     },[state.items])
 
     useEffect(()=> {
