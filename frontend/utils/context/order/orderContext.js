@@ -19,6 +19,7 @@ export const OrderProvider = ({children}) => {
         dispatch({type: 'LOADING'})
         try {
             const data = await fetchOrder()
+            console.log(data)
             dispatch({type: 'FETCH_ORDER', payload: data})
         } catch (error) {
             dispatch({type: 'ERROR', payload: error.response.data.message})

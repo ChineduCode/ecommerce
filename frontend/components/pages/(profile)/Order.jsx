@@ -2,13 +2,12 @@
 
 import { IoSearch } from "react-icons/io5"
 import { useState, useEffect } from "react"
-import axios from "axios"
 import { useSession } from "next-auth/react"
 import Loading from "@/components/Loading"
 import { useOrder } from "@/utils/context/order/orderContext"
 
 export default function Order(){
-    const { data: session } = useSession()
+    const { data: session, status } = useSession()
     const { state, loadOrder } = useOrder()
     const [search, setSearch] = useState('')
 
@@ -21,6 +20,8 @@ export default function Order(){
         setSearch(e.target.value)
         console.log(search)
     }
+
+    if(status === 'loading') return <div style={{width: '100%'}}> <Loading /> </div>
 
     return(
         <div className="order-page">
@@ -40,7 +41,14 @@ export default function Order(){
             {state?.orders?.length > 0 ?
                 <div className="orders-container">
                     {state.orders.map((order, index) => (
-                        <div className="order">Hello Order</div>
+                        <div className="order" key={index}>
+                            <div className="product-container">
+                                <div className="item-container">
+                                    <div className="img-container"> <img src={order} alt="" /> </div>
+                                </div>
+                            </div>
+                            <div className="btns-container"></div>
+                        </div>
                     ))}
                 </div>
                 :
