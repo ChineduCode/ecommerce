@@ -2896,4 +2896,79 @@ footer{
             left: 13px;
         }
     }
+    .order-empty{
+        width: 100%;
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+        margin-top: 3rem;
+    }
+    .orders-container{
+        margin-top: 3rem;
+        .order{
+            width: 100%;
+            padding: 2rem 0;
+            border-bottom: 1px solid hsl(220, 14%, 75%);
+            .product-container{
+                display: grid;
+                grid-template-columns: auto 1fr;
+                align-items: flex-start;
+                gap: 15px;
+                .img-container{
+                    flex: 1;
+                    width: 100px;
+                    height: 100px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 5px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        max-width: 100%;
+                        object-fit: contain;
+                    }
+                }
+                .item-detail{
+                    color: hsl(220, 13%, 13%);
+                    .product-name{
+                        font-size: 20px;
+                        font-weight: 600;
+                    }
+                    .product-price{
+                        margin: 1rem 0;
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+                }
+            }
+            .btn-container{
+                margin-top: 1.5rem;
+                display: flex;
+                gap: 10px;
+                .view-order-link{
+                    a{
+                        padding: 13px;
+                        color: hsl(220, 13%, 13%);
+                        font-size: 15px;
+                    }
+                    border: 1px solid hsl(220, 13%, 13%);
+                    border-radius: 8px;
+                    width: 100%;
+                    cursor: pointer;
+                }
+                .write-review-btn{
+                    padding: 13px;
+                    border: none;
+                    color: hsl(0, 0, 100%);
+                    background-color: hsl(220, 13%, 13%);
+                    border-radius: 8px;
+                    font-size: 15px;
+                    width: 100%;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }
