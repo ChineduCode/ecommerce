@@ -1883,6 +1883,16 @@ footer{
         padding: 8rem 1rem;
         width: 100%;
         text-align: center;
+        p{
+            font-size: 20px;
+            font-weight: 600;
+        }
+        a{
+            text-decoration: underline;
+            margin-top: 1rem;
+            display: inline-block;
+            color: hsl(220, 13%, 13%);
+        }
     }
 
     @media (min-width: 768px){
@@ -2276,6 +2286,21 @@ footer{
                     }
                 }
             }
+        }
+    }
+    .empty-wishlist{
+        padding-top: 3rem;
+        min-width: 100%;
+        text-align: center;
+        p{
+            font-size: 20px;
+            font-weight: 600;
+        }
+        a{
+            text-decoration: underline;
+            margin-top: 1rem;
+            display: inline-block;
+            color: hsl(220, 13%, 13%);
         }
     }
 
@@ -2896,12 +2921,19 @@ footer{
             left: 13px;
         }
     }
-    .order-empty{
+    .empty-orders{
         width: 100%;
-        font-size: 20px;
-        font-weight: 600;
         text-align: center;
         margin-top: 3rem;
+        p{
+            font-size: 20px;
+            font-weight: 600;
+        }
+        a{
+            text-decoration: underline;
+            display: inline-block;
+            color: hsl(220, 13%, 13%);
+        }
     }
     .orders-container{
         margin-top: 3rem;

@@ -62,7 +62,10 @@ export default function Order(){
                     ))}
                 </div>
                 :
-                <div className="empty-orders">You have no orders yet <br/>Continue shopping</div>
+                <div className="empty-orders">
+                    <p>You have no orders yet</p>
+                    <Link href={'/cart'}>Go to cart and checkout</Link>
+                </div>
             }
         </div>
     )

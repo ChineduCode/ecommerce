@@ -7,6 +7,7 @@ import Loader from "@/components/Loader"
 import { useWishlist } from "@/utils/context/wishlist/wishlistContext";
 import { useCart } from "@/utils/context/cart/cartContext";
 import ResponseMsg from "@/components/ResponseMsg";
+import Link from "next/link";
 
 export default function Wishlist() {
     const { state: wishlistState, loadWishlist, removeItemFromWishlist } = useWishlist();
@@ -32,9 +33,9 @@ export default function Wishlist() {
 
     return (
         <div className="wishlist-page" id='wishlists'>
-            <div className="containers">
-                {wishlistState.items?.length > 0 ? (
-                    wishlistState.items.map((product, index) => (
+            {wishlistState.items?.length > 0 ? (
+                <div className="containers">
+                    {wishlistState.items.map((product, index) => (
                         <div key={index} className="product">
                             <div className="img-container">
                                 <div className="img">
@@ -62,11 +63,15 @@ export default function Wishlist() {
                                 </div>
                             </div>
                         </div>
-                    ))
-                ) : (
-                    <p style={{textAlign: 'center', width: '100%'}}>No wishlist found.</p>
-                )}
-            </div>
+                    ))}
+                </div>
+            )
+                :
+                <div className="empty-wishlist">
+                    <p>No wishlist found.</p>
+                    <Link href={'/shop'}>Continue shopping</Link>
+                </div>
+            }
             { cartState.responseMsg && <ResponseMsg /> }
         </div>
     );

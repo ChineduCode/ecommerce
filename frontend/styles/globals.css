@@ -1844,6 +1844,16 @@ footer .bottom-footer .copyright-container {
   width: 100%;
   text-align: center;
 }
+.cart-page .empty-cart p {
+  font-size: 20px;
+  font-weight: 600;
+}
+.cart-page .empty-cart a {
+  text-decoration: underline;
+  margin-top: 1rem;
+  display: inline-block;
+  color: hsl(220, 13%, 13%);
+}
 @media (min-width: 768px) {
   .cart-page {
     padding: 7rem 4% 3rem;
@@ -2220,6 +2230,21 @@ footer .bottom-footer .copyright-container {
 .wishlist-page .containers .product .product-info .selling-cost-prices .cost-price {
   text-decoration: line-through;
   color: hsl(220, 14%, 75%);
+}
+.wishlist-page .empty-wishlist {
+  padding-top: 3rem;
+  min-width: 100%;
+  text-align: center;
+}
+.wishlist-page .empty-wishlist p {
+  font-size: 20px;
+  font-weight: 600;
+}
+.wishlist-page .empty-wishlist a {
+  text-decoration: underline;
+  margin-top: 1rem;
+  display: inline-block;
+  color: hsl(220, 13%, 13%);
 }
 @media (min-width: 330px) and (max-width: 600px) {
   .wishlist-page .containers {
@@ -2795,12 +2820,19 @@ footer .bottom-footer .copyright-container {
   bottom: 13px;
   left: 13px;
 }
-.order-page .order-empty {
+.order-page .empty-orders {
   width: 100%;
-  font-size: 20px;
-  font-weight: 600;
   text-align: center;
   margin-top: 3rem;
+}
+.order-page .empty-orders p {
+  font-size: 20px;
+  font-weight: 600;
+}
+.order-page .empty-orders a {
+  text-decoration: underline;
+  display: inline-block;
+  color: hsl(220, 13%, 13%);
 }
 .order-page .orders-container {
   margin-top: 3rem;

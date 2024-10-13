@@ -22,8 +22,8 @@ export default function cartReducer(state, action){
             return {
                 ...state,
                 items: action.payload,
-                totalQty: action.payload.length,
-                totalPrice: action.payload.reduce((sum, cartItem)=> sum + (cartItem.product.price * cartItem.quantity), 0),
+                totalQty: action.payload?.length,
+                totalPrice: action.payload?.reduce((sum, cartItem)=> sum + (cartItem.product.price * cartItem.quantity), 0),
                 loading: false,
                 error: false
             }

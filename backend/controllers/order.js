@@ -38,6 +38,7 @@ const createOrder = asyncHandler(async (req, res) => {
             paidAt: date
         })
         await order.save()
+        await Cart.deleteOne({user: userId}) //Deleting the cart when order has been successfully created!!!
         return res.status(201).json({message: 'Order added successfully', order})
 
     } catch (error) {

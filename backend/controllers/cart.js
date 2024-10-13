@@ -99,7 +99,7 @@ const getUserCart = asyncHandler(async (req, res)=> {
             select: 'name brand price image rating'
         })
         
-        if(!cart) return res.status(404).json({ message: 'Cart is empty'})
+        if(!cart) return res.status(200).json({ message: 'Cart is empty'})
         
         return res.status(200).json(cart)
 

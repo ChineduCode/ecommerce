@@ -8,6 +8,7 @@ import Loading from "../Loading";
 import { useCart } from "@/utils/context/cart/cartContext";
 import ResponseMsg from "../ResponseMsg";
 import { useRouter } from "next/navigation";
+import Link from 'next/link'
 
 export default function Cart(){
     const { state, loadCart, removeItemFromCart, updateUserCart } = useCart()
@@ -162,7 +163,8 @@ export default function Cart(){
                 </div> :
 
                 <div className="empty-cart">
-                    <span>Your cart is empty</span>
+                    <p>Your cart is empty</p>
+                    <Link href={'/shop'}>Continue shopping</Link>
                 </div>
             }
         </main>
