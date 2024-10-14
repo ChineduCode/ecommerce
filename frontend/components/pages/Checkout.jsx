@@ -15,18 +15,22 @@ import Link from 'next/link'
 export default function Checkout(){
     const { state, loadCart } = useCart()
     const { state: modalState, dispatch } = useUX()
-    const { data: session, status } = useSession()
+    const { data: session } = useSession()
     const [ currentStep, setCurrentStep ] = useState(2)
     const [coupon, setCoupon] = useState('FLAT50')
     const [ totalPrice, setTotalPrice ] = useState(0)
     const [orderStatus, setOrderStatus] = useState('')
+    const [loading, setLoading] = useState(true)
 
     const shippingPrice = 5
 
     useEffect(()=> {
-        if(session){
-            loadCart()
+        const fetchCart = async () => {
+            setLoading(true)
+            await loadCart()
+            setLoading(false)
         }
+        fetchCart()
     },[session])
 
     useEffect(()=> {
@@ -84,7 +88,7 @@ export default function Checkout(){
         }
     };
 
-    if(status === 'loading') return <main> <Loading /> </main>
+    if(loading) return <main style={{marginTop: '7rem'}}> <Loading /> </main>
 
     return (
         <main className="checkout-page">

@@ -2006,30 +2006,33 @@ footer{
                         font-size: 22px;
                         font-weight: 600;
                     }
-                    .email{
-                        text-wrap: wrap;
-                    }
                 }
             }
             .links{
                 margin-top: 1rem;
-                padding: 1rem;
                 background-color: hsl(0, 0, 100%);
                 border-radius: 8px;
                 box-shadow: 0 0 3px hsl(220, 14%, 75%);
+                overflow: hidden;
                 li{
-                    margin: 1.5rem 0;
                     width: 100%;
                     a{
-                        padding: 2px;
+                        padding: 1rem;
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
+                        color: hsl(220, 13%, 13%);
                         .icon{
                             display: flex;
                             align-items: center;
                             gap: 10px;
                         }
+                    }
+                }
+                .profile-link-active{
+                    a{
+                        background-color: hsl(220, 13%, 13%);
+                        color: hsl(0, 0, 100%);
                     }
                 }
             } 
@@ -2063,7 +2066,6 @@ footer{
                     text-align: center;
                     .profile-img-container{margin: auto;}
                     .profile-info{
-                        //text-align: justify;
                         margin: auto;
                     }
                 }

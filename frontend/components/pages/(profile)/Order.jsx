@@ -2,26 +2,29 @@
 
 import { IoSearch } from "react-icons/io5"
 import { useState, useEffect } from "react"
-import { useSession } from "next-auth/react"
 import Loading from "@/components/Loading"
 import { useOrder } from "@/utils/context/order/orderContext"
 import Link from 'next/link'
 
 export default function Order(){
-    const { data: session, status } = useSession()
     const { state, loadOrder } = useOrder()
     const [search, setSearch] = useState('')
+    const [loading, setLoading] = useState(true)
 
     useEffect(()=> {
-        loadOrder()
-        console.log(state.orders)
+        const fetchOrders = async () => {
+            setLoading(true)
+            await loadOrder()
+            setLoading(false)
+        }
+        fetchOrders()
     },[])
 
     const handleOrderFilter = (e) => {
         setSearch(e.target.value)
     }
 
-    if(status === 'loading') return <div style={{width: '100%'}}> <Loading /> </div>
+    if(loading) return <div style={{width: '100%'}}> <Loading /> </div>
 
     return(
         <div className="order-page">
