@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { FaRegUser } from "react-icons/fa6";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { GrLocation, GrFavorite } from "react-icons/gr";
@@ -20,6 +20,40 @@ export default function ProfileSideBarLinks(){
         { name: 'Notifications', link: '/profile/notifications', inlineLink: '#notifications', icon: <PiBellLight size={22}/> },
         { name: 'Settings', link: '/profile/settings', inlineLink: '#settings', icon: <BsGear size={22}/> },
     ];
+
+    useEffect(()=> {
+        const location = window.location.pathname.split('/')[2] || window.location.pathname.split('/')[1]
+        console.log(location)
+        switch (location) {
+            case 'profile':
+                setCurrentPage(0)
+                break;
+        
+            case 'orders':
+                setCurrentPage(1)
+                break;
+        
+            case 'wishlists':
+                setCurrentPage(2)
+                break;
+        
+            case 'addresses':
+                setCurrentPage(3)
+                break;
+        
+            case 'notifications':
+                setCurrentPage(4)
+                break;
+        
+            case 'settings':
+                setCurrentPage(5)
+                break;
+        
+            default:
+                setCurrentPage(0)
+                break;
+        }
+    })
     
     return(
         <ul className="links">
