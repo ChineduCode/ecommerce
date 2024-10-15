@@ -38,7 +38,7 @@ const createOrder = asyncHandler(async (req, res) => {
             paidAt: date
         })
         await order.save()
-        await Cart.deleteOne({user: userId}) //Deleting the cart when order has been successfully created!!!
+        await Cart.deleteOne({user: userId})
         return res.status(201).json({message: 'Order added successfully', order})
 
     } catch (error) {
@@ -65,7 +65,27 @@ const getUserOrders = asyncHandler(async (req, res) => {
     }
 })
 
+const getUserOrderById = asyncHandler(async (req, res) => {
+    try {
+        const orderId = req.params
+        const userId = req.user._id
+    } catch (error) {
+        return res.status(500).json({message: 'Internal server error'})
+    }
+})
+
+const bestSellers = asyncHandler(async (req, res) => {
+    try{
+        const orders = await Order.find({})
+    } catch(error) {
+        console.log(error.stack, error.message)
+        return res.status(500).json({message: 'Internal server error'})
+    }
+})
+
 module.exports = {
     createOrder,
-    getUserOrders
+    getUserOrders,
+    getUserOrderById,
+    bestSellers
 }

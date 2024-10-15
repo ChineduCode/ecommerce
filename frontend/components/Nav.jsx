@@ -25,6 +25,12 @@ export default function Nav() {
             if (state.isModalOpen && (target.tagName === 'A' || target.tagName === 'BUTTON')) {
                 dispatch({ type: 'TOGGLE_MODAL' });
             }
+
+            if ((state.isModalOpen || state.isCartOpen || state.isSideBarOpen) && target.className === 'overlay'){
+                dispatch({ type: 'TOGGLE_MODAL' })
+                dispatch({ type: 'TOGGLE_SIDEBAR' })
+                dispatch({ type: 'TOGGLE_CART' })
+            }
         };
 
         body.addEventListener('click', handleClickOutside);
