@@ -31,6 +31,10 @@ export default function ProfileSideBarLinks(){
         const currentIndex = profileLinks.findIndex(link => link.link.includes(currentPath));
         setCurrentPage(currentIndex !== -1 ? currentIndex : 0);
     }, [pathname]);
+
+    const handleLinkClick = (index) => {
+        setCurrentPage(index)
+    }
     
     return(
         <ul className="links">
@@ -38,6 +42,7 @@ export default function ProfileSideBarLinks(){
                 <li 
                     key={index} 
                     className={`profile-link ${currentPage === index ? 'profile-link-active': 'profile-link'}`}
+                    onClick={()=> handleLinkClick(index)}
                 >
                     <Link href={`${profile.link}${profile.inlineLink}`}>
                         <span className='icon'>

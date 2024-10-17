@@ -16,7 +16,7 @@ export default function Checkout(){
     const { state, loadCart } = useCart()
     const { state: modalState, dispatch } = useUX()
     const { data: session } = useSession()
-    const [ currentStep, setCurrentStep ] = useState(2)
+    const [ currentStep, setCurrentStep ] = useState(1)
     const [coupon, setCoupon] = useState('FLAT50')
     const [ totalPrice, setTotalPrice ] = useState(0)
     const [orderStatus, setOrderStatus] = useState('')
@@ -97,17 +97,15 @@ export default function Checkout(){
                     {currentStep === 1 ? 
                         'Shipping Address': 
                         currentStep === 2 ? 
-                        'Review Your Order' : 
-                        currentStep === 3 ? 
-                        'Payment Method': 
+                        'Review Your Order' :
                         null
                     }
                 </h2>
-                <div className="steps-icons">
+                {/* <div className="steps-icons">
                     <span className="address-step-icon"> <PiHouse size={25}/> </span>
                     <span className="review-step-icon"> <PiNote size={25}/> </span>
                     <span className="payment-step-icon"> <PiCreditCardBold size={25}/> </span>
-                </div>
+                </div> */}
                 <div className="steps-container">
                     { currentStep === 1 && <ShippingAddress handleNextStep={handleNextStep} />}
                     { currentStep === 2 && <ReviewOrder session={session} /> }

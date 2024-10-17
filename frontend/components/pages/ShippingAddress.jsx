@@ -34,6 +34,14 @@ export default function ShippingAddress({handleNextStep}){
         }
     }
 
+    const nextStep = () => {
+        if(addresses.length === 0){
+            return
+        }
+        
+        handleNextStep()
+    }
+
     if(status === 'loading') return <main style={{textAlign: 'center'}}>Loading...</main>
 
     return (
@@ -94,7 +102,7 @@ export default function ShippingAddress({handleNextStep}){
 
                 <div className="deliver-btn">
                     <button 
-                        onClick={handleNextStep}
+                        onClick={nextStep}
                     > 
                         Deliver to this Address 
                     </button>
