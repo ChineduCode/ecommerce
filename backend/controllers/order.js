@@ -3,6 +3,7 @@ const Order = require('../models/order')
 const Cart = require('../models/cart')
 const Address = require('../models/address')
 const User = require('../models/user')
+const Product = require('../models/product')
 
 const createOrder = asyncHandler(async (req, res) => {
     try {
@@ -76,7 +77,11 @@ const getUserOrderById = asyncHandler(async (req, res) => {
 
 const bestSellers = asyncHandler(async (req, res) => {
     try{
-        const orders = await Order.find({})
+        const orders = await Product.find({}) //Will still be modified when users creating orders
+        const shuffledOrders = orders.sort(() => 0.5 - Math.random());
+        const randomOrders = shuffledOrders.slice(0, 8);
+        
+        return res.status(200).json(randomOrders);
     } catch(error) {
         console.log(error.stack, error.message)
         return res.status(500).json({message: 'Internal server error'})

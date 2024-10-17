@@ -78,7 +78,7 @@ export default function Home(){
     useEffect(()=> {
         const fetchBestSellers = async () =>{
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/bestsellers`)
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/orders/best-sellers`)
                 setBestSellers(response.data)
                 
             } catch (error) {
@@ -161,9 +161,9 @@ export default function Home(){
                 <h2 className="heading">Our Bestseller</h2>
                 { loading ? <Loading /> :
                     <div className="containers">
-                        { bestsellers.map(product => 
+                        { bestsellers.map((product, index) => 
                             <Bestsellers 
-                                key={product.brand} 
+                                key={index} 
                                 product={product} 
                             />)
                         }

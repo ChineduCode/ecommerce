@@ -6,7 +6,7 @@ export default function Bestsellers({ product }){
     return(
         <div className="best-seller product">
             <div className="img-container">
-                <Link href={`/product/${product._id}`} className="img">
+                <Link href={`/products/${product._id}`} className="img">
                     <img src={product.image} alt={product.brand} />
                 </Link>
                 <div className="right-bar">
@@ -15,7 +15,7 @@ export default function Bestsellers({ product }){
             </div>
 
             <div className="product-info">
-                <Link href={`/product/${product._id}`} className="product-info">
+                <Link href={`/products/${product._id}`} className="product-info">
                     <h3 className="brand">{product.brand}</h3>
                     <div className="name">{product.name}</div>
                     <div className="selling-cost-prices">

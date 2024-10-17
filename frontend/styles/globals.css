@@ -505,8 +505,8 @@ header .overlay {
   width: 100%;
   min-height: 100vh;
   background: hsla(0, 0%, 0%, 0.75);
-  backdrop-filter: blur(0.5px);
   -webkit-backdrop-filter: blur(0.5px);
+  backdrop-filter: blur(0.5px);
   pointer-events: none;
   transition: opacity 0.3s ease;
   z-index: 10;
@@ -1144,6 +1144,9 @@ footer .bottom-footer .copyright-container {
   padding: 1rem;
   text-align: justify;
   align-self: self-start;
+}
+.homepage .best-sellers .containers .best-seller .product-info .brand {
+  text-transform: capitalize;
 }
 .homepage .best-sellers .containers .best-seller .product-info .name {
   padding: 5px 0;

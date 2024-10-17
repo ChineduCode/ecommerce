@@ -26,11 +26,12 @@ export default function Nav() {
                 dispatch({ type: 'TOGGLE_MODAL' });
             }
 
-            if ((state.isModalOpen || state.isCartOpen || state.isSideBarOpen) && target.className === 'overlay'){
-                dispatch({ type: 'TOGGLE_MODAL' })
-                dispatch({ type: 'TOGGLE_SIDEBAR' })
-                dispatch({ type: 'TOGGLE_CART' })
-            }
+            // if (target.classList.contains('overlay')){
+            //     console.log('clicked')
+            //     dispatch({ type: 'TOGGLE_MODAL' })
+            //     dispatch({ type: 'TOGGLE_SIDEBAR' })
+            //     dispatch({ type: 'TOGGLE_CART' })
+            // }
         };
 
         body.addEventListener('click', handleClickOutside);
