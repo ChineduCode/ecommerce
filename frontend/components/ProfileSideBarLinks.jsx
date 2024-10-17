@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaRegUser } from "react-icons/fa6";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { GrLocation, GrFavorite } from "react-icons/gr";
@@ -8,9 +8,14 @@ import { PiBellLight } from "react-icons/pi";
 import { MdChevronRight } from "react-icons/md";
 import { BsGear } from "react-icons/bs";
 import Link from 'next/link'
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function ProfileSideBarLinks(){
-    const [ currentPage, setCurrentPage ] = useState(0)
+    const pageLinkRef = useRef(null)
+    const router = useRouter()
+    const pathname = usePathname()
+    let [ currentPage, setCurrentPage ] = useState(0)
 
     const profileLinks = [
         { name: 'Profile Information', link: '/profile', inlineLink: '#profile', icon: <FaRegUser size={22}/> },
@@ -21,47 +26,18 @@ export default function ProfileSideBarLinks(){
         { name: 'Settings', link: '/profile/settings', inlineLink: '#settings', icon: <BsGear size={22}/> },
     ];
 
-    useEffect(()=> {
-        const location = window.location.pathname.split('/')[2] || window.location.pathname.split('/')[1]
-        console.log(location)
-        switch (location) {
-            case 'profile':
-                setCurrentPage(0)
-                break;
-        
-            case 'orders':
-                setCurrentPage(1)
-                break;
-        
-            case 'wishlists':
-                setCurrentPage(2)
-                break;
-        
-            case 'addresses':
-                setCurrentPage(3)
-                break;
-        
-            case 'notifications':
-                setCurrentPage(4)
-                break;
-        
-            case 'settings':
-                setCurrentPage(5)
-                break;
-        
-            default:
-                setCurrentPage(0)
-                break;
-        }
-    })
+    useEffect(() => {
+        const currentPath = pathname.split('/')[2] || pathname.split('/')[1];
+        const currentIndex = profileLinks.findIndex(link => link.link.includes(currentPath));
+        setCurrentPage(currentIndex !== -1 ? currentIndex : 0);
+    }, [pathname]);
     
     return(
         <ul className="links">
             { profileLinks.map((profile, index) => (
                 <li 
                     key={index} 
-                    className={`profile-link ${currentPage === index ? 'profile-link-active': 'profile-link'}`} 
-                    onClick={() => setCurrentPage(index)}
+                    className={`profile-link ${currentPage === index ? 'profile-link-active': 'profile-link'}`}
                 >
                     <Link href={`${profile.link}${profile.inlineLink}`}>
                         <span className='icon'>
