@@ -32,7 +32,7 @@ export default function OTP(){
                 throw new Error('Please fill all fields')
             }
             
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/forgot-password/verify-otp`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/forgot-password/verify-otp`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
